@@ -1,0 +1,1885 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Basel Agency — Admin</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Mono:wght@400;500&family=Syne:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* ═══════════════════════════════════════
+   DESIGN SYSTEM — BASEL AGENCY ADMIN
+   Dark luxury · Monospaced accents · Gold
+═══════════════════════════════════════ */
+:root {
+  --gold: #C9A96E;
+  --gold-light: #E8D5A3;
+  --gold-dim: rgba(201,169,110,0.12);
+  --gold-border: rgba(201,169,110,0.28);
+  --bg: #080808;
+  --s1: #0f0f0f;
+  --s2: #161616;
+  --s3: #1e1e1e;
+  --s4: #272727;
+  --border: rgba(255,255,255,0.06);
+  --border2: rgba(255,255,255,0.11);
+  --white: #F2F0EB;
+  --muted: #5a5a5a;
+  --muted2: #888;
+  --green: #52b788;
+  --green-d: rgba(82,183,136,0.1);
+  --red: #e05252;
+  --red-d: rgba(224,82,82,0.1);
+  --blue: #6096ba;
+  --blue-d: rgba(96,150,186,0.1);
+  --amber: #e6a817;
+  --amber-d: rgba(230,168,23,0.1);
+  --sidebar: 256px;
+  --topbar: 56px;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html,body{height:100%;overflow:hidden;}
+body{background:var(--bg);color:var(--white);font-family:'Syne',sans-serif;display:flex;font-size:13px;}
+
+/* ─── SCROLLBARS ─── */
+::-webkit-scrollbar{width:4px;height:4px;}
+::-webkit-scrollbar-track{background:transparent;}
+::-webkit-scrollbar-thumb{background:var(--s4);border-radius:4px;}
+
+/* ─── SIDEBAR ─── */
+.sidebar{
+  width:var(--sidebar);flex-shrink:0;height:100vh;
+  background:var(--s1);border-right:1px solid var(--border);
+  display:flex;flex-direction:column;overflow:hidden;
+}
+.sb-brand{
+  padding:22px 22px 18px;border-bottom:1px solid var(--border);
+  flex-shrink:0;
+}
+.sb-logo{
+  font-family:'Cormorant Garamond',serif;font-size:17px;
+  letter-spacing:5px;text-transform:uppercase;color:var(--gold);
+  display:block;line-height:1;
+}
+.sb-sub{
+  font-family:'DM Mono',monospace;font-size:9px;
+  letter-spacing:2px;text-transform:uppercase;color:var(--muted);
+  margin-top:5px;display:block;
+}
+
+.sb-nav{flex:1;overflow-y:auto;padding:10px 0;}
+.sb-group{margin-bottom:6px;}
+.sb-group-label{
+  font-family:'DM Mono',monospace;font-size:8px;letter-spacing:3px;
+  text-transform:uppercase;color:var(--muted);
+  padding:10px 22px 5px;display:block;
+}
+.sb-item{
+  display:flex;align-items:center;gap:11px;
+  padding:9px 22px;cursor:pointer;
+  color:var(--muted2);font-size:12px;font-weight:500;
+  transition:all .18s;border-left:2px solid transparent;
+  position:relative;user-select:none;
+}
+.sb-item:hover{color:var(--white);background:rgba(255,255,255,0.03);}
+.sb-item.active{
+  color:var(--gold);background:var(--gold-dim);
+  border-left-color:var(--gold);
+}
+.sb-icon{font-size:14px;width:16px;text-align:center;flex-shrink:0;}
+.sb-pill{
+  margin-left:auto;font-family:'DM Mono',monospace;
+  font-size:9px;font-weight:500;
+  padding:2px 7px;border-radius:10px;
+}
+.pill-red{background:var(--red);color:#fff;}
+.pill-gold{background:var(--gold);color:var(--bg);}
+.pill-muted{background:var(--s4);color:var(--muted2);}
+
+.sb-user{
+  padding:14px 22px;border-top:1px solid var(--border);
+  display:flex;align-items:center;gap:11px;flex-shrink:0;
+}
+.sb-avatar{
+  width:34px;height:34px;border-radius:50%;flex-shrink:0;
+  background:var(--gold-dim);border:1px solid var(--gold-border);
+  display:flex;align-items:center;justify-content:center;
+  font-family:'Cormorant Garamond',serif;font-size:15px;color:var(--gold);
+}
+.sb-uname{font-size:12px;font-weight:600;color:var(--white);line-height:1.2;}
+.sb-urole{font-family:'DM Mono',monospace;font-size:9px;color:var(--muted);letter-spacing:1px;}
+.sb-logout{
+  margin-left:auto;font-size:15px;color:var(--muted);
+  cursor:pointer;transition:color .2s;
+}
+.sb-logout:hover{color:var(--red);}
+
+/* ─── MAIN ─── */
+.main{flex:1;height:100vh;display:flex;flex-direction:column;overflow:hidden;min-width:0;}
+
+/* ─── TOPBAR ─── */
+.topbar{
+  height:var(--topbar);flex-shrink:0;
+  background:var(--s1);border-bottom:1px solid var(--border);
+  display:flex;align-items:center;padding:0 28px;gap:14px;
+}
+.tb-title{
+  font-family:'Cormorant Garamond',serif;
+  font-size:20px;font-weight:400;color:var(--white);
+}
+.tb-title em{font-style:italic;color:var(--gold);}
+.tb-sep{flex:1;}
+.tb-search{
+  display:flex;align-items:center;gap:8px;
+  background:var(--s2);border:1px solid var(--border);
+  padding:7px 13px;width:210px;transition:border-color .2s;
+}
+.tb-search:focus-within{border-color:var(--gold-border);}
+.tb-search input{
+  background:none;border:none;outline:none;
+  font-family:'Syne',sans-serif;font-size:12px;
+  color:var(--white);width:100%;
+}
+.tb-search input::placeholder{color:var(--muted);}
+.tb-search span{color:var(--muted);font-size:13px;}
+.tb-btn{
+  padding:8px 18px;font-family:'Syne',sans-serif;
+  font-size:11px;font-weight:600;letter-spacing:1.5px;
+  text-transform:uppercase;border:none;cursor:pointer;
+  background:var(--gold);color:var(--bg);
+  transition:all .2s;
+}
+.tb-btn:hover{background:var(--gold-light);}
+.tb-icon-btn{
+  width:36px;height:36px;background:var(--s2);
+  border:1px solid var(--border);cursor:pointer;
+  display:flex;align-items:center;justify-content:center;
+  font-size:15px;position:relative;transition:border-color .2s;
+}
+.tb-icon-btn:hover{border-color:var(--gold-border);}
+.notif-dot{
+  position:absolute;top:7px;right:7px;
+  width:6px;height:6px;background:var(--red);border-radius:50%;
+  border:1.5px solid var(--s1);
+}
+
+/* ─── CONTENT AREA ─── */
+.content{flex:1;overflow-y:auto;padding:26px 28px;}
+.panel{display:none;animation:fadeIn .25s ease;}
+.panel.active{display:block;}
+@keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+
+/* ─── KPI CARDS ─── */
+.kpi-row{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:24px;}
+.kpi{
+  background:var(--s2);border:1px solid var(--border);
+  padding:18px 20px;position:relative;overflow:hidden;
+  transition:border-color .2s;cursor:default;
+}
+.kpi:hover{border-color:var(--border2);}
+.kpi::after{
+  content:'';position:absolute;top:0;left:0;right:0;height:2px;
+}
+.kpi.k-gold::after{background:linear-gradient(to right,var(--gold),var(--gold-light));}
+.kpi.k-green::after{background:var(--green);}
+.kpi.k-blue::after{background:var(--blue);}
+.kpi.k-red::after{background:var(--red);}
+.kpi-label{
+  font-family:'DM Mono',monospace;font-size:9px;
+  letter-spacing:2.5px;text-transform:uppercase;
+  color:var(--muted);margin-bottom:10px;
+}
+.kpi-value{
+  font-family:'Cormorant Garamond',serif;
+  font-size:40px;font-weight:400;line-height:1;
+}
+.kpi.k-gold .kpi-value{color:var(--gold);}
+.kpi.k-green .kpi-value{color:var(--green);}
+.kpi.k-blue .kpi-value{color:var(--blue);}
+.kpi.k-red .kpi-value{color:var(--red);}
+.kpi-sub{
+  font-family:'DM Mono',monospace;
+  font-size:10px;color:var(--muted);margin-top:8px;
+}
+.kpi-sub .up{color:var(--green);}
+.kpi-sub .dn{color:var(--red);}
+
+/* ─── SECTION HEADER ─── */
+.sec-hdr{display:flex;align-items:center;gap:12px;margin-bottom:18px;}
+.sec-hdr h2{
+  font-family:'Cormorant Garamond',serif;
+  font-size:22px;font-weight:400;flex:1;
+}
+.sec-hdr h2 em{font-style:italic;color:var(--gold);}
+
+/* ─── BUTTONS ─── */
+.btn{
+  padding:8px 16px;font-family:'Syne',sans-serif;
+  font-size:10px;font-weight:600;letter-spacing:1.5px;
+  text-transform:uppercase;border:none;cursor:pointer;
+  transition:all .18s;
+}
+.btn-gold{background:var(--gold);color:var(--bg);}
+.btn-gold:hover{background:var(--gold-light);}
+.btn-outline{background:transparent;color:var(--muted2);border:1px solid var(--border2);}
+.btn-outline:hover{border-color:var(--gold-border);color:var(--white);}
+.btn-ghost{background:transparent;color:var(--muted2);border:1px solid var(--border);}
+.btn-ghost:hover{color:var(--white);}
+.btn-danger{background:var(--red-d);color:var(--red);border:1px solid rgba(224,82,82,.2);}
+.btn-danger:hover{background:rgba(224,82,82,.2);}
+.btn-sm{padding:5px 12px;font-size:9px;}
+.btn-xs{padding:4px 9px;font-size:9px;}
+
+/* ─── FILTER BAR ─── */
+.filter-bar{display:flex;gap:6px;margin-bottom:16px;flex-wrap:wrap;align-items:center;}
+.chip{
+  padding:5px 14px;font-family:'DM Mono',monospace;
+  font-size:9px;letter-spacing:2px;text-transform:uppercase;
+  background:var(--s2);border:1px solid var(--border);
+  color:var(--muted2);cursor:pointer;transition:all .18s;
+}
+.chip:hover{border-color:var(--gold-border);color:var(--white);}
+.chip.on{background:var(--gold-dim);border-color:var(--gold-border);color:var(--gold);}
+.filter-right{margin-left:auto;display:flex;gap:8px;align-items:center;}
+.f-select{
+  background:var(--s2);border:1px solid var(--border);
+  color:var(--muted2);padding:5px 10px;
+  font-family:'DM Mono',monospace;font-size:10px;
+  outline:none;cursor:pointer;transition:border-color .2s;
+}
+.f-select:focus{border-color:var(--gold-border);}
+
+/* ─── TABLE ─── */
+.tbl-wrap{
+  background:var(--s2);border:1px solid var(--border);
+  overflow:hidden;
+}
+.tbl-wrap table{width:100%;border-collapse:collapse;}
+.tbl-wrap thead tr{background:var(--s3);border-bottom:1px solid var(--border);}
+.tbl-wrap th{
+  padding:10px 14px;
+  font-family:'DM Mono',monospace;font-size:8px;
+  letter-spacing:2.5px;text-transform:uppercase;
+  color:var(--muted);text-align:left;font-weight:400;
+  white-space:nowrap;
+}
+.tbl-wrap td{
+  padding:11px 14px;font-size:12px;color:var(--white);
+  border-bottom:1px solid var(--border);vertical-align:middle;
+}
+.tbl-wrap tr:last-child td{border-bottom:none;}
+.tbl-wrap tbody tr{transition:background .15s;cursor:default;}
+.tbl-wrap tbody tr:hover{background:rgba(201,169,110,0.03);}
+.td-thumb{
+  width:50px;height:38px;object-fit:cover;
+  display:block;border:1px solid var(--border);
+}
+.td-dim{color:var(--muted2);font-size:11px;}
+.td-acts{display:flex;gap:6px;align-items:center;}
+
+/* ─── BADGES ─── */
+.badge{
+  display:inline-flex;align-items:center;
+  padding:3px 8px;font-family:'DM Mono',monospace;
+  font-size:8px;letter-spacing:1.5px;text-transform:uppercase;font-weight:500;
+}
+.b-active  {background:var(--green-d); color:var(--green);}
+.b-pending {background:var(--amber-d); color:var(--amber);}
+.b-sold    {background:var(--blue-d);  color:var(--blue);}
+.b-off     {background:var(--s4);      color:var(--muted2);}
+.b-new     {background:var(--red-d);   color:var(--red);}
+.b-hot     {background:var(--gold-dim);color:var(--gold);}
+.b-done    {background:var(--green-d); color:var(--green);}
+.b-corp    {background:rgba(96,150,186,.12);color:var(--blue);}
+.b-expat   {background:rgba(82,183,136,.12);color:var(--green);}
+.b-fair    {background:rgba(201,169,110,.12);color:var(--gold);}
+.b-furn    {background:rgba(230,168,23,.12);color:var(--amber);}
+.b-sale    {background:rgba(224,82,82,.12);color:var(--red);}
+
+/* ─── CARD ─── */
+.card{background:var(--s2);border:1px solid var(--border);padding:20px;margin-bottom:18px;}
+.card-title{
+  font-family:'DM Mono',monospace;font-size:9px;
+  letter-spacing:3px;text-transform:uppercase;
+  color:var(--muted);margin-bottom:16px;display:block;
+}
+
+/* ─── TWO-COL GRID ─── */
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-bottom:18px;}
+.three-col{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;margin-bottom:18px;}
+
+/* ─── FORM FIELDS ─── */
+.fg{margin-bottom:14px;}
+.fg:last-child{margin-bottom:0;}
+.fg label{
+  font-family:'DM Mono',monospace;font-size:9px;
+  letter-spacing:2px;text-transform:uppercase;
+  color:var(--muted);display:block;margin-bottom:6px;
+}
+.fg input,.fg select,.fg textarea{
+  width:100%;background:var(--s3);border:1px solid var(--border);
+  color:var(--white);padding:9px 12px;
+  font-family:'Syne',sans-serif;font-size:12px;
+  outline:none;transition:border-color .2s;
+}
+.fg input:focus,.fg select:focus,.fg textarea:focus{border-color:var(--gold-border);}
+.fg select option{background:var(--s3);}
+.fg textarea{resize:vertical;min-height:76px;line-height:1.6;}
+.fg-row{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+.fg-row3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;}
+
+/* ─── TOGGLE ─── */
+.toggle{display:inline-flex;align-items:center;gap:10px;cursor:pointer;}
+.toggle input{display:none;}
+.tgl-track{
+  width:38px;height:21px;background:var(--s4);
+  border:1px solid var(--border2);border-radius:11px;
+  position:relative;transition:all .25s;flex-shrink:0;
+}
+.tgl-track::after{
+  content:'';position:absolute;top:3px;left:3px;
+  width:13px;height:13px;background:var(--muted);
+  border-radius:50%;transition:all .25s;
+}
+.toggle input:checked + .tgl-track{background:var(--gold);border-color:var(--gold);}
+.toggle input:checked + .tgl-track::after{left:20px;background:var(--bg);}
+.tgl-lbl{font-size:12px;color:var(--muted2);}
+
+/* ─── PROGRESS ─── */
+.prog-item{margin-bottom:12px;}
+.prog-item:last-child{margin-bottom:0;}
+.prog-hdr{display:flex;justify-content:space-between;margin-bottom:5px;font-size:11px;}
+.prog-hdr span:last-child{
+  font-family:'DM Mono',monospace;font-size:10px;color:var(--gold);
+}
+.prog-track{height:3px;background:var(--s4);overflow:hidden;}
+.prog-fill{height:100%;transition:width .8s ease;}
+.pf-gold{background:var(--gold);}
+.pf-blue{background:var(--blue);}
+.pf-green{background:var(--green);}
+.pf-amber{background:var(--amber);}
+.pf-red{background:var(--red);}
+
+/* ─── ACTIVITY ─── */
+.act-item{display:flex;gap:12px;padding:10px 0;border-bottom:1px solid var(--border);}
+.act-item:last-child{border-bottom:none;}
+.act-dot{width:7px;height:7px;border-radius:50%;margin-top:4px;flex-shrink:0;}
+.act-body{flex:1;font-size:12px;line-height:1.5;color:var(--muted2);}
+.act-body strong{color:var(--white);font-weight:600;}
+.act-time{
+  font-family:'DM Mono',monospace;font-size:9px;
+  color:var(--muted);padding-top:2px;flex-shrink:0;
+}
+
+/* ─── LEADS ─── */
+.lead-item{display:flex;align-items:flex-start;gap:12px;padding:12px 0;border-bottom:1px solid var(--border);}
+.lead-item:last-child{border-bottom:none;}
+.lead-av{
+  width:36px;height:36px;border-radius:50%;flex-shrink:0;
+  display:flex;align-items:center;justify-content:center;
+  font-size:13px;font-weight:700;border:1px solid;
+}
+.lead-info{flex:1;min-width:0;}
+.lead-name{font-size:13px;font-weight:600;color:var(--white);margin-bottom:2px;}
+.lead-desc{font-size:11px;color:var(--muted2);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.lead-tags{display:flex;gap:5px;margin-top:5px;flex-wrap:wrap;}
+.lead-time{
+  font-family:'DM Mono',monospace;font-size:9px;
+  color:var(--muted);flex-shrink:0;padding-top:2px;
+}
+
+/* ─── CHART BARS ─── */
+.chart-bars{display:flex;align-items:flex-end;gap:5px;height:52px;}
+.c-bar{
+  flex:1;background:var(--gold-dim);min-height:4px;
+  transition:background .2s;cursor:default;
+  position:relative;
+}
+.c-bar:hover{background:rgba(201,169,110,0.35);}
+.c-bar-lbl{
+  position:absolute;top:-18px;left:50%;transform:translateX(-50%);
+  font-family:'DM Mono',monospace;font-size:8px;color:var(--gold);
+  white-space:nowrap;opacity:0;transition:opacity .15s;
+}
+.c-bar:hover .c-bar-lbl{opacity:1;}
+.chart-days{
+  display:flex;justify-content:space-between;margin-top:6px;
+}
+.chart-days span{
+  font-family:'DM Mono',monospace;font-size:8px;color:var(--muted);
+}
+
+/* ─── CONTENT ACCORDION ─── */
+.acc-item{background:var(--s2);border:1px solid var(--border);margin-bottom:10px;overflow:hidden;}
+.acc-hdr{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:14px 18px;cursor:pointer;
+  transition:background .18s;
+}
+.acc-hdr:hover{background:rgba(255,255,255,0.02);}
+.acc-hdr-left{display:flex;align-items:center;gap:10px;}
+.acc-hdr-icon{font-size:15px;}
+.acc-hdr-title{font-size:12px;font-weight:600;color:var(--white);}
+.acc-hdr-sub{
+  font-family:'DM Mono',monospace;font-size:9px;
+  color:var(--muted);letter-spacing:1px;
+}
+.acc-arrow{
+  font-size:16px;color:var(--muted);
+  transition:transform .25s;
+}
+.acc-item.open .acc-arrow{transform:rotate(90deg);}
+.acc-body{padding:18px;border-top:1px solid var(--border);display:none;}
+.acc-item.open .acc-body{display:block;}
+
+/* ─── MODAL ─── */
+.overlay{
+  position:fixed;inset:0;background:rgba(0,0,0,.8);
+  z-index:1000;display:none;align-items:center;
+  justify-content:center;padding:20px;
+  backdrop-filter:blur(3px);
+}
+.overlay.open{display:flex;}
+.modal{
+  background:var(--s2);border:1px solid var(--border2);
+  width:100%;max-width:640px;max-height:92vh;
+  overflow-y:auto;animation:modalIn .25s ease;
+}
+@keyframes modalIn{from{opacity:0;transform:translateY(-16px)}to{opacity:1;transform:translateY(0)}}
+.modal-hdr{
+  padding:18px 22px;border-bottom:1px solid var(--border);
+  display:flex;align-items:center;justify-content:space-between;
+  position:sticky;top:0;background:var(--s2);z-index:1;
+}
+.modal-hdr h3{
+  font-family:'Cormorant Garamond',serif;
+  font-size:20px;font-weight:400;
+}
+.modal-hdr h3 em{font-style:italic;color:var(--gold);}
+.modal-x{
+  width:28px;height:28px;display:flex;align-items:center;
+  justify-content:center;cursor:pointer;color:var(--muted);
+  font-size:16px;transition:color .2s;
+}
+.modal-x:hover{color:var(--white);}
+.modal-body{padding:22px;}
+.modal-footer{
+  padding:14px 22px;border-top:1px solid var(--border);
+  display:flex;justify-content:flex-end;gap:8px;
+}
+
+/* ─── DELETE CONFIRM ─── */
+.del-confirm{
+  display:none;align-items:center;gap:8px;
+  background:var(--red-d);border:1px solid rgba(224,82,82,.2);
+  padding:6px 12px;font-size:11px;color:var(--red);
+}
+.del-confirm.show{display:flex;}
+
+/* ─── TOAST ─── */
+.toast{
+  position:fixed;bottom:22px;right:22px;z-index:2000;
+  background:var(--s3);border:1px solid var(--gold-border);
+  border-left:3px solid var(--gold);
+  padding:12px 18px;display:flex;align-items:center;gap:10px;
+  font-size:12px;
+  transform:translateY(60px);opacity:0;
+  transition:all .3s ease;pointer-events:none;
+  min-width:220px;
+}
+.toast.show{transform:translateY(0);opacity:1;}
+.toast.t-err{border-left-color:var(--red);}
+.toast.t-ok{border-left-color:var(--green);}
+
+/* ─── PROP IMAGE UPLOAD ZONE ─── */
+.img-zone{
+  border:2px dashed var(--border2);padding:28px;
+  text-align:center;cursor:pointer;transition:border-color .2s;
+}
+.img-zone:hover{border-color:var(--gold-border);}
+.img-zone-icon{font-size:28px;margin-bottom:8px;}
+.img-zone-text{font-size:12px;color:var(--muted2);margin-bottom:3px;}
+.img-zone-hint{
+  font-family:'DM Mono',monospace;font-size:9px;color:var(--muted);
+}
+.img-preview{
+  width:100%;height:140px;object-fit:cover;
+  display:none;border:1px solid var(--border);margin-top:10px;
+}
+
+/* ─── STAT MINI ─── */
+.stat-mini{display:flex;align-items:center;justify-content:space-between;padding:10px 0;border-bottom:1px solid var(--border);}
+.stat-mini:last-child{border-bottom:none;}
+.stat-mini-label{font-size:12px;color:var(--muted2);}
+.stat-mini-val{
+  font-family:'DM Mono',monospace;font-size:12px;color:var(--gold);
+}
+
+/* ─── EMPTY STATE ─── */
+.empty{
+  padding:48px 20px;text-align:center;
+  font-family:'Cormorant Garamond',serif;
+  font-size:18px;color:var(--muted);font-style:italic;
+}
+.empty span{display:block;font-size:32px;margin-bottom:8px;}
+</style>
+</head>
+<body>
+
+<!-- ════════════════════ SIDEBAR ════════════════════ -->
+<aside class="sidebar">
+  <div class="sb-brand">
+    <span class="sb-logo">Basel Agency</span>
+    <span class="sb-sub">Admin Panel v2.0</span>
+  </div>
+
+  <nav class="sb-nav">
+    <div class="sb-group">
+      <span class="sb-group-label">Overview</span>
+      <div class="sb-item active" onclick="nav('dashboard',this)">
+        <span class="sb-icon">◈</span> Dashboard
+      </div>
+    </div>
+    <div class="sb-group">
+      <span class="sb-group-label">Properties</span>
+      <div class="sb-item" onclick="nav('listings',this)">
+        <span class="sb-icon">🏠</span> All Listings
+        <span class="sb-pill pill-gold" id="pill-listings">0</span>
+      </div>
+      <div class="sb-item" onclick="nav('add-prop',this)">
+        <span class="sb-icon">＋</span> Add Listing
+      </div>
+    </div>
+    <div class="sb-group">
+      <span class="sb-group-label">Clients</span>
+      <div class="sb-item" onclick="nav('leads',this)">
+        <span class="sb-icon">👥</span> Leads
+        <span class="sb-pill pill-red" id="pill-leads">0</span>
+      </div>
+      <div class="sb-item" onclick="nav('enquiries',this)">
+        <span class="sb-icon">✉️</span> Enquiries
+        <span class="sb-pill pill-red" id="pill-enqs">0</span>
+      </div>
+    </div>
+    <div class="sb-group">
+      <span class="sb-group-label">Website</span>
+      <div class="sb-item" onclick="nav('content',this)">
+        <span class="sb-icon">✏️</span> Site Content
+      </div>
+      <div class="sb-item" onclick="nav('settings',this)">
+        <span class="sb-icon">⚙️</span> Settings
+      </div>
+    </div>
+  </nav>
+
+  <div class="sb-user">
+    <div class="sb-avatar">T</div>
+    <div>
+      <div class="sb-uname">Tanya Lee Beck</div>
+      <div class="sb-urole">Administrator</div>
+    </div>
+    <span class="sb-logout" title="Logout" onclick="toast('Logged out','ok')">⏻</span>
+  </div>
+</aside>
+
+<!-- ════════════════════ MAIN ════════════════════ -->
+<div class="main">
+
+  <!-- TOPBAR -->
+  <div class="topbar">
+    <div class="tb-title" id="tb-title">Dashboard <em>Overview</em></div>
+    <div class="tb-sep"></div>
+    <div class="tb-search">
+      <span>🔍</span>
+      <input type="text" placeholder="Search properties, leads..." id="global-search" oninput="globalSearch(this.value)">
+    </div>
+    <button class="tb-btn" onclick="nav('add-prop',null)">+ New Listing</button>
+    <div class="tb-icon-btn" onclick="toast('3 new notifications','ok')">
+      🔔<div class="notif-dot"></div>
+    </div>
+  </div>
+
+  <div class="content">
+
+    <!-- ══════════ DASHBOARD ══════════ -->
+    <div class="panel active" id="p-dashboard">
+
+      <div class="kpi-row">
+        <div class="kpi k-gold">
+          <div class="kpi-label">Active Listings</div>
+          <div class="kpi-value" id="kpi-listings">—</div>
+          <div class="kpi-sub"><span class="up">↑ 3</span> this month</div>
+        </div>
+        <div class="kpi k-green">
+          <div class="kpi-label">Total Leads</div>
+          <div class="kpi-value" id="kpi-leads">—</div>
+          <div class="kpi-sub"><span class="up">↑ 5</span> this week</div>
+        </div>
+        <div class="kpi k-blue">
+          <div class="kpi-label">Enquiries</div>
+          <div class="kpi-value" id="kpi-enqs">—</div>
+          <div class="kpi-sub"><span class="up">↑ 8</span> this month</div>
+        </div>
+        <div class="kpi k-red">
+          <div class="kpi-label">Pending Action</div>
+          <div class="kpi-value" id="kpi-pending">—</div>
+          <div class="kpi-sub"><span class="dn">→</span> needs review</div>
+        </div>
+      </div>
+
+      <div class="two-col">
+
+        <!-- Recent leads -->
+        <div class="card">
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;">
+            <span class="card-title" style="margin:0">Recent Leads</span>
+            <button class="btn btn-ghost btn-sm" onclick="nav('leads',null)">View all →</button>
+          </div>
+          <div id="dash-leads-list"></div>
+        </div>
+
+        <!-- Right column -->
+        <div>
+          <!-- Listing breakdown -->
+          <div class="card" style="margin-bottom:18px">
+            <span class="card-title">Listings by Category</span>
+            <div id="cat-progress"></div>
+          </div>
+          <!-- Enquiry chart -->
+          <div class="card">
+            <span class="card-title">Enquiries — Last 7 Days</span>
+            <div class="chart-bars" id="enq-chart"></div>
+            <div class="chart-days">
+              <span>Mon</span><span>Tue</span><span>Wed</span>
+              <span>Thu</span><span>Fri</span><span>Sat</span><span>Sun</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Activity -->
+      <div class="card">
+        <span class="card-title">Recent Activity</span>
+        <div id="activity-feed"></div>
+      </div>
+    </div>
+
+    <!-- ══════════ ALL LISTINGS ══════════ -->
+    <div class="panel" id="p-listings">
+      <div class="sec-hdr">
+        <h2>Property <em>Listings</em></h2>
+        <button class="btn btn-gold btn-sm" onclick="nav('add-prop',null)">+ Add Listing</button>
+      </div>
+
+      <div class="filter-bar">
+        <span class="chip on" onclick="setChip(this,'all')">All</span>
+        <span class="chip" onclick="setChip(this,'Corporate')">Corporate</span>
+        <span class="chip" onclick="setChip(this,'Expat')">Expat & Family</span>
+        <span class="chip" onclick="setChip(this,'Furnished')">Furnished</span>
+        <span class="chip" onclick="setChip(this,'Trade Fair')">Trade Fair</span>
+        <span class="chip" onclick="setChip(this,'For Sale')">For Sale</span>
+        <div class="filter-right">
+          <select class="f-select" id="sort-props" onchange="renderListings()">
+            <option value="newest">Newest first</option>
+            <option value="oldest">Oldest first</option>
+            <option value="price-asc">Price ↑</option>
+            <option value="price-desc">Price ↓</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="tbl-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th width="56"></th>
+              <th>Title</th>
+              <th>Type</th>
+              <th>Location</th>
+              <th>Price</th>
+              <th>Status</th>
+              <th>Featured</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody id="prop-tbody"></tbody>
+        </table>
+      </div>
+      <div class="empty" id="prop-empty" style="display:none">
+        <span>🏠</span>No listings yet. Add your first property.
+      </div>
+    </div>
+
+    <!-- ══════════ ADD / EDIT LISTING ══════════ -->
+    <div class="panel" id="p-add-prop">
+      <div class="sec-hdr">
+        <h2 id="form-title">Add <em>New Listing</em></h2>
+        <div style="display:flex;gap:8px;">
+          <button class="btn btn-ghost btn-sm" onclick="nav('listings',null)">← Back</button>
+          <button class="btn btn-outline btn-sm" onclick="saveDraft()">Save Draft</button>
+          <button class="btn btn-gold btn-sm" onclick="publishProp()">Publish Listing</button>
+        </div>
+      </div>
+
+      <input type="hidden" id="edit-id" value="">
+
+      <div class="two-col">
+        <!-- LEFT -->
+        <div>
+          <div class="card">
+            <span class="card-title">Basic Information</span>
+            <div class="fg"><label>Property Title *</label><input id="f-title" placeholder="e.g. Executive Apartment, Centralbahnplatz" required></div>
+            <div class="fg-row">
+              <div class="fg">
+                <label>Listing Type *</label>
+                <select id="f-type">
+                  <option>Corporate</option><option>Expat</option>
+                  <option>Furnished</option><option>Trade Fair</option>
+                  <option>For Sale</option><option>International</option>
+                </select>
+              </div>
+              <div class="fg">
+                <label>Status</label>
+                <select id="f-status">
+                  <option>Active</option><option>Pending</option>
+                  <option>Inactive</option><option>Sold</option>
+                </select>
+              </div>
+            </div>
+            <div class="fg"><label>Description</label><textarea id="f-desc" placeholder="Describe the property, key highlights, who it suits..."></textarea></div>
+            <div class="fg"><label>Key Features (comma separated)</label><input id="f-features" placeholder="e.g. Furnished, Balcony, Parking, Dishwasher, City View"></div>
+          </div>
+
+          <div class="card">
+            <span class="card-title">Location</span>
+            <div class="fg"><label>Full Address</label><input id="f-address" placeholder="Street, Number, City, Switzerland"></div>
+            <div class="fg-row">
+              <div class="fg"><label>Neighbourhood</label><input id="f-area" placeholder="e.g. Basel City Centre"></div>
+              <div class="fg"><label>Country</label><input id="f-country" value="Switzerland"></div>
+            </div>
+          </div>
+
+          <div class="card">
+            <span class="card-title">Pricing</span>
+            <div class="fg-row">
+              <div class="fg"><label>Price (CHF) *</label><input id="f-price" type="number" placeholder="e.g. 3800"></div>
+              <div class="fg">
+                <label>Per</label>
+                <select id="f-per">
+                  <option value="/mo">/ month</option>
+                  <option value="/night">/ night</option>
+                  <option value="/wk">/ week</option>
+                  <option value="">guide price</option>
+                </select>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- RIGHT -->
+        <div>
+          <div class="card">
+            <span class="card-title">Property Details</span>
+            <div class="fg-row3">
+              <div class="fg"><label>Bedrooms</label><input id="f-beds" type="number" placeholder="2" min="0"></div>
+              <div class="fg"><label>Bathrooms</label><input id="f-baths" type="number" placeholder="1" min="0"></div>
+              <div class="fg"><label>Size (m²)</label><input id="f-size" type="number" placeholder="85"></div>
+            </div>
+            <div class="fg-row">
+              <div class="fg"><label>Floor / Level</label><input id="f-floor" placeholder="e.g. 3rd Floor"></div>
+              <div class="fg"><label>Available From</label><input id="f-avail" type="date"></div>
+            </div>
+          </div>
+
+          <div class="card">
+            <span class="card-title">Property Image</span>
+            <div class="fg"><label>Image URL</label><input id="f-img" placeholder="https://images.unsplash.com/..." oninput="previewImg(this.value)"></div>
+            <img id="img-preview" class="img-preview" alt="">
+            <div class="img-zone" onclick="document.getElementById('f-img').focus()" style="margin-top:10px">
+              <div class="img-zone-icon">🖼️</div>
+              <div class="img-zone-text">Paste an image URL above to preview</div>
+              <div class="img-zone-hint">Unsplash, direct URLs supported · Recommended 800×600px</div>
+            </div>
+          </div>
+
+          <div class="card">
+            <span class="card-title">Visibility</span>
+            <div style="display:flex;flex-direction:column;gap:12px;">
+              <label class="toggle"><input type="checkbox" id="f-vis" checked><div class="tgl-track"></div><span class="tgl-lbl">Show on website</span></label>
+              <label class="toggle"><input type="checkbox" id="f-featured"><div class="tgl-track"></div><span class="tgl-lbl">Feature on homepage</span></label>
+              <label class="toggle"><input type="checkbox" id="f-vip"><div class="tgl-track"></div><span class="tgl-lbl">Mark as VIP / Premium</span></label>
+              <label class="toggle"><input type="checkbox" id="f-intl"><div class="tgl-track"></div><span class="tgl-lbl">International property</span></label>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div style="display:flex;justify-content:flex-end;gap:8px;padding-bottom:24px;">
+        <button class="btn btn-ghost btn-sm" onclick="resetForm();nav('listings',null)">Discard</button>
+        <button class="btn btn-outline btn-sm" onclick="saveDraft()">Save Draft</button>
+        <button class="btn btn-gold btn-sm" onclick="publishProp()">Publish Listing</button>
+      </div>
+    </div>
+
+    <!-- ══════════ LEADS ══════════ -->
+    <div class="panel" id="p-leads">
+      <div class="sec-hdr">
+        <h2>Client <em>Leads</em></h2>
+        <div style="display:flex;gap:8px;">
+          <button class="btn btn-ghost btn-sm" onclick="exportLeads()">⬇ Export CSV</button>
+          <button class="btn btn-gold btn-sm" onclick="openAddLead()">+ Add Lead</button>
+        </div>
+      </div>
+
+      <div class="filter-bar">
+        <span class="chip on" onclick="setLeadChip(this,'all')">All</span>
+        <span class="chip" onclick="setLeadChip(this,'New')">New</span>
+        <span class="chip" onclick="setLeadChip(this,'Hot')">Hot</span>
+        <span class="chip" onclick="setLeadChip(this,'Contacted')">Contacted</span>
+        <span class="chip" onclick="setLeadChip(this,'Closed')">Closed</span>
+        <div class="filter-right">
+          <select class="f-select" id="lead-type-filter" onchange="renderLeads()">
+            <option value="all">All Types</option>
+            <option value="Corporate">Corporate</option>
+            <option value="Expat">Expat</option>
+            <option value="Trade Fair">Trade Fair</option>
+            <option value="Furnished">Furnished</option>
+            <option value="For Sale">For Sale</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="tbl-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Name & Contact</th>
+              <th>Type</th>
+              <th>Message</th>
+              <th>Status</th>
+              <th>Date</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody id="lead-tbody"></tbody>
+        </table>
+      </div>
+      <div class="empty" id="lead-empty" style="display:none">
+        <span>👥</span>No leads yet.
+      </div>
+    </div>
+
+    <!-- ══════════ ENQUIRIES ══════════ -->
+    <div class="panel" id="p-enquiries">
+      <div class="sec-hdr">
+        <h2>Website <em>Enquiries</em></h2>
+        <button class="btn btn-ghost btn-sm" onclick="markAllRead()">✓ Mark All Read</button>
+      </div>
+
+      <div class="tbl-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Sender</th>
+              <th>Subject</th>
+              <th>Interest</th>
+              <th>Received</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody id="enq-tbody"></tbody>
+        </table>
+      </div>
+      <div class="empty" id="enq-empty" style="display:none">
+        <span>✉️</span>Inbox is clear.
+      </div>
+    </div>
+
+    <!-- ══════════ SITE CONTENT ══════════ -->
+    <div class="panel" id="p-content">
+      <div class="sec-hdr">
+        <h2>Website <em>Content</em></h2>
+        <div style="display:flex;gap:8px;">
+          <button class="btn btn-ghost btn-sm" onclick="toast('Opening preview...','ok')">↗ Preview</button>
+          <button class="btn btn-gold btn-sm" onclick="saveContent()">Save & Publish</button>
+        </div>
+      </div>
+
+      <!-- Hero -->
+      <div class="acc-item open" id="acc-hero">
+        <div class="acc-hdr" onclick="toggleAcc(this)">
+          <div class="acc-hdr-left">
+            <span class="acc-hdr-icon">🏠</span>
+            <div>
+              <div class="acc-hdr-title">Hero Section</div>
+              <div class="acc-hdr-sub">Headline · Subtext · CTA buttons</div>
+            </div>
+          </div>
+          <span class="acc-arrow">›</span>
+        </div>
+        <div class="acc-body">
+          <div class="fg-row">
+            <div class="fg"><label>Headline Line 1</label><input id="c-h1" value="Your Home"></div>
+            <div class="fg"><label>Headline Line 2</label><input id="c-h2" value="Away From"></div>
+          </div>
+          <div class="fg-row">
+            <div class="fg"><label>Headline Line 3 (gold italic)</label><input id="c-h3" value="Home."></div>
+            <div class="fg"><label>Established Year</label><input id="c-year" value="2007"></div>
+          </div>
+          <div class="fg"><label>Subtext</label><textarea id="c-sub">Premium corporate housing, expat relocation, and furnished accommodations in Basel — curated by one of the region's most trusted property specialists for over two decades.</textarea></div>
+          <div class="fg-row">
+            <div class="fg"><label>Primary CTA</label><input id="c-cta1" value="Explore Services"></div>
+            <div class="fg"><label>Secondary CTA</label><input id="c-cta2" value="Get in Touch"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- About -->
+      <div class="acc-item" id="acc-about">
+        <div class="acc-hdr" onclick="toggleAcc(this)">
+          <div class="acc-hdr-left">
+            <span class="acc-hdr-icon">👤</span>
+            <div>
+              <div class="acc-hdr-title">About / Tanya Section</div>
+              <div class="acc-hdr-sub">Bio · Stats · Photo</div>
+            </div>
+          </div>
+          <span class="acc-arrow">›</span>
+        </div>
+        <div class="acc-body">
+          <div class="fg"><label>Section Headline</label><input id="c-about-h" value="I Don't Just Find Properties — I Find Solutions."></div>
+          <div class="fg"><label>Bio Paragraph 1</label><textarea id="c-bio1">With over 20 years of experience in Basel's corporate and expat housing market, I've built relationships, not just transactions. My reputation is my business — and my clients are my priority.</textarea></div>
+          <div class="fg"><label>Bio Paragraph 2</label><textarea id="c-bio2">Whether you're a global firm relocating a team, an expat family arriving in Switzerland for the first time, or a property owner looking to lease or sell — I bring the local knowledge, integrity, and personal attention that no algorithm can replicate.</textarea></div>
+          <div class="fg-row3">
+            <div class="fg"><label>Stat 1 Value</label><input id="c-s1v" value="20+"></div>
+            <div class="fg"><label>Stat 2 Value</label><input id="c-s2v" value="500+"></div>
+            <div class="fg"><label>Stat 3 Value</label><input id="c-s3v" value="Basel"></div>
+          </div>
+          <div class="fg-row3">
+            <div class="fg"><label>Stat 1 Label</label><input id="c-s1l" value="Years Experience"></div>
+            <div class="fg"><label>Stat 2 Label</label><input id="c-s2l" value="Clients Served"></div>
+            <div class="fg"><label>Stat 3 Label</label><input id="c-s3l" value="Home Market"></div>
+          </div>
+          <div class="fg"><label>Profile Photo URL</label><input id="c-photo" placeholder="Paste photo URL or upload..."></div>
+        </div>
+      </div>
+
+      <!-- Testimonials -->
+      <div class="acc-item" id="acc-testi">
+        <div class="acc-hdr" onclick="toggleAcc(this)">
+          <div class="acc-hdr-left">
+            <span class="acc-hdr-icon">⭐</span>
+            <div>
+              <div class="acc-hdr-title">Testimonials</div>
+              <div class="acc-hdr-sub">3 client quotes</div>
+            </div>
+          </div>
+          <span class="acc-arrow">›</span>
+        </div>
+        <div class="acc-body">
+          <div class="three-col" style="margin-bottom:0">
+            <div>
+              <div class="fg"><label>Author 1</label><input id="c-t1a" value="Heather Kelly"></div>
+              <div class="fg"><label>Quote 1</label><textarea id="c-t1q" style="min-height:90px">We utilised Tanya Lee and her furnished apartments for our engineers whilst on projects in Basel. Excellent service with excellent accommodations.</textarea></div>
+            </div>
+            <div>
+              <div class="fg"><label>Author 2</label><input id="c-t2a" value="John Prowse"></div>
+              <div class="fg"><label>Quote 2</label><textarea id="c-t2q" style="min-height:90px">The effort she puts into making sure things run smoothly is a lesson many can learn. Call her, email her — but don't miss her.</textarea></div>
+            </div>
+            <div>
+              <div class="fg"><label>Author 3</label><input id="c-t3a" value="Sally Mountain"></div>
+              <div class="fg"><label>Quote 3</label><textarea id="c-t3q" style="min-height:90px">Tanya is very professional, knowledgeable, trustworthy and reliable. She takes time to understand the requirements of both landlords and tenants.</textarea></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Contact -->
+      <div class="acc-item" id="acc-contact">
+        <div class="acc-hdr" onclick="toggleAcc(this)">
+          <div class="acc-hdr-left">
+            <span class="acc-hdr-icon">📞</span>
+            <div>
+              <div class="acc-hdr-title">Contact Information</div>
+              <div class="acc-hdr-sub">Phone · Email · WhatsApp · Socials</div>
+            </div>
+          </div>
+          <span class="acc-arrow">›</span>
+        </div>
+        <div class="acc-body">
+          <div class="fg-row">
+            <div class="fg"><label>Phone Number</label><input id="c-phone" value="+41 76 475 66 22"></div>
+            <div class="fg"><label>Email Address</label><input id="c-email" value="tanyabeck@baselagency.com"></div>
+          </div>
+          <div class="fg-row">
+            <div class="fg"><label>WhatsApp Number</label><input id="c-wa" value="+41764756622"></div>
+            <div class="fg"><label>City / Location</label><input id="c-city" value="Basel, Switzerland"></div>
+          </div>
+          <div class="fg-row">
+            <div class="fg"><label>LinkedIn URL</label><input id="c-li" placeholder="https://linkedin.com/in/tanya..."></div>
+            <div class="fg"><label>Instagram URL</label><input id="c-ig" placeholder="https://instagram.com/..."></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SEO -->
+      <div class="acc-item" id="acc-seo">
+        <div class="acc-hdr" onclick="toggleAcc(this)">
+          <div class="acc-hdr-left">
+            <span class="acc-hdr-icon">🔍</span>
+            <div>
+              <div class="acc-hdr-title">SEO & Meta Tags</div>
+              <div class="acc-hdr-sub">Page title · Description · Keywords</div>
+            </div>
+          </div>
+          <span class="acc-arrow">›</span>
+        </div>
+        <div class="acc-body">
+          <div class="fg"><label>Page Title (max 60 chars)</label><input id="c-seo-t" value="Basel Agency — Tanya Lee Beck | Corporate Housing & Expat Relocation" maxlength="80"></div>
+          <div class="fg"><label>Meta Description (max 160 chars)</label><textarea id="c-seo-d" style="min-height:58px" maxlength="200">Basel Agency offers premium corporate housing, expat relocation, furnished apartments and property management in Basel, Switzerland. 20+ years experience.</textarea></div>
+          <div class="fg"><label>Focus Keywords</label><input id="c-seo-k" value="corporate housing Basel, expat relocation Switzerland, furnished apartments Basel, Art Basel accommodation"></div>
+        </div>
+      </div>
+
+      <div style="display:flex;justify-content:flex-end;gap:8px;padding:6px 0 24px;">
+        <button class="btn btn-ghost btn-sm" onclick="loadContent()">Reset Changes</button>
+        <button class="btn btn-gold btn-sm" onclick="saveContent()">Save & Publish</button>
+      </div>
+    </div>
+
+    <!-- ══════════ SETTINGS ══════════ -->
+    <div class="panel" id="p-settings">
+      <div class="sec-hdr">
+        <h2>Site <em>Settings</em></h2>
+        <button class="btn btn-gold btn-sm" onclick="saveSettings()">Save Settings</button>
+      </div>
+
+      <div class="two-col">
+        <div>
+          <div class="card">
+            <span class="card-title">Agency Details</span>
+            <div class="fg"><label>Agency Name</label><input id="s-name" value="Basel Agency"></div>
+            <div class="fg"><label>Tagline</label><input id="s-tag" value="Bespoke · Diligent · Expertise"></div>
+            <div class="fg"><label>Website URL</label><input id="s-url" value="https://baselagency.com"></div>
+            <div class="fg"><label>Currency</label>
+              <select id="s-currency">
+                <option>CHF — Swiss Franc</option>
+                <option>EUR — Euro</option>
+                <option>USD — US Dollar</option>
+              </select>
+            </div>
+            <div class="fg"><label>Established Year</label><input id="s-est" value="2007" type="number"></div>
+          </div>
+
+          <div class="card">
+            <span class="card-title">Email Notifications</span>
+            <div style="display:flex;flex-direction:column;gap:12px;">
+              <label class="toggle"><input type="checkbox" id="n-lead" checked><div class="tgl-track"></div><span class="tgl-lbl">New lead received</span></label>
+              <label class="toggle"><input type="checkbox" id="n-enq" checked><div class="tgl-track"></div><span class="tgl-lbl">New website enquiry</span></label>
+              <label class="toggle"><input type="checkbox" id="n-wa"><div class="tgl-track"></div><span class="tgl-lbl">WhatsApp notifications</span></label>
+              <label class="toggle"><input type="checkbox" id="n-weekly" checked><div class="tgl-track"></div><span class="tgl-lbl">Weekly summary report</span></label>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <div class="card">
+            <span class="card-title">Branding</span>
+            <div class="fg">
+              <label>Current Logo Text</label>
+              <div style="background:var(--s3);border:1px solid var(--border);padding:14px;text-align:center;font-family:'Cormorant Garamond',serif;font-size:20px;letter-spacing:6px;color:var(--gold);">BASEL AGENCY</div>
+            </div>
+            <div class="fg">
+              <label>Brand Accent Colour</label>
+              <div style="display:flex;gap:10px;align-items:center;">
+                <input type="color" id="s-color" value="#C9A96E" style="width:42px;height:34px;border:1px solid var(--border);background:none;cursor:pointer;padding:2px;">
+                <input id="s-color-hex" class="fg" style="margin:0;flex:1;background:var(--s3);border:1px solid var(--border);color:var(--white);padding:8px 12px;font-family:'DM Mono',monospace;font-size:12px;outline:none;" value="#C9A96E">
+              </div>
+            </div>
+            <div class="fg">
+              <label>Upload Logo (SVG / PNG)</label>
+              <div class="img-zone" style="padding:18px" onclick="toast('File picker would open here','ok')">
+                <div class="img-zone-icon" style="font-size:22px">📁</div>
+                <div class="img-zone-hint">Drop file or click to browse</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="card">
+            <span class="card-title">Admin Access</span>
+            <div class="fg"><label>Admin Email</label><input id="s-admin-email" value="tanyabeck@baselagency.com" type="email"></div>
+            <div class="fg"><label>New Password</label><input id="s-pw1" type="password" placeholder="Leave blank to keep current"></div>
+            <div class="fg"><label>Confirm Password</label><input id="s-pw2" type="password" placeholder="Confirm new password"></div>
+            <button class="btn btn-outline btn-sm" onclick="changePw()">Update Password</button>
+          </div>
+
+          <!-- Stats summary -->
+          <div class="card">
+            <span class="card-title">Data Summary</span>
+            <div class="stat-mini"><span class="stat-mini-label">Total Properties</span><span class="stat-mini-val" id="ss-props">—</span></div>
+            <div class="stat-mini"><span class="stat-mini-label">Total Leads</span><span class="stat-mini-val" id="ss-leads">—</span></div>
+            <div class="stat-mini"><span class="stat-mini-label">Total Enquiries</span><span class="stat-mini-val" id="ss-enqs">—</span></div>
+            <div class="stat-mini"><span class="stat-mini-label">Last Saved</span><span class="stat-mini-val" id="ss-saved">—</span></div>
+            <div style="margin-top:14px;">
+              <button class="btn btn-danger btn-sm" onclick="confirmClear()">⚠ Clear All Data</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /.content -->
+</div><!-- /.main -->
+
+<!-- ════════════════════ MODAL — ADD LEAD ════════════════════ -->
+<div class="overlay" id="overlay-lead">
+  <div class="modal">
+    <div class="modal-hdr">
+      <h3 id="lead-modal-title">Add <em>Lead</em></h3>
+      <div class="modal-x" onclick="closeOverlay('overlay-lead')">✕</div>
+    </div>
+    <div class="modal-body">
+      <input type="hidden" id="lf-id">
+      <div class="fg-row">
+        <div class="fg"><label>Full Name *</label><input id="lf-name" placeholder="e.g. Sophie Laurent"></div>
+        <div class="fg"><label>Email</label><input id="lf-email" type="email" placeholder="email@company.com"></div>
+      </div>
+      <div class="fg-row">
+        <div class="fg"><label>Phone</label><input id="lf-phone" placeholder="+41 79 ..."></div>
+        <div class="fg">
+          <label>Enquiry Type</label>
+          <select id="lf-type">
+            <option>Corporate</option><option>Expat</option>
+            <option>Furnished</option><option>Trade Fair</option>
+            <option>For Sale</option><option>General</option>
+          </select>
+        </div>
+      </div>
+      <div class="fg-row">
+        <div class="fg">
+          <label>Status</label>
+          <select id="lf-status">
+            <option>New</option><option>Hot</option>
+            <option>Contacted</option><option>Closed</option>
+          </select>
+        </div>
+        <div class="fg"><label>Source</label>
+          <select id="lf-source">
+            <option>Website Form</option><option>WhatsApp</option>
+            <option>Referral</option><option>LinkedIn</option>
+            <option>Direct</option><option>Other</option>
+          </select>
+        </div>
+      </div>
+      <div class="fg"><label>Message / Notes</label><textarea id="lf-msg" placeholder="What are they looking for?"></textarea></div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-ghost btn-sm" onclick="closeOverlay('overlay-lead')">Cancel</button>
+      <button class="btn btn-gold btn-sm" onclick="saveLead()">Save Lead</button>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════ MODAL — VIEW ENQUIRY ════════════════════ -->
+<div class="overlay" id="overlay-enq">
+  <div class="modal" style="max-width:520px">
+    <div class="modal-hdr">
+      <h3>Enquiry <em>Detail</em></h3>
+      <div class="modal-x" onclick="closeOverlay('overlay-enq')">✕</div>
+    </div>
+    <div class="modal-body" id="enq-detail-body"></div>
+    <div class="modal-footer">
+      <button class="btn btn-ghost btn-sm" onclick="closeOverlay('overlay-enq')">Close</button>
+      <button class="btn btn-outline btn-sm" onclick="enqToLead()">→ Convert to Lead</button>
+      <button class="btn btn-gold btn-sm" onclick="replyEnq()">Reply by Email</button>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════ TOAST ════════════════════ -->
+<div class="toast" id="toast-el">
+  <span id="toast-icon">✓</span>
+  <span id="toast-msg">Done</span>
+</div>
+
+<script>
+/* ══════════════════════════════════════════════
+   DATA STORE — in-memory (no localStorage)
+══════════════════════════════════════════════ */
+const DB = {
+  properties: [
+    {id:1,title:'Executive Apt, Centralbahnplatz',type:'Corporate',status:'Active',area:'Basel City Centre',country:'Switzerland',address:'Centralbahnplatz 1, 4051 Basel',price:3800,per:'/mo',beds:2,baths:1,size:85,features:'Furnished, Parking, Dishwasher',img:'https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?w=400&q=70',featured:true,vip:false,visible:true,desc:'Premium corporate apartment in the heart of Basel, steps from Centralbahnhof.',date:new Date(2025,0,15)},
+    {id:2,title:'Spacious Family Home, Riehen',type:'Expat',status:'Active',area:'Riehen',country:'Switzerland',address:'Riehenstrasse 120, 4125 Riehen',price:5200,per:'/mo',beds:4,baths:2,size:165,features:'Garden, Garage, Dishwasher',img:'https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=400&q=70',featured:true,vip:false,visible:true,desc:'Ideal for expat families, this spacious house in leafy Riehen has a beautiful garden.',date:new Date(2025,0,20)},
+    {id:3,title:'Modern Studio, Near Messe Basel',type:'Trade Fair',status:'Pending',area:'Near Messe Basel',country:'Switzerland',address:'Messeplatz 4, 4058 Basel',price:280,per:'/night',beds:0,baths:1,size:42,features:'All-Inclusive, Fast WiFi, Linen',img:'https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?w=400&q=70',featured:false,vip:false,visible:true,desc:'Walk to Messe Basel in 3 minutes. Perfect for Art Basel and Baselworld visitors.',date:new Date(2025,1,1)},
+    {id:4,title:'Luxury Villa with Rhine Views',type:'For Sale',status:'Active',area:'Basel-Landschaft',country:'Switzerland',address:'Rheinstrasse 88, 4127 Birsfelden',price:2850000,per:'',beds:5,baths:3,size:320,features:'Pool, Garden, Garage, Wine Cellar',img:'https://images.unsplash.com/photo-1613490493576-7fde63acd811?w=400&q=70',featured:true,vip:true,visible:true,desc:'Exceptional villa with panoramic Rhine views, private pool, and world-class finishes.',date:new Date(2025,1,5)},
+    {id:5,title:'Designer 1-Bed, Jurastrasse',type:'Furnished',status:'Active',area:'Jurastrasse',country:'Switzerland',address:'Jurastrasse 12, 4053 Basel',price:2400,per:'/mo',beds:1,baths:1,size:58,features:'Fully Furnished, Balcony, City View',img:'https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=400&q=70',featured:false,vip:false,visible:true,desc:'Stylish furnished apartment with balcony and city views. Move-in ready.',date:new Date(2025,1,10)},
+    {id:6,title:'Penthouse, Grossbasel',type:'For Sale',status:'Active',area:'Grossbasel',country:'Switzerland',address:'Freiestrasse 18, 4001 Basel',price:1650000,per:'',beds:3,baths:2,size:210,features:'Rooftop Terrace, Parking, City Views',img:'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=400&q=70',featured:true,vip:true,visible:true,desc:'Stunning penthouse in the historic heart of Basel with rooftop terrace.',date:new Date(2025,1,12)},
+  ],
+  leads: [
+    {id:1,name:'Marcus Hoffmann',email:'m.hoffmann@novartis.com',phone:'+41 79 100 2200',type:'Corporate',status:'New',source:'Website Form',msg:'Looking for 3-bed exec apartment near CBD, team of 2 arriving in March for 6-month project.',date:new Date(Date.now()-7200000)},
+    {id:2,name:'Sophie Laurent',email:'sophie.l@gmail.com',phone:'+33 6 12 34 56 78',type:'Expat',status:'Hot',source:'LinkedIn',msg:'Relocating from Paris with husband and 2 kids. Need 4+ bed, garden preferred. Budget up to CHF 6,000/mo.',date:new Date(Date.now()-18000000)},
+    {id:3,name:'Ravi Kumar',email:'ravi.k@tata.com',phone:'+91 98765 43210',type:'Trade Fair',status:'Contacted',source:'Website Form',msg:'Attending Art Basel June 12–17. Need studio or 1-bed, all-inclusive, walking distance to Messe.',date:new Date(Date.now()-86400000)},
+    {id:4,name:'Anna Thiessen',email:'anna.t@outlook.com',phone:'',type:'Furnished',status:'New',source:'Direct',msg:'Single professional, need furnished 1-bed in city centre from April. Budget CHF 2,500/mo.',date:new Date(Date.now()-90000000)},
+    {id:5,name:'Jean-Paul Morel',email:'jpmorel@bluewin.ch',phone:'+41 76 900 1234',type:'For Sale',status:'Hot',source:'Referral',msg:'Swiss property owner — villa in Riehen, looking to list for sale with your agency. No listing fees?',date:new Date(Date.now()-172800000)},
+  ],
+  enquiries: [
+    {id:1,name:'David Chen',email:'d.chen@ubs.com',phone:'+41 79 123 4567',subject:'Corporate housing for 6-month project',type:'Corporate',msg:'Hi Tanya, UBS is placing 2 engineers in Basel from April to October. Need fully managed accommodation. Please advise.',date:new Date(Date.now()-300000),read:false},
+    {id:2,name:'Lisa van Berg',email:'lisa.vanberg@gmail.com',phone:'',subject:'Family relocation — need help with schools too',type:'Expat',msg:'We are moving from Amsterdam in September. 2 school-age children. Would appreciate guidance on neighbourhoods and schools as well as housing.',date:new Date(Date.now()-3600000),read:false},
+    {id:3,name:'Thomas Braun',email:'t.braun@property.ch',phone:'+41 61 500 0000',subject:'I have a property to list — no fees?',type:'Owner',msg:'I own a 3-bed apartment in Gundeldingen. Interested in listing with Basel Agency for the expat market. Can you clarify the no-listing-fees arrangement?',date:new Date(Date.now()-10800000),read:false},
+    {id:4,name:'Kenji Tanaka',email:'k.tanaka@sony.com',phone:'',subject:'Art Basel week — 4 nights',type:'Trade Fair',msg:'Need accommodation near Messe Basel for Art Basel June 13-17. 1 room, good quality. What do you have?',date:new Date(Date.now()-86400000),read:true},
+    {id:5,name:'Maria Santos',email:'m.santos@roche.com',phone:'+41 61 688 0000',subject:'Furnished 2-bed for 3 months',type:'Furnished',msg:'Roche project, 3 months from May. Budget CHF 3,000/mo. City centre preferred. Fully furnished.',date:new Date(Date.now()-172800000),read:true},
+  ],
+  content: {},
+  settings: {},
+  nextPropId: 7,
+  nextLeadId: 6,
+  nextEnqId: 6,
+  lastSaved: null,
+};
+
+let propFilter = 'all';
+let leadFilter = 'all';
+let currentEnqId = null;
+
+/* ══════ NAVIGATION ══════ */
+const PANEL_TITLES = {
+  dashboard: 'Dashboard <em>Overview</em>',
+  listings: 'Properties <em>Listings</em>',
+  'add-prop': 'Properties <em>Add New</em>',
+  leads: 'Clients <em>Leads</em>',
+  enquiries: 'Clients <em>Enquiries</em>',
+  content: 'Website <em>Content</em>',
+  settings: 'Site <em>Settings</em>',
+};
+
+function nav(page, clickedEl) {
+  // update panels
+  document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+  document.getElementById('p-' + page).classList.add('active');
+  // update sidebar
+  document.querySelectorAll('.sb-item').forEach(i => i.classList.remove('active'));
+  if (clickedEl) clickedEl.classList.add('active');
+  // update topbar title
+  document.getElementById('tb-title').innerHTML = PANEL_TITLES[page] || page;
+  // refresh data for page
+  if (page === 'dashboard') renderDashboard();
+  if (page === 'listings') renderListings();
+  if (page === 'leads') renderLeads();
+  if (page === 'enquiries') renderEnquiries();
+  if (page === 'add-prop') { resetForm(); document.getElementById('form-title').innerHTML = 'Add <em>New Listing</em>'; }
+  if (page === 'settings') renderSettings();
+}
+
+/* ══════ DASHBOARD ══════ */
+function renderDashboard() {
+  const active = DB.properties.filter(p => p.status === 'Active').length;
+  const pending = DB.enquiries.filter(e => !e.read).length + DB.leads.filter(l => l.status === 'New').length;
+
+  document.getElementById('kpi-listings').textContent = active;
+  document.getElementById('kpi-leads').textContent = DB.leads.length;
+  document.getElementById('kpi-enqs').textContent = DB.enquiries.length;
+  document.getElementById('kpi-pending').textContent = pending;
+
+  updatePills();
+
+  // Recent leads
+  const ll = document.getElementById('dash-leads-list');
+  const recent = [...DB.leads].sort((a,b) => b.date - a.date).slice(0,4);
+  if (!recent.length) { ll.innerHTML = '<div class="empty" style="padding:20px">No leads yet</div>'; return; }
+  const colors = {New:'var(--red)',Hot:'var(--gold)',Contacted:'var(--blue)',Closed:'var(--green)'};
+  const typeBadge = {Corporate:'b-corp',Expat:'b-expat','Trade Fair':'b-fair',Furnished:'b-furn','For Sale':'b-sale',General:'b-off'};
+  ll.innerHTML = recent.map(l => `
+    <div class="lead-item">
+      <div class="lead-av" style="background:${colors[l.status]}22;color:${colors[l.status]};border-color:${colors[l.status]}44">
+        ${l.name.split(' ').map(w=>w[0]).join('').slice(0,2)}
+      </div>
+      <div class="lead-info">
+        <div class="lead-name">${l.name}</div>
+        <div class="lead-desc">${l.msg.slice(0,60)}…</div>
+        <div class="lead-tags">
+          <span class="badge b-${l.status.toLowerCase().replace(' ','-')}">${l.status}</span>
+          <span class="badge ${typeBadge[l.type]||'b-off'}">${l.type}</span>
+        </div>
+      </div>
+      <span class="lead-time">${relTime(l.date)}</span>
+    </div>
+  `).join('');
+
+  // Category progress
+  const cats = ['Corporate','Expat','Furnished','Trade Fair','For Sale'];
+  const pfCls = ['pf-gold','pf-blue','pf-amber','pf-green','pf-red'];
+  const maxCount = Math.max(...cats.map(c => DB.properties.filter(p=>p.type===c).length), 1);
+  document.getElementById('cat-progress').innerHTML = cats.map((c,i) => {
+    const count = DB.properties.filter(p => p.type === c).length;
+    const pct = Math.round(count / maxCount * 100);
+    return `<div class="prog-item">
+      <div class="prog-hdr"><span style="color:var(--muted2)">${c}</span><span>${count} listing${count!==1?'s':''}</span></div>
+      <div class="prog-track"><div class="prog-fill ${pfCls[i]}" style="width:${pct}%"></div></div>
+    </div>`;
+  }).join('');
+
+  // Chart
+  const vals = [4,7,5,9,12,8,6];
+  const max = Math.max(...vals);
+  document.getElementById('enq-chart').innerHTML = vals.map((v,i) => `
+    <div class="c-bar" style="height:${Math.round(v/max*100)}%">
+      <span class="c-bar-lbl">${v}</span>
+    </div>
+  `).join('');
+
+  // Activity
+  const acts = [
+    {dot:'var(--gold)',text:`<strong>New listing added</strong> — ${DB.properties[DB.properties.length-1]?.title || 'Property'}`,time:'30m ago'},
+    {dot:'var(--green)',text:'<strong>Lead converted</strong> — Sophie Laurent moved to viewing stage',time:'2h ago'},
+    {dot:'var(--blue)',text:'<strong>Enquiry received</strong> — David Chen via contact form (Corporate)',time:'2h ago'},
+    {dot:'var(--gold)',text:'<strong>Listing updated</strong> — Luxury Villa price revised to CHF 2,850,000',time:'1d ago'},
+    {dot:'var(--red)',text:'<strong>Listing review needed</strong> — Modern Studio trade fair season ended',time:'2d ago'},
+    {dot:'var(--green)',text:'<strong>Deal closed</strong> — 2-Bed Riehen signed, tenant moves in 1 March',time:'3d ago'},
+  ];
+  document.getElementById('activity-feed').innerHTML = acts.map(a => `
+    <div class="act-item">
+      <div class="act-dot" style="background:${a.dot}"></div>
+      <div class="act-body">${a.text}</div>
+      <span class="act-time">${a.time}</span>
+    </div>
+  `).join('');
+}
+
+/* ══════ LISTINGS ══════ */
+function renderListings() {
+  let list = [...DB.properties];
+  if (propFilter !== 'all') list = list.filter(p => p.type === propFilter);
+  const sort = document.getElementById('sort-props')?.value || 'newest';
+  if (sort === 'newest') list.sort((a,b) => b.date - a.date);
+  else if (sort === 'oldest') list.sort((a,b) => a.date - b.date);
+  else if (sort === 'price-asc') list.sort((a,b) => a.price - b.price);
+  else if (sort === 'price-desc') list.sort((a,b) => b.price - a.price);
+
+  const tbody = document.getElementById('prop-tbody');
+  const empty = document.getElementById('prop-empty');
+  const typeCls = {Corporate:'b-corp',Expat:'b-expat','Trade Fair':'b-fair',Furnished:'b-furn','For Sale':'b-sale',International:'b-off'};
+  const statusCls = {Active:'b-active',Pending:'b-pending',Inactive:'b-off',Sold:'b-sold'};
+
+  if (!list.length) { tbody.innerHTML=''; empty.style.display='block'; return; }
+  empty.style.display='none';
+
+  tbody.innerHTML = list.map(p => `
+    <tr id="row-${p.id}">
+      <td><img class="td-thumb" src="${p.img||'https://via.placeholder.com/100x76?text=No+Image'}" alt="" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2250%22 height=%2238%22><rect fill=%22%23222%22 width=%2250%22 height=%2238%22/><text x=%2225%22 y=%2222%22 font-size=%228%22 fill=%22%23555%22 text-anchor=%22middle%22>No img</text></svg>'"></td>
+      <td>
+        <div style="font-weight:600;font-size:12px;">${p.title}</div>
+        <div class="td-dim">${p.beds > 0 ? p.beds+' bed · ' : 'Studio · '}${p.size} m²${p.vip?' · <span style="color:var(--gold)">★ VIP</span>':''}</div>
+      </td>
+      <td><span class="badge ${typeCls[p.type]||'b-off'}">${p.type}</span></td>
+      <td class="td-dim">${p.area}</td>
+      <td>
+        <div style="font-family:'DM Mono',monospace;font-size:11px;color:var(--gold)">
+          CHF ${p.price.toLocaleString()}
+        </div>
+        <div class="td-dim">${p.per||'guide price'}</div>
+      </td>
+      <td><span class="badge ${statusCls[p.status]||'b-off'}">${p.status}</span></td>
+      <td>
+        <label class="toggle" style="gap:6px">
+          <input type="checkbox" ${p.featured?'checked':''} onchange="toggleFeatured(${p.id},this.checked)">
+          <div class="tgl-track"></div>
+        </label>
+      </td>
+      <td>
+        <div class="td-acts">
+          <button class="btn btn-ghost btn-xs" onclick="editProp(${p.id})">Edit</button>
+          <button class="btn btn-danger btn-xs" onclick="deleteProp(${p.id})">Del</button>
+        </div>
+      </td>
+    </tr>
+  `).join('');
+
+  updatePills();
+}
+
+function setChip(el, val) {
+  document.querySelectorAll('#p-listings .chip').forEach(c => c.classList.remove('on'));
+  el.classList.add('on');
+  propFilter = val;
+  renderListings();
+}
+
+function toggleFeatured(id, val) {
+  const p = DB.properties.find(x => x.id === id);
+  if (p) { p.featured = val; toast(val ? 'Marked as featured ✓' : 'Removed from featured','ok'); }
+}
+
+function editProp(id) {
+  const p = DB.properties.find(x => x.id === id);
+  if (!p) return;
+  document.getElementById('edit-id').value = id;
+  document.getElementById('form-title').innerHTML = 'Edit <em>Listing</em>';
+  document.getElementById('f-title').value = p.title;
+  document.getElementById('f-type').value = p.type;
+  document.getElementById('f-status').value = p.status;
+  document.getElementById('f-desc').value = p.desc || '';
+  document.getElementById('f-features').value = p.features || '';
+  document.getElementById('f-address').value = p.address || '';
+  document.getElementById('f-area').value = p.area || '';
+  document.getElementById('f-country').value = p.country || 'Switzerland';
+  document.getElementById('f-price').value = p.price;
+  document.getElementById('f-per').value = p.per;
+  document.getElementById('f-beds').value = p.beds;
+  document.getElementById('f-baths').value = p.baths;
+  document.getElementById('f-size').value = p.size;
+  document.getElementById('f-floor').value = p.floor || '';
+  document.getElementById('f-img').value = p.img || '';
+  document.getElementById('f-vis').checked = p.visible !== false;
+  document.getElementById('f-featured').checked = p.featured || false;
+  document.getElementById('f-vip').checked = p.vip || false;
+  document.getElementById('f-intl').checked = p.intl || false;
+  previewImg(p.img);
+  nav('add-prop', null);
+}
+
+function deleteProp(id) {
+  if (!confirm('Remove this listing?')) return;
+  DB.properties = DB.properties.filter(p => p.id !== id);
+  toast('Listing removed ✓','ok');
+  renderListings();
+  addActivity('Listing deleted','red');
+}
+
+function publishProp() {
+  const title = document.getElementById('f-title').value.trim();
+  const price = document.getElementById('f-price').value;
+  if (!title) { toast('Please enter a property title','err'); return; }
+  if (!price) { toast('Please enter a price','err'); return; }
+
+  const id = document.getElementById('edit-id').value;
+  const data = {
+    title, price: parseFloat(price),
+    type: document.getElementById('f-type').value,
+    status: document.getElementById('f-status').value,
+    desc: document.getElementById('f-desc').value,
+    features: document.getElementById('f-features').value,
+    address: document.getElementById('f-address').value,
+    area: document.getElementById('f-area').value,
+    country: document.getElementById('f-country').value,
+    per: document.getElementById('f-per').value,
+    beds: parseInt(document.getElementById('f-beds').value) || 0,
+    baths: parseInt(document.getElementById('f-baths').value) || 0,
+    size: parseInt(document.getElementById('f-size').value) || 0,
+    floor: document.getElementById('f-floor').value,
+    img: document.getElementById('f-img').value,
+    visible: document.getElementById('f-vis').checked,
+    featured: document.getElementById('f-featured').checked,
+    vip: document.getElementById('f-vip').checked,
+    intl: document.getElementById('f-intl').checked,
+  };
+
+  if (id) {
+    const idx = DB.properties.findIndex(p => p.id === parseInt(id));
+    if (idx > -1) { DB.properties[idx] = {...DB.properties[idx], ...data}; toast('Listing updated ✓','ok'); addActivity(`Listing updated: ${title}`,'gold'); }
+  } else {
+    data.id = DB.nextPropId++;
+    data.date = new Date();
+    DB.properties.push(data);
+    toast('Listing published ✓','ok');
+    addActivity(`New listing added: ${title}`,'gold');
+  }
+  resetForm();
+  nav('listings', null);
+}
+
+function saveDraft() {
+  toast('Draft saved','ok');
+}
+
+function resetForm() {
+  ['f-title','f-type','f-status','f-desc','f-features','f-address','f-area','f-country','f-price','f-per','f-beds','f-baths','f-size','f-floor','f-img'].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.value = el.tagName === 'SELECT' ? el.options[0]?.value : '';
+  });
+  document.getElementById('f-country').value = 'Switzerland';
+  document.getElementById('f-per').value = '/mo';
+  document.getElementById('f-vis').checked = true;
+  document.getElementById('f-featured').checked = false;
+  document.getElementById('f-vip').checked = false;
+  document.getElementById('f-intl').checked = false;
+  document.getElementById('edit-id').value = '';
+  document.getElementById('img-preview').style.display = 'none';
+}
+
+function previewImg(url) {
+  const img = document.getElementById('img-preview');
+  if (url && url.startsWith('http')) {
+    img.src = url;
+    img.style.display = 'block';
+  } else {
+    img.style.display = 'none';
+  }
+}
+
+/* ══════ LEADS ══════ */
+function renderLeads() {
+  let list = [...DB.leads];
+  if (leadFilter !== 'all') list = list.filter(l => l.status === leadFilter);
+  const typeFilter = document.getElementById('lead-type-filter')?.value || 'all';
+  if (typeFilter !== 'all') list = list.filter(l => l.type === typeFilter);
+  list.sort((a,b) => b.date - a.date);
+
+  const tbody = document.getElementById('lead-tbody');
+  const empty = document.getElementById('lead-empty');
+  const statusCls = {New:'b-new',Hot:'b-hot',Contacted:'b-corp',Closed:'b-done'};
+  const typeCls = {Corporate:'b-corp',Expat:'b-expat','Trade Fair':'b-fair',Furnished:'b-furn','For Sale':'b-sale',General:'b-off'};
+
+  if (!list.length) { tbody.innerHTML=''; empty.style.display='block'; return; }
+  empty.style.display='none';
+
+  tbody.innerHTML = list.map(l => `
+    <tr>
+      <td>
+        <div style="font-weight:600;font-size:12px">${l.name}</div>
+        <div class="td-dim">${l.email}${l.phone?' · '+l.phone:''}</div>
+        <div class="td-dim" style="font-size:10px;margin-top:2px">via ${l.source}</div>
+      </td>
+      <td><span class="badge ${typeCls[l.type]||'b-off'}">${l.type}</span></td>
+      <td class="td-dim" style="max-width:200px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${l.msg}</td>
+      <td>
+        <select class="f-select" style="font-size:10px;padding:4px 8px" onchange="updateLeadStatus(${l.id},this.value)">
+          ${['New','Hot','Contacted','Closed'].map(s => `<option ${l.status===s?'selected':''}>${s}</option>`).join('')}
+        </select>
+      </td>
+      <td class="td-dim">${relTime(l.date)}</td>
+      <td>
+        <div class="td-acts">
+          <button class="btn btn-ghost btn-xs" onclick="editLead(${l.id})">Edit</button>
+          <button class="btn btn-outline btn-xs" onclick="replyLead('${l.email}')">Reply</button>
+          <button class="btn btn-danger btn-xs" onclick="deleteLead(${l.id})">Del</button>
+        </div>
+      </td>
+    </tr>
+  `).join('');
+  updatePills();
+}
+
+function setLeadChip(el, val) {
+  document.querySelectorAll('#p-leads .chip').forEach(c => c.classList.remove('on'));
+  el.classList.add('on');
+  leadFilter = val;
+  renderLeads();
+}
+
+function openAddLead() {
+  document.getElementById('lead-modal-title').innerHTML = 'Add <em>Lead</em>';
+  ['lf-id','lf-name','lf-email','lf-phone','lf-msg'].forEach(id => document.getElementById(id).value = '');
+  document.getElementById('lf-type').value = 'Corporate';
+  document.getElementById('lf-status').value = 'New';
+  document.getElementById('lf-source').value = 'Website Form';
+  document.getElementById('overlay-lead').classList.add('open');
+}
+
+function editLead(id) {
+  const l = DB.leads.find(x => x.id === id);
+  if (!l) return;
+  document.getElementById('lead-modal-title').innerHTML = 'Edit <em>Lead</em>';
+  document.getElementById('lf-id').value = id;
+  document.getElementById('lf-name').value = l.name;
+  document.getElementById('lf-email').value = l.email;
+  document.getElementById('lf-phone').value = l.phone;
+  document.getElementById('lf-type').value = l.type;
+  document.getElementById('lf-status').value = l.status;
+  document.getElementById('lf-source').value = l.source;
+  document.getElementById('lf-msg').value = l.msg;
+  document.getElementById('overlay-lead').classList.add('open');
+}
+
+function saveLead() {
+  const name = document.getElementById('lf-name').value.trim();
+  if (!name) { toast('Name is required','err'); return; }
+  const id = document.getElementById('lf-id').value;
+  const data = {
+    name,
+    email: document.getElementById('lf-email').value,
+    phone: document.getElementById('lf-phone').value,
+    type: document.getElementById('lf-type').value,
+    status: document.getElementById('lf-status').value,
+    source: document.getElementById('lf-source').value,
+    msg: document.getElementById('lf-msg').value,
+  };
+  if (id) {
+    const idx = DB.leads.findIndex(l => l.id === parseInt(id));
+    if (idx > -1) { DB.leads[idx] = {...DB.leads[idx], ...data}; toast('Lead updated ✓','ok'); }
+  } else {
+    data.id = DB.nextLeadId++;
+    data.date = new Date();
+    DB.leads.push(data);
+    toast('Lead added ✓','ok');
+    addActivity(`New lead: ${name}`,'green');
+  }
+  closeOverlay('overlay-lead');
+  renderLeads();
+}
+
+function updateLeadStatus(id, status) {
+  const l = DB.leads.find(x => x.id === id);
+  if (l) { l.status = status; toast('Status updated ✓','ok'); updatePills(); }
+}
+
+function deleteLead(id) {
+  if (!confirm('Delete this lead?')) return;
+  DB.leads = DB.leads.filter(l => l.id !== id);
+  toast('Lead deleted','ok');
+  renderLeads();
+}
+
+function replyLead(email) {
+  if (email) window.open(`mailto:${email}`);
+  else toast('No email address on file','err');
+}
+
+function exportLeads() {
+  const headers = 'Name,Email,Phone,Type,Status,Source,Message,Date';
+  const rows = DB.leads.map(l =>
+    `"${l.name}","${l.email}","${l.phone}","${l.type}","${l.status}","${l.source}","${l.msg.replace(/"/g,'""')}","${l.date.toLocaleDateString()}"`
+  );
+  const csv = [headers,...rows].join('\n');
+  const a = document.createElement('a');
+  a.href = 'data:text/csv;charset=utf-8,' + encodeURIComponent(csv);
+  a.download = 'basel-agency-leads.csv';
+  a.click();
+  toast('CSV exported ✓','ok');
+}
+
+/* ══════ ENQUIRIES ══════ */
+function renderEnquiries() {
+  const tbody = document.getElementById('enq-tbody');
+  const empty = document.getElementById('enq-empty');
+  const typeCls = {Corporate:'b-corp',Expat:'b-expat','Trade Fair':'b-fair',Furnished:'b-furn','For Sale':'b-sale',Owner:'b-gold',General:'b-off'};
+
+  const list = [...DB.enquiries].sort((a,b) => b.date - a.date);
+  if (!list.length) { tbody.innerHTML=''; empty.style.display='block'; return; }
+  empty.style.display='none';
+
+  tbody.innerHTML = list.map(e => `
+    <tr style="${!e.read?'background:rgba(201,169,110,0.035)':''}">
+      <td>
+        <div style="font-weight:${e.read?'400':'700'};font-size:12px">${e.name}${!e.read?' <span style="color:var(--red);font-size:9px">●</span>':''}</div>
+        <div class="td-dim">${e.email}${e.phone?' · '+e.phone:''}</div>
+      </td>
+      <td style="font-size:12px;max-width:180px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${e.subject}</td>
+      <td><span class="badge ${typeCls[e.type]||'b-off'}">${e.type}</span></td>
+      <td class="td-dim">${relTime(e.date)}</td>
+      <td>
+        <div class="td-acts">
+          <button class="btn btn-gold btn-xs" onclick="viewEnquiry(${e.id})">View</button>
+          <button class="btn btn-outline btn-xs" onclick="enqToLeadById(${e.id})">→ Lead</button>
+          <button class="btn btn-danger btn-xs" onclick="deleteEnq(${e.id})">Del</button>
+        </div>
+      </td>
+    </tr>
+  `).join('');
+  updatePills();
+}
+
+function viewEnquiry(id) {
+  const e = DB.enquiries.find(x => x.id === id);
+  if (!e) return;
+  e.read = true;
+  currentEnqId = id;
+  document.getElementById('enq-detail-body').innerHTML = `
+    <div style="margin-bottom:16px">
+      <div style="font-family:'Cormorant Garamond',serif;font-size:18px;margin-bottom:4px">${e.name}</div>
+      <div style="font-size:12px;color:var(--muted2)">${e.email}${e.phone?' · '+e.phone:''}</div>
+      <div style="margin-top:6px;display:flex;gap:6px;">
+        <span class="badge b-corp">${e.type}</span>
+        <span style="font-family:'DM Mono',monospace;font-size:9px;color:var(--muted)">${relTime(e.date)}</span>
+      </div>
+    </div>
+    <div style="background:var(--s3);border:1px solid var(--border);padding:14px;margin-bottom:14px">
+      <div style="font-family:'DM Mono',monospace;font-size:9px;color:var(--muted);margin-bottom:8px;letter-spacing:2px">SUBJECT</div>
+      <div style="font-size:13px;font-weight:600">${e.subject}</div>
+    </div>
+    <div style="background:var(--s3);border:1px solid var(--border);padding:14px">
+      <div style="font-family:'DM Mono',monospace;font-size:9px;color:var(--muted);margin-bottom:8px;letter-spacing:2px">MESSAGE</div>
+      <div style="font-size:13px;line-height:1.7;color:var(--muted2)">${e.msg}</div>
+    </div>
+  `;
+  document.getElementById('overlay-enq').classList.add('open');
+  renderEnquiries();
+}
+
+function replyEnq() {
+  const e = DB.enquiries.find(x => x.id === currentEnqId);
+  if (e) window.open(`mailto:${e.email}?subject=Re: ${encodeURIComponent(e.subject)}`);
+  closeOverlay('overlay-enq');
+}
+
+function enqToLead() {
+  enqToLeadById(currentEnqId);
+  closeOverlay('overlay-enq');
+}
+
+function enqToLeadById(id) {
+  const e = DB.enquiries.find(x => x.id === id);
+  if (!e) return;
+  const exists = DB.leads.find(l => l.email === e.email);
+  if (exists) { toast('Lead already exists for this contact','err'); return; }
+  DB.leads.push({
+    id: DB.nextLeadId++,
+    name: e.name, email: e.email, phone: e.phone,
+    type: e.type === 'Owner' ? 'For Sale' : e.type,
+    status: 'New', source: 'Website Form',
+    msg: e.subject + ' — ' + e.msg,
+    date: new Date()
+  });
+  toast('Converted to lead ✓','ok');
+  addActivity(`Enquiry converted to lead: ${e.name}`,'blue');
+  updatePills();
+}
+
+function deleteEnq(id) {
+  if (!confirm('Delete this enquiry?')) return;
+  DB.enquiries = DB.enquiries.filter(e => e.id !== id);
+  toast('Enquiry deleted','ok');
+  renderEnquiries();
+}
+
+function markAllRead() {
+  DB.enquiries.forEach(e => e.read = true);
+  toast('All marked as read ✓','ok');
+  renderEnquiries();
+}
+
+/* ══════ CONTENT ══════ */
+function saveContent() {
+  DB.content = {
+    h1: v('c-h1'), h2: v('c-h2'), h3: v('c-h3'), year: v('c-year'), sub: v('c-sub'),
+    cta1: v('c-cta1'), cta2: v('c-cta2'),
+    aboutH: v('c-about-h'), bio1: v('c-bio1'), bio2: v('c-bio2'),
+    s1v: v('c-s1v'), s2v: v('c-s2v'), s3v: v('c-s3v'),
+    s1l: v('c-s1l'), s2l: v('c-s2l'), s3l: v('c-s3l'),
+    photo: v('c-photo'),
+    t1a: v('c-t1a'), t1q: v('c-t1q'),
+    t2a: v('c-t2a'), t2q: v('c-t2q'),
+    t3a: v('c-t3a'), t3q: v('c-t3q'),
+    phone: v('c-phone'), email: v('c-email'), wa: v('c-wa'), city: v('c-city'),
+    li: v('c-li'), ig: v('c-ig'),
+    seoT: v('c-seo-t'), seoD: v('c-seo-d'), seoK: v('c-seo-k'),
+  };
+  DB.lastSaved = new Date();
+  toast('Content saved & published ✓','ok');
+  addActivity('Website content updated','gold');
+}
+
+function loadContent() {
+  if (!DB.content.h1) return;
+  Object.entries(DB.content).forEach(([k,val]) => {
+    const el = document.getElementById('c-'+k.replace(/([A-Z])/g,'-$1').toLowerCase());
+    if (el) el.value = val;
+  });
+}
+
+/* ══════ SETTINGS ══════ */
+function renderSettings() {
+  document.getElementById('ss-props').textContent = DB.properties.length;
+  document.getElementById('ss-leads').textContent = DB.leads.length;
+  document.getElementById('ss-enqs').textContent = DB.enquiries.length;
+  document.getElementById('ss-saved').textContent = DB.lastSaved ? relTime(DB.lastSaved) : 'Never';
+}
+
+function saveSettings() {
+  DB.settings = {
+    name: v('s-name'), tagline: v('s-tag'), url: v('s-url'),
+    currency: v('s-currency'), est: v('s-est'),
+    color: v('s-color'), colorHex: v('s-color-hex'),
+  };
+  DB.lastSaved = new Date();
+  toast('Settings saved ✓','ok');
+  addActivity('Settings updated','blue');
+}
+
+function changePw() {
+  const p1 = v('s-pw1'), p2 = v('s-pw2');
+  if (!p1) { toast('Enter a new password','err'); return; }
+  if (p1 !== p2) { toast('Passwords do not match','err'); return; }
+  toast('Password updated ✓','ok');
+  document.getElementById('s-pw1').value = '';
+  document.getElementById('s-pw2').value = '';
+}
+
+function confirmClear() {
+  if (confirm('⚠️ This will remove all properties, leads and enquiries. Are you sure?')) {
+    if (confirm('Are you absolutely sure? This cannot be undone.')) {
+      DB.properties = []; DB.leads = []; DB.enquiries = [];
+      toast('All data cleared','err');
+      renderSettings();
+    }
+  }
+}
+
+/* ══════ ACCORDION ══════ */
+function toggleAcc(hdr) {
+  const item = hdr.closest('.acc-item');
+  item.classList.toggle('open');
+}
+
+/* ══════ OVERLAYS ══════ */
+function closeOverlay(id) {
+  document.getElementById(id).classList.remove('open');
+}
+document.querySelectorAll('.overlay').forEach(o => {
+  o.addEventListener('click', e => { if (e.target === o) o.classList.remove('open'); });
+});
+
+/* ══════ TOAST ══════ */
+let toastTimer;
+function toast(msg, type='ok') {
+  const el = document.getElementById('toast-el');
+  const icon = document.getElementById('toast-icon');
+  const msgEl = document.getElementById('toast-msg');
+  el.className = 'toast show ' + (type === 'err' ? 't-err' : 't-ok');
+  icon.textContent = type === 'err' ? '✕' : '✓';
+  msgEl.textContent = msg;
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => el.classList.remove('show'), 2800);
+}
+
+/* ══════ UTILITIES ══════ */
+function v(id) {
+  const el = document.getElementById(id);
+  return el ? el.value : '';
+}
+function relTime(d) {
+  const diff = Date.now() - new Date(d).getTime();
+  if (diff < 60000) return 'just now';
+  if (diff < 3600000) return Math.floor(diff/60000) + 'm ago';
+  if (diff < 86400000) return Math.floor(diff/3600000) + 'h ago';
+  if (diff < 604800000) return Math.floor(diff/86400000) + 'd ago';
+  return new Date(d).toLocaleDateString('en-GB',{day:'numeric',month:'short'});
+}
+function updatePills() {
+  document.getElementById('pill-listings').textContent = DB.properties.length;
+  document.getElementById('pill-leads').textContent = DB.leads.filter(l => l.status === 'New').length || '';
+  document.getElementById('pill-enqs').textContent = DB.enquiries.filter(e => !e.read).length || '';
+  document.getElementById('kpi-listings') && (document.getElementById('kpi-listings').textContent = DB.properties.filter(p=>p.status==='Active').length);
+  document.getElementById('kpi-leads') && (document.getElementById('kpi-leads').textContent = DB.leads.length);
+  document.getElementById('kpi-enqs') && (document.getElementById('kpi-enqs').textContent = DB.enquiries.length);
+  const pending = DB.enquiries.filter(e=>!e.read).length + DB.leads.filter(l=>l.status==='New').length;
+  document.getElementById('kpi-pending') && (document.getElementById('kpi-pending').textContent = pending);
+}
+function addActivity(text, color='gold') { /* just used internally */ }
+function globalSearch(q) {
+  if (!q.trim()) return;
+  const ql = q.toLowerCase();
+  const propHits = DB.properties.filter(p => p.title.toLowerCase().includes(ql) || p.area.toLowerCase().includes(ql)).length;
+  const leadHits = DB.leads.filter(l => l.name.toLowerCase().includes(ql) || l.email.toLowerCase().includes(ql)).length;
+  if (propHits + leadHits > 0) toast(`Found: ${propHits} listings, ${leadHits} leads matching "${q}"`,'ok');
+}
+
+/* ══════ INIT ══════ */
+renderDashboard();
+updatePills();
+
+// Colour picker sync
+document.getElementById('s-color').addEventListener('input', function() {
+  document.getElementById('s-color-hex').value = this.value;
+});
+</script>
+</body>
+</html>

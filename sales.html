@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ali Zahid — Senior Salesforce Business Analyst</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #0a1628;
+    --deep: #0f2044;
+    --accent: #00c6a7;
+    --gold: #f0b429;
+    --light: #e8eef8;
+    --muted: #8899aa;
+    --card: rgba(255,255,255,0.04);
+    --border: rgba(255,255,255,0.08);
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--navy);
+    color: var(--light);
+    overflow-x: hidden;
+    min-height: 100vh;
+  }
+
+  /* BACKGROUND */
+  body::before {
+    content: '';
+    position: fixed; inset: 0;
+    background:
+      radial-gradient(ellipse 80% 60% at 70% 0%, rgba(0,198,167,0.12) 0%, transparent 60%),
+      radial-gradient(ellipse 60% 80% at 0% 80%, rgba(15,32,68,0.9) 0%, transparent 70%);
+    pointer-events: none; z-index: 0;
+  }
+
+  /* GRID OVERLAY */
+  body::after {
+    content: '';
+    position: fixed; inset: 0;
+    background-image: linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
+                      linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
+    background-size: 60px 60px;
+    pointer-events: none; z-index: 0;
+  }
+
+  .container { max-width: 1160px; margin: 0 auto; padding: 0 32px; position: relative; z-index: 1; }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0;
+    z-index: 100;
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border);
+    background: rgba(10,22,40,0.85);
+  }
+  nav .inner {
+    max-width: 1160px; margin: 0 auto; padding: 0 32px;
+    display: flex; align-items: center; justify-content: space-between;
+    height: 68px;
+  }
+  .nav-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem; font-weight: 700;
+    color: var(--light);
+    letter-spacing: -0.02em;
+  }
+  .nav-logo span { color: var(--accent); }
+  nav ul { list-style: none; display: flex; gap: 36px; }
+  nav a { color: var(--muted); text-decoration: none; font-size: 0.875rem; font-weight: 500; transition: color 0.2s; }
+  nav a:hover { color: var(--accent); }
+  .nav-cta {
+    background: var(--accent); color: var(--navy) !important;
+    padding: 10px 22px; border-radius: 6px; font-weight: 500;
+    transition: opacity 0.2s !important;
+  }
+  .nav-cta:hover { opacity: 0.85; }
+
+  /* HERO */
+  .hero {
+    padding: 160px 0 100px;
+    display: grid;
+    grid-template-columns: 1fr 420px;
+    gap: 80px;
+    align-items: center;
+    min-height: 100vh;
+  }
+  .hero-eyebrow {
+    display: inline-flex; align-items: center; gap: 10px;
+    background: rgba(0,198,167,0.1); border: 1px solid rgba(0,198,167,0.3);
+    color: var(--accent); font-size: 0.8rem; font-weight: 500; letter-spacing: 0.1em;
+    text-transform: uppercase; padding: 7px 16px; border-radius: 100px;
+    margin-bottom: 28px;
+    animation: fadeUp 0.6s ease both;
+  }
+  .hero-eyebrow::before {
+    content: '';
+    width: 8px; height: 8px; border-radius: 50%;
+    background: var(--accent);
+    animation: pulse 2s ease infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.5; transform: scale(0.8); }
+  }
+  h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(3rem, 5vw, 4.5rem);
+    font-weight: 900;
+    line-height: 1.05;
+    letter-spacing: -0.03em;
+    color: #fff;
+    margin-bottom: 20px;
+    animation: fadeUp 0.6s 0.1s ease both;
+  }
+  h1 em {
+    font-style: normal;
+    background: linear-gradient(135deg, var(--accent), #4fd1c5);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .hero-subtitle {
+    font-size: 1.1rem; line-height: 1.7;
+    color: var(--muted); max-width: 540px;
+    margin-bottom: 40px;
+    animation: fadeUp 0.6s 0.2s ease both;
+  }
+  .hero-subtitle strong { color: var(--light); font-weight: 500; }
+  .hero-tags {
+    display: flex; flex-wrap: wrap; gap: 10px;
+    margin-bottom: 44px;
+    animation: fadeUp 0.6s 0.3s ease both;
+  }
+  .tag {
+    background: var(--card); border: 1px solid var(--border);
+    padding: 7px 16px; border-radius: 6px;
+    font-size: 0.8rem; color: var(--muted); font-weight: 500;
+    transition: all 0.2s;
+  }
+  .tag:hover { border-color: var(--accent); color: var(--accent); }
+  .hero-actions {
+    display: flex; gap: 16px; flex-wrap: wrap;
+    animation: fadeUp 0.6s 0.4s ease both;
+  }
+  .btn-primary {
+    display: inline-flex; align-items: center; gap: 10px;
+    background: var(--accent); color: var(--navy);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.95rem; font-weight: 600;
+    padding: 16px 32px; border-radius: 8px;
+    text-decoration: none; border: none; cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+    box-shadow: 0 0 30px rgba(0,198,167,0.3);
+  }
+  .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 0 40px rgba(0,198,167,0.5); }
+  .btn-secondary {
+    display: inline-flex; align-items: center; gap: 10px;
+    background: transparent; color: var(--light);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.95rem; font-weight: 500;
+    padding: 16px 32px; border-radius: 8px;
+    text-decoration: none; border: 1px solid var(--border); cursor: pointer;
+    transition: border-color 0.2s, color 0.2s;
+  }
+  .btn-secondary:hover { border-color: var(--accent); color: var(--accent); }
+
+  /* PROFILE CARD */
+  .profile-card {
+    position: relative;
+    animation: fadeUp 0.8s 0.2s ease both;
+  }
+  .profile-card::before {
+    content: '';
+    position: absolute; inset: -2px;
+    background: linear-gradient(135deg, var(--accent), transparent, rgba(0,198,167,0.3));
+    border-radius: 24px; z-index: -1;
+  }
+  .card-inner {
+    background: var(--deep);
+    border-radius: 22px;
+    padding: 40px 32px;
+    text-align: center;
+  }
+  .avatar-wrap {
+    position: relative;
+    width: 140px; height: 140px;
+    margin: 0 auto 24px;
+  }
+  .avatar-wrap::before {
+    content: '';
+    position: absolute; inset: -6px;
+    border-radius: 50%;
+    background: conic-gradient(var(--accent), #4fd1c5, transparent, var(--accent));
+    animation: spin 6s linear infinite;
+  }
+  @keyframes spin { to { transform: rotate(360deg); } }
+  .avatar-wrap::after {
+    content: '';
+    position: absolute; inset: -4px;
+    border-radius: 50%; background: var(--deep);
+  }
+  .avatar {
+    position: relative; z-index: 1;
+    width: 140px; height: 140px;
+    border-radius: 50%;
+    overflow: hidden;
+    background: linear-gradient(135deg, #1a3a5c 0%, #0f2a4a 100%);
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Playfair Display', serif;
+    font-size: 3rem; font-weight: 900;
+    color: var(--accent);
+    letter-spacing: -0.05em;
+  }
+  .card-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem; font-weight: 700;
+    color: #fff; margin-bottom: 6px;
+  }
+  .card-role {
+    font-size: 0.8rem; color: var(--accent);
+    font-weight: 500; letter-spacing: 0.05em;
+    text-transform: uppercase; margin-bottom: 20px;
+  }
+  .card-location {
+    display: flex; align-items: center; justify-content: center; gap: 6px;
+    font-size: 0.85rem; color: var(--muted);
+    margin-bottom: 28px;
+  }
+  .card-stats {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 1px; background: var(--border);
+    border-radius: 12px; overflow: hidden;
+    margin-bottom: 24px;
+  }
+  .stat {
+    background: rgba(255,255,255,0.03);
+    padding: 18px 12px; text-align: center;
+  }
+  .stat-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.6rem; font-weight: 700;
+    color: var(--accent);
+  }
+  .stat-label { font-size: 0.72rem; color: var(--muted); font-weight: 500; margin-top: 3px; }
+  .card-btn {
+    display: block; width: 100%;
+    background: var(--accent); color: var(--navy);
+    text-align: center; padding: 14px;
+    border-radius: 8px; text-decoration: none;
+    font-weight: 600; font-size: 0.9rem;
+    transition: opacity 0.2s;
+  }
+  .card-btn:hover { opacity: 0.85; }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* EXPERTISE */
+  .section { padding: 100px 0; }
+  .section-label {
+    font-size: 0.75rem; font-weight: 500; letter-spacing: 0.15em;
+    text-transform: uppercase; color: var(--accent);
+    margin-bottom: 12px;
+  }
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 3.5vw, 2.8rem);
+    font-weight: 800; letter-spacing: -0.02em;
+    color: #fff; margin-bottom: 60px;
+    max-width: 500px;
+  }
+  .expertise-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;
+  }
+  .expertise-card {
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: 16px; padding: 32px 28px;
+    transition: all 0.3s; position: relative; overflow: hidden;
+  }
+  .expertise-card::before {
+    content: '';
+    position: absolute; top: 0; left: 0; right: 0; height: 2px;
+    background: linear-gradient(90deg, var(--accent), transparent);
+    opacity: 0; transition: opacity 0.3s;
+  }
+  .expertise-card:hover { border-color: rgba(0,198,167,0.3); transform: translateY(-4px); }
+  .expertise-card:hover::before { opacity: 1; }
+  .exp-icon {
+    width: 52px; height: 52px; border-radius: 12px;
+    background: rgba(0,198,167,0.1); border: 1px solid rgba(0,198,167,0.2);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.4rem; margin-bottom: 20px;
+  }
+  .exp-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.15rem; font-weight: 700;
+    color: #fff; margin-bottom: 10px;
+  }
+  .exp-desc { font-size: 0.875rem; line-height: 1.65; color: var(--muted); }
+
+  /* SKILLS */
+  .skills-section { background: var(--deep); padding: 80px 0; }
+  .skills-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 40px; }
+  .skill-group-title {
+    font-size: 0.8rem; font-weight: 600; letter-spacing: 0.08em;
+    text-transform: uppercase; color: var(--accent);
+    margin-bottom: 24px;
+  }
+  .skill-item { margin-bottom: 18px; }
+  .skill-header { display: flex; justify-content: space-between; margin-bottom: 8px; }
+  .skill-name { font-size: 0.875rem; font-weight: 500; color: var(--light); }
+  .skill-pct { font-size: 0.8rem; color: var(--accent); font-weight: 600; }
+  .skill-bar { height: 4px; background: var(--border); border-radius: 2px; overflow: hidden; }
+  .skill-fill {
+    height: 100%; border-radius: 2px;
+    background: linear-gradient(90deg, var(--accent), #4fd1c5);
+    animation: fillBar 1.2s ease both;
+    animation-play-state: paused;
+  }
+  .skill-fill.animate { animation-play-state: running; }
+  @keyframes fillBar { from { width: 0 !important; } }
+
+  /* ACHIEVEMENTS */
+  .achievements { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; padding: 80px 0; }
+  .ach-card {
+    text-align: center; padding: 36px 20px;
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: 16px;
+  }
+  .ach-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.8rem; font-weight: 900;
+    background: linear-gradient(135deg, var(--accent), #4fd1c5);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    background-clip: text; margin-bottom: 8px;
+  }
+  .ach-label { font-size: 0.8rem; color: var(--muted); font-weight: 500; line-height: 1.5; }
+
+  /* CTA SECTION */
+  .cta-section {
+    padding: 100px 0;
+    text-align: center;
+    position: relative;
+  }
+  .cta-bg {
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse 60% 80% at 50% 50%, rgba(0,198,167,0.08), transparent);
+    pointer-events: none;
+  }
+  .cta-section h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 4vw, 3.2rem);
+    font-weight: 900; letter-spacing: -0.02em;
+    color: #fff; margin-bottom: 16px;
+  }
+  .cta-section p { font-size: 1rem; color: var(--muted); margin-bottom: 44px; }
+  .cta-row { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+
+  /* FOOTER */
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 40px 0;
+    position: relative; z-index: 1;
+  }
+  footer .inner {
+    max-width: 1160px; margin: 0 auto; padding: 0 32px;
+    display: flex; justify-content: space-between; align-items: center;
+  }
+  footer p { font-size: 0.825rem; color: var(--muted); }
+  .footer-links { display: flex; gap: 24px; }
+  .footer-links a { color: var(--muted); text-decoration: none; font-size: 0.825rem; transition: color 0.2s; }
+  .footer-links a:hover { color: var(--accent); }
+
+  /* RESPONSIVE */
+  @media (max-width: 900px) {
+    .hero { grid-template-columns: 1fr; padding: 120px 0 60px; gap: 60px; }
+    .profile-card { max-width: 380px; margin: 0 auto; }
+    .expertise-grid { grid-template-columns: 1fr 1fr; }
+    .achievements { grid-template-columns: repeat(2, 1fr); }
+    .skills-grid { grid-template-columns: 1fr; }
+    footer .inner { flex-direction: column; gap: 16px; text-align: center; }
+  }
+  @media (max-width: 600px) {
+    .expertise-grid, .achievements { grid-template-columns: 1fr; }
+    nav ul { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="inner">
+    <div class="nav-logo">A<span>.</span>Zahid</div>
+    <ul>
+      <li><a href="#expertise">Expertise</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#contact" class="nav-cta">Hire Me</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero container">
+  <div class="hero-content">
+    <div class="hero-eyebrow">Available for new opportunities</div>
+    <h1>Transforming Revenue &amp; Sales Operations with <em>Salesforce</em></h1>
+    <p class="hero-subtitle">
+      Senior Business Analyst with deep expertise in <strong>Sales Cloud, CPQ</strong>, and end-to-end <strong>Revenue Operations</strong> — turning complex business requirements into scalable Salesforce solutions.
+    </p>
+    <div class="hero-tags">
+      <span class="tag">Sales Cloud</span>
+      <span class="tag">Salesforce CPQ</span>
+      <span class="tag">Revenue Ops</span>
+      <span class="tag">Business Analysis</span>
+      <span class="tag">Process Transformation</span>
+      <span class="tag">Stakeholder Management</span>
+    </div>
+    <div class="hero-actions">
+      <a href="#contact" class="btn-primary">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+        Let's Connect
+      </a>
+      <a href="#expertise" class="btn-secondary">
+        View Expertise
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+  </div>
+
+  <!-- PROFILE CARD -->
+  <div class="profile-card">
+    <div class="card-inner">
+      <div class="avatar-wrap">
+        <div class="avatar">AZ</div>
+      </div>
+      <div class="card-name">Ali Zahid</div>
+      <div class="card-role">Senior Salesforce BA</div>
+      <div class="card-location">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        Ronkonkoma, New York, US
+      </div>
+      <div class="card-stats">
+        <div class="stat"><div class="stat-num">8+</div><div class="stat-label">Years Experience</div></div>
+        <div class="stat"><div class="stat-num">50+</div><div class="stat-label">Projects Delivered</div></div>
+        <div class="stat"><div class="stat-num">3</div><div class="stat-label">SF Certifications</div></div>
+        <div class="stat"><div class="stat-num">100%</div><div class="stat-label">Client Satisfaction</div></div>
+      </div>
+      <a href="mailto:ali.zahid@email.com" class="card-btn">📩 Send a Message</a>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERTISE -->
+<section class="section" id="expertise">
+  <div class="container">
+    <div class="section-label">What I Do</div>
+    <div class="section-title">Core Areas of Expertise</div>
+    <div class="expertise-grid">
+      <div class="expertise-card">
+        <div class="exp-icon">☁️</div>
+        <div class="exp-title">Sales Cloud Architecture</div>
+        <div class="exp-desc">Designing and implementing scalable Sales Cloud solutions — from lead management to opportunity workflows — aligned with business growth goals.</div>
+      </div>
+      <div class="expertise-card">
+        <div class="exp-icon">⚙️</div>
+        <div class="exp-title">Salesforce CPQ</div>
+        <div class="exp-desc">End-to-end CPQ configuration covering product rules, pricing, discounting logic, and approval workflows that streamline quote-to-cash cycles.</div>
+      </div>
+      <div class="expertise-card">
+        <div class="exp-icon">📈</div>
+        <div class="exp-title">Revenue Operations</div>
+        <div class="exp-desc">Transforming revenue operations by aligning sales, finance, and ops teams through data-driven processes and Salesforce automation.</div>
+      </div>
+      <div class="expertise-card">
+        <div class="exp-icon">🔍</div>
+        <div class="exp-title">Business Analysis</div>
+        <div class="exp-desc">Eliciting requirements, crafting user stories, and bridging communication between business stakeholders and technical teams with precision.</div>
+      </div>
+      <div class="expertise-card">
+        <div class="exp-icon">🔄</div>
+        <div class="exp-title">Process Transformation</div>
+        <div class="exp-desc">Diagnosing inefficiencies across sales and operations pipelines and redesigning them for velocity, accuracy, and measurable ROI.</div>
+      </div>
+      <div class="expertise-card">
+        <div class="exp-icon">🤝</div>
+        <div class="exp-title">Stakeholder Management</div>
+        <div class="exp-desc">Facilitating cross-functional workshops, managing executive relationships, and delivering roadmaps that earn buy-in at every level.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section class="skills-section" id="skills">
+  <div class="container">
+    <div class="section-label">Proficiency</div>
+    <div class="section-title" style="margin-bottom:48px;">Technical &amp; Functional Skills</div>
+    <div class="skills-grid">
+      <div>
+        <div class="skill-group-title">Salesforce Platform</div>
+        <div class="skill-item">
+          <div class="skill-header"><span class="skill-name">Salesforce Sales Cloud</span><span class="skill-pct">95%</span></div>
+          <div class="skill-bar"><div class="skill-fill" style="width:95%"></div></div>
+        </div>
+        <div class="skill-item">
+          <div class="skill-header"><span class="skill-name">Salesforce CPQ</span><span class="skill-pct">92%</span></div>
+          <div class="skill-bar"><div class="skill-fill" style="width:92%"></div></div>
+        </div>
+        <div class="skill-item">
+          <div class="skill-header"><span class="skill-name">Flow Builder / Automation</span><span class="skill-pct">88%</span></div>
+          <div class="skill-bar"><div class="skill-fill" style="width:88%"></div></div>
+        </div>
+        <div class="skill-item">
+          <div class="skill-header"><span class="skill-name">Reports & Dashboards</span><span class="skill-pct">90%</span></div>
+          <div class="skill-bar"><div class="skill-fill" style="width:90%"></div></div>
+        </div>
+      </div>
+      <div>
+        <div class="skill-group-title">Business & Strategy</div>
+        <div class="skill-item">
+          <div class="skill-header"><span class="skill-name">Revenue Operations</span><span class="skill-pct">93%</span></div>
+          <div class="skill-bar"><div class="skill-fill" style="width:93%"></div></div>
+        </div>
+        <div class="skill-item">
+          <div class="skill-header"><span class="skill-name">Requirements Gathering</span><span class="skill-pct">96%</span></div>
+          <div class="skill-bar"><div class="skill-fill" style="width:96%"></div></div>
+        </div>
+        <div class="skill-item">
+          <div class="skill-header"><span class="skill-name">Agile / Scrum</span><span class="skill-pct">85%</span></div>
+          <div class="skill-bar"><div class="skill-fill" style="width:85%"></div></div>
+        </div>
+        <div class="skill-item">
+          <div class="skill-header"><span class="skill-name">Data Analysis & Reporting</span><span class="skill-pct">88%</span></div>
+          <div class="skill-bar"><div class="skill-fill" style="width:88%"></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ACHIEVEMENTS -->
+<section class="container">
+  <div class="achievements">
+    <div class="ach-card">
+      <div class="ach-num">$12M+</div>
+      <div class="ach-label">Revenue Impact Through CPQ Optimization</div>
+    </div>
+    <div class="ach-card">
+      <div class="ach-num">35%</div>
+      <div class="ach-label">Average Sales Cycle Reduction</div>
+    </div>
+    <div class="ach-card">
+      <div class="ach-num">50+</div>
+      <div class="ach-label">Salesforce Projects Successfully Delivered</div>
+    </div>
+    <div class="ach-card">
+      <div class="ach-num">8+</div>
+      <div class="ach-label">Years in Salesforce Ecosystems</div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section" id="contact">
+  <div class="cta-bg"></div>
+  <div class="container" style="position:relative;z-index:1;">
+    <div class="section-label" style="text-align:center;">Ready to Work Together?</div>
+    <h2>Let's Transform Your<br>Sales Operations</h2>
+    <p>Whether you need a Salesforce CPQ overhaul, a Sales Cloud implementation, or a full Revenue Ops transformation — let's talk.</p>
+    <div class="cta-row">
+      <a href="mailto:ali.zahid@email.com" class="btn-primary">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        Email Ali
+      </a>
+      <a href="https://linkedin.com" target="_blank" class="btn-secondary">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
+        LinkedIn Profile
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="inner">
+    <p>© 2025 Ali Zahid. Ronkonkoma, New York, United States.</p>
+    <div class="footer-links">
+      <a href="mailto:ali.zahid@email.com">Email</a>
+      <a href="https://linkedin.com">LinkedIn</a>
+      <a href="#">Resume</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Animate skill bars when in view
+  const fills = document.querySelectorAll('.skill-fill');
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('animate'); obs.unobserve(e.target); }
+    });
+  }, { threshold: 0.3 });
+  fills.forEach(f => obs.observe(f));
+</script>
+</body>
+</html>
