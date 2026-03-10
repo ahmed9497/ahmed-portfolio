@@ -253,11 +253,366 @@ section{padding:100px 60px;}
 }
 .btn-reserve:hover { background: var(--peach-dk); transform: translateY(-1px); box-shadow: 0 6px 20px rgba(255,172,112,0.5); }
 
+/* Workshop section booking CTA banner */
+.ws-booking-cta {
+  margin-top: 16px;
+  background: linear-gradient(135deg, #0e0e18 0%, #1a1030 50%, #0e1a20 100%);
+  border-radius: 24px; border: 1px solid rgba(255,255,255,0.08);
+  padding: 40px 48px;
+  display: flex; align-items: center; justify-content: space-between; gap: 40px;
+  position: relative; overflow: hidden;
+}
+.ws-booking-cta::before {
+  content: ''; position: absolute; inset: 0; pointer-events: none;
+  background: radial-gradient(ellipse at 80% 50%, rgba(255,172,112,0.12) 0%, transparent 60%),
+              radial-gradient(ellipse at 20% 80%, rgba(79,168,213,0.08) 0%, transparent 50%);
+}
+.ws-booking-cta-left { position: relative; z-index: 1; max-width: 520px; }
+.ws-booking-tag {
+  display: inline-flex; align-items: center; gap: 6px;
+  background: rgba(255,172,112,0.15); border: 1px solid rgba(255,172,112,0.3);
+  color: var(--peach); font-size: 0.68rem; font-weight: 700;
+  text-transform: uppercase; letter-spacing: 0.1em;
+  padding: 4px 12px; border-radius: 50px; margin-bottom: 14px;
+}
+.ws-booking-title {
+  font-family: 'Fraunces', serif; font-size: 1.7rem; font-weight: 800;
+  color: white; line-height: 1.25; letter-spacing: -0.02em; margin-bottom: 10px;
+}
+.ws-booking-title em { color: var(--peach); font-style: italic; }
+.ws-booking-sub {
+  font-size: 0.88rem; color: rgba(255,255,255,0.55); line-height: 1.7; margin-bottom: 18px;
+}
+.ws-booking-features { display: flex; gap: 16px; flex-wrap: wrap; }
+.ws-booking-feat {
+  font-size: 0.78rem; color: rgba(255,255,255,0.6); font-weight: 600;
+  display: flex; align-items: center; gap: 5px;
+}
+.ws-booking-cta-right {
+  position: relative; z-index: 1;
+  display: flex; flex-direction: column; align-items: center;
+  background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 20px; padding: 28px 32px; text-align: center;
+  flex-shrink: 0; min-width: 240px;
+  backdrop-filter: blur(8px);
+}
+.ws-booking-avatar {
+  width: 60px; height: 60px; border-radius: 50%;
+  background: linear-gradient(135deg, var(--peach), var(--peach-dk));
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.8rem; margin-bottom: 10px;
+  border: 2px solid rgba(255,172,112,0.4);
+  box-shadow: 0 4px 16px rgba(255,172,112,0.25);
+}
+.ws-booking-name { font-weight: 700; color: white; font-size: 0.95rem; margin-bottom: 2px; }
+.ws-booking-role { font-size: 0.72rem; color: rgba(255,255,255,0.4); margin-bottom: 18px; }
+.ws-booking-btn {
+  display: inline-flex; align-items: center; gap: 8px; width: 100%;
+  justify-content: center;
+  background: var(--peach); color: var(--ink);
+  padding: 13px 20px; border-radius: 50px;
+  font-family: 'DM Sans', sans-serif; font-size: 0.88rem; font-weight: 700;
+  text-decoration: none; transition: all 0.25s;
+  box-shadow: 0 6px 22px rgba(255,172,112,0.4);
+  white-space: nowrap;
+}
+.ws-booking-btn:hover {
+  background: var(--peach-dk); transform: translateY(-2px);
+  box-shadow: 0 10px 30px rgba(255,172,112,0.5);
+}
+.ws-booking-note { font-size: 0.68rem; color: rgba(255,255,255,0.3); margin-top: 10px; }
+@media(max-width:860px){
+  .ws-booking-cta { flex-direction: column; padding: 32px 28px; gap: 28px; }
+  .ws-booking-cta-right { width: 100%; }
+  .ws-booking-title { font-size: 1.3rem; }
+}
+
 .section-cta-wrap { text-align: center; }
 .btn-center { display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,0.07);color:rgba(255,255,255,0.7);border:1px solid rgba(255,255,255,0.12);padding:13px 32px;border-radius:50px;font-weight:700;font-size:0.9rem;text-decoration:none;transition:all 0.25s;cursor:pointer; }
 .btn-center:hover { background:var(--peach);color:var(--ink);border-color:var(--peach); }
 
 /* BOOKS — 3D real book style */
+/* ══════════════════════════════════════════════
+   ADVISORY SECTION
+   ══════════════════════════════════════════════ */
+.advisory {
+  background: #0a0a14;
+  position: relative; overflow: hidden;
+}
+.advisory::before {
+  content: ''; position: absolute; inset: 0; pointer-events: none;
+  background:
+    radial-gradient(ellipse at 15% 30%, rgba(255,172,112,0.06) 0%, transparent 55%),
+    radial-gradient(ellipse at 85% 70%, rgba(79,168,213,0.05) 0%, transparent 50%),
+    radial-gradient(ellipse at 50% 100%, rgba(107,47,160,0.07) 0%, transparent 45%);
+}
+.advisory .section-title { color: white; }
+.advisory .section-tag { color: var(--peach); border-color: rgba(255,172,112,0.3); background: rgba(255,172,112,0.08); }
+.advisory .section-sub { color: rgba(255,255,255,0.5); }
+.advisory .btn-text { color: var(--peach); }
+.advisory .btn-text:hover { color: var(--peach-dk); }
+
+/* Bento grid */
+.adv-grid {
+  display: grid;
+  grid-template-columns: 1.6fr 1fr 1fr;
+  grid-template-rows: auto auto;
+  gap: 16px;
+  margin-bottom: 40px;
+}
+.adv-card {
+  position: relative; border-radius: 20px; overflow: hidden;
+  border: 1px solid rgba(255,255,255,0.07);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: default;
+}
+.adv-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+  border-color: rgba(255,255,255,0.14);
+}
+
+/* Card size variants */
+.adv-hero {
+  grid-row: 1 / 2; grid-column: 1 / 2;
+  min-height: 340px;
+}
+.adv-sm {
+  min-height: 300px;
+}
+.adv-wide {
+  grid-column: 1 / 3;
+  min-height: 200px;
+}
+
+/* Card bg layers */
+.adv-card-bg { position: absolute; inset: 0; background-size: cover; }
+.adv-card-grain {
+  position: absolute; inset: 0; opacity: 0.035; pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+.adv-card-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(135deg, rgba(0,0,0,0.15) 0%, rgba(0,0,0,0.35) 100%);
+}
+.adv-card-inner {
+  position: relative; z-index: 1;
+  padding: 28px 28px 24px;
+  height: 100%; display: flex; flex-direction: column; gap: 10px;
+}
+
+/* Icon */
+.adv-icon-wrap {
+  width: 44px; height: 44px; border-radius: 12px;
+  background: rgba(255,172,112,0.15);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.3rem; flex-shrink: 0;
+  margin-bottom: 2px;
+}
+
+/* Tag */
+.adv-tag {
+  font-size: 0.62rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em;
+  color: var(--peach); border: 1px solid rgba(255,172,112,0.3);
+  display: inline-flex; align-items: center;
+  padding: 3px 10px; border-radius: 50px; width: fit-content;
+}
+
+/* Title */
+.adv-card-title {
+  font-family: 'Fraunces', serif; font-size: 1.45rem; font-weight: 800;
+  color: white; line-height: 1.2; letter-spacing: -0.02em;
+  flex-shrink: 0;
+}
+.adv-card-title em { color: var(--peach); font-style: italic; }
+
+/* Desc */
+.adv-card-desc {
+  font-size: 0.82rem; color: rgba(255,255,255,0.52); line-height: 1.65;
+  flex: 1;
+}
+
+/* Pills */
+.adv-pills { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 4px; }
+.adv-pill {
+  font-size: 0.65rem; font-weight: 600; padding: 3px 10px; border-radius: 50px;
+  background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.12);
+  color: rgba(255,255,255,0.6);
+}
+
+/* Button */
+.adv-btn {
+  align-self: flex-start; margin-top: auto;
+  background: rgba(255,172,112,0.15); color: var(--peach);
+  border: 1px solid rgba(255,172,112,0.3);
+  padding: 9px 20px; border-radius: 50px;
+  font-family: 'DM Sans', sans-serif; font-size: 0.82rem; font-weight: 700;
+  cursor: pointer; transition: all 0.2s;
+}
+.adv-btn:hover { background: var(--peach); color: var(--ink); border-color: var(--peach); }
+
+/* Stats (time/cost card) */
+.adv-stat-row { display: flex; align-items: baseline; gap: 8px; }
+.adv-stat-num {
+  font-family: 'Fraunces', serif; font-size: 1.5rem; font-weight: 800;
+  line-height: 1; flex-shrink: 0;
+}
+.adv-stat-label { font-size: 0.72rem; color: rgba(255,255,255,0.45); line-height: 1.3; }
+
+/* CTA banner */
+.adv-cta-banner {
+  border-radius: 20px; overflow: hidden;
+  background: linear-gradient(120deg, #1a1a2e 0%, #0f1a2e 50%, #1a0a2e 100%);
+  border: 1px solid rgba(255,255,255,0.08);
+  padding: 36px 44px;
+  display: flex; align-items: center; justify-content: space-between; gap: 32px;
+  position: relative;
+}
+.adv-cta-banner::before {
+  content: ''; position: absolute; inset: 0; pointer-events: none;
+  background: radial-gradient(ellipse at 70% 50%, rgba(255,172,112,0.1) 0%, transparent 55%);
+}
+.adv-cta-text { position: relative; z-index: 1; max-width: 520px; }
+.adv-cta-label {
+  font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em;
+  color: var(--peach); margin-bottom: 10px;
+}
+.adv-cta-title {
+  font-family: 'Fraunces', serif; font-size: 1.6rem; font-weight: 800;
+  color: white; line-height: 1.25; letter-spacing: -0.02em; margin-bottom: 10px;
+}
+.adv-cta-sub { font-size: 0.86rem; color: rgba(255,255,255,0.5); line-height: 1.7; }
+.adv-cta-actions {
+  position: relative; z-index: 1;
+  display: flex; flex-direction: column; align-items: center; gap: 12px; flex-shrink: 0;
+}
+.adv-cta-btn-primary {
+  display: inline-flex; align-items: center; gap: 8px; white-space: nowrap;
+  background: var(--peach); color: var(--ink);
+  padding: 14px 28px; border-radius: 50px;
+  font-family: 'DM Sans', sans-serif; font-size: 0.92rem; font-weight: 700;
+  text-decoration: none; transition: all 0.25s;
+  box-shadow: 0 6px 24px rgba(255,172,112,0.4);
+}
+.adv-cta-btn-primary:hover {
+  background: var(--peach-dk); transform: translateY(-2px);
+  box-shadow: 0 10px 32px rgba(255,172,112,0.5);
+}
+.adv-cta-note { font-size: 0.7rem; color: rgba(255,255,255,0.3); text-align: center; }
+
+/* Advisory modal */
+.adv-modal-backdrop {
+  position: fixed; inset: 0; z-index: 1001;
+  background: rgba(0,0,0,0.8); backdrop-filter: blur(8px);
+  display: flex; align-items: center; justify-content: center; padding: 20px;
+  opacity: 0; pointer-events: none; transition: opacity 0.3s;
+}
+.adv-modal-backdrop.open { opacity: 1; pointer-events: all; }
+.adv-modal {
+  background: #0e0e18; border-radius: 24px;
+  width: 100%; max-width: 680px; max-height: 88vh; overflow-y: auto;
+  border: 1px solid rgba(255,255,255,0.09);
+  box-shadow: 0 40px 100px rgba(0,0,0,0.6);
+  transform: translateY(24px) scale(0.97); opacity: 0;
+  transition: transform 0.35s cubic-bezier(0.34,1.56,0.64,1), opacity 0.3s;
+  position: relative;
+}
+.adv-modal-backdrop.open .adv-modal { transform: none; opacity: 1; }
+.adv-modal-hero {
+  height: 160px; position: relative; overflow: hidden;
+  display: flex; align-items: flex-end; border-radius: 24px 24px 0 0;
+}
+.adv-modal-hero-bg { position: absolute; inset: 0; }
+.adv-modal-hero-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(0deg, rgba(14,14,24,0.95) 0%, transparent 80%);
+}
+.adv-modal-hero-content {
+  position: relative; z-index: 1; padding: 20px 28px;
+  display: flex; align-items: flex-end; justify-content: space-between; width: 100%;
+}
+.adv-modal-close {
+  position: absolute; top: 14px; right: 14px; z-index: 10;
+  width: 32px; height: 32px; border-radius: 50%;
+  background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.15);
+  color: rgba(255,255,255,0.7); cursor: pointer; font-size: 0.9rem;
+  display: flex; align-items: center; justify-content: center; transition: all 0.2s;
+}
+.adv-modal-close:hover { background: rgba(255,255,255,0.2); color: white; }
+.adv-modal-body { padding: 24px 28px 32px; }
+.adv-modal-section { margin-bottom: 26px; }
+.adv-modal-section-title {
+  font-size: 0.68rem; font-weight: 800; text-transform: uppercase;
+  letter-spacing: 0.1em; color: var(--peach); margin-bottom: 12px;
+  display: flex; align-items: center; gap: 8px;
+}
+.adv-modal-section-title::after {
+  content: ''; flex: 1; height: 1px; background: rgba(255,172,112,0.2);
+}
+.adv-modal-desc { font-size: 0.86rem; color: rgba(255,255,255,0.55); line-height: 1.75; }
+.adv-modal-outcomes { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.adv-modal-outcome {
+  display: flex; align-items: flex-start; gap: 8px;
+  background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.06);
+  border-radius: 10px; padding: 10px 12px; font-size: 0.78rem; color: rgba(255,255,255,0.65);
+  line-height: 1.4;
+}
+.adv-modal-check {
+  width: 16px; height: 16px; border-radius: 50%; flex-shrink: 0;
+  background: rgba(255,172,112,0.15); color: var(--peach);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 0.55rem; font-weight: 900; margin-top: 1px;
+}
+.adv-modal-process { display: flex; flex-direction: column; gap: 0; }
+.adv-modal-step {
+  display: flex; gap: 14px; align-items: flex-start; position: relative;
+  padding-bottom: 18px;
+}
+.adv-modal-step:last-child { padding-bottom: 0; }
+.adv-modal-step-line {
+  position: absolute; left: 14px; top: 28px; bottom: 0;
+  width: 2px; background: rgba(255,255,255,0.07);
+}
+.adv-modal-step:last-child .adv-modal-step-line { display: none; }
+.adv-modal-step-num {
+  width: 28px; height: 28px; border-radius: 50%; flex-shrink: 0;
+  background: rgba(255,172,112,0.12); border: 1px solid rgba(255,172,112,0.25);
+  color: var(--peach); font-size: 0.7rem; font-weight: 800;
+  display: flex; align-items: center; justify-content: center;
+}
+.adv-modal-step-title { font-size: 0.85rem; font-weight: 700; color: white; margin-bottom: 3px; }
+.adv-modal-step-desc { font-size: 0.76rem; color: rgba(255,255,255,0.42); line-height: 1.55; }
+.adv-modal-footer {
+  padding: 18px 28px; border-top: 1px solid rgba(255,255,255,0.07);
+  display: flex; align-items: center; justify-content: space-between; gap: 16px;
+  background: rgba(0,0,0,0.2);
+}
+.adv-modal-footer-note { font-size: 0.75rem; color: rgba(255,255,255,0.35); }
+.adv-modal-footer-note strong { color: white; display: block; margin-bottom: 2px; font-size: 0.88rem; }
+.adv-modal-cta {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: var(--peach); color: var(--ink);
+  padding: 12px 24px; border-radius: 50px;
+  font-family: 'DM Sans', sans-serif; font-size: 0.88rem; font-weight: 700;
+  text-decoration: none; transition: all 0.25s; flex-shrink: 0;
+  box-shadow: 0 5px 18px rgba(255,172,112,0.35);
+}
+.adv-modal-cta:hover { background: var(--peach-dk); transform: translateY(-1px); }
+
+@media(max-width:900px){
+  .adv-grid { grid-template-columns: 1fr 1fr; }
+  .adv-hero { grid-column: 1 / 3; }
+  .adv-wide { grid-column: 1 / 3; }
+  .adv-modal-outcomes { grid-template-columns: 1fr; }
+}
+@media(max-width:600px){
+  .adv-grid { grid-template-columns: 1fr; }
+  .adv-hero,.adv-wide { grid-column: 1; }
+  .adv-wide .adv-card-inner { flex-direction: column !important; }
+  .adv-cta-banner { flex-direction: column; padding: 28px 24px; }
+  .adv-modal-footer { flex-direction: column; align-items: flex-start; }
+}
+
 .books { background: linear-gradient(180deg, #f0f7fc 0%, var(--cream) 100%); }
 .books-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 40px 32px; margin-bottom: 56px; }
 
@@ -945,6 +1300,389 @@ section{padding:100px 60px;}
   .mp-right { max-height: 90vh; }
 }
 
+/* ══════════════════════════════════════════════
+   WORKSHOP DETAIL MODAL — full-width special layout
+   ══════════════════════════════════════════════ */
+
+.wmodal-backdrop {
+  position: fixed; inset: 0; z-index: 1000;
+  background: rgba(8,8,18,0.82); backdrop-filter: blur(8px);
+  display: flex; align-items: center; justify-content: center;
+  padding: 16px;
+  opacity: 0; pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+.wmodal-backdrop.open { opacity: 1; pointer-events: all; }
+
+.wmodal {
+  background: #0e0e18; border-radius: 24px;
+  width: 100%; max-width: 1060px;
+  height: 92vh;
+  display: flex; flex-direction: column;
+  transform: translateY(32px) scale(0.97);
+  transition: transform 0.38s cubic-bezier(0.34,1.56,0.64,1), opacity 0.3s;
+  opacity: 0; box-shadow: 0 48px 120px rgba(0,0,0,0.6);
+  border: 1px solid rgba(255,255,255,0.07);
+  overflow: hidden;
+}
+.wmodal-backdrop.open .wmodal { transform: none; opacity: 1; }
+
+/* ── Hero strip ── */
+.wm-hero {
+  position: relative; height: 170px;
+  display: flex; align-items: flex-end;
+  flex-shrink: 0; overflow: hidden;
+}
+.wm-hero-bg { position: absolute; inset: 0; background-size: cover; background-position: center; }
+.wm-hero-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(0deg, rgba(14,14,24,0.98) 0%, rgba(14,14,24,0.4) 60%, transparent 100%);
+}
+.wm-hero-grain {
+  position: absolute; inset: 0; opacity: 0.04;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+.wm-hero-content {
+  position: relative; z-index: 1; padding: 28px 36px;
+  display: flex; align-items: flex-end; justify-content: space-between;
+  width: 100%; gap: 20px;
+}
+.wm-hero-left {}
+.wm-hero-tags { display: flex; gap: 8px; margin-bottom: 12px; flex-wrap: wrap; }
+.wm-hero-tag {
+  font-size: 0.62rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em;
+  padding: 4px 12px; border-radius: 50px;
+  border: 1px solid rgba(255,255,255,0.18);
+  color: rgba(255,255,255,0.8); background: rgba(255,255,255,0.07);
+  backdrop-filter: blur(6px);
+}
+.wm-hero-tag.live { background: rgba(232,57,74,0.3); border-color: rgba(232,57,74,0.5); color: #fca5a5; }
+.wm-hero-tag.upcoming { background: rgba(255,172,112,0.25); border-color: rgba(255,172,112,0.5); color: var(--peach); }
+.wm-hero-title {
+  font-family: 'Fraunces', serif; font-size: clamp(1.4rem,3vw,2rem);
+  font-weight: 800; color: white; line-height: 1.2; letter-spacing: -0.02em;
+  max-width: 600px;
+}
+.wm-hero-meta { display: flex; align-items: center; gap: 18px; margin-top: 10px; }
+.wm-hero-meta-item { display: flex; align-items: center; gap: 6px; font-size: 0.78rem; color: rgba(255,255,255,0.55); }
+.wm-hero-meta-item strong { color: rgba(255,255,255,0.85); }
+.wm-hero-right { text-align: right; flex-shrink: 0; }
+.wm-price-tag {
+  font-family: 'Fraunces', serif; font-size: 2.2rem; font-weight: 800; color: white; line-height: 1;
+}
+.wm-price-old { font-size: 0.85rem; color: rgba(255,255,255,0.4); text-decoration: line-through; margin-bottom: 10px; }
+.wm-close {
+  position: absolute; top: 16px; right: 16px; z-index: 10;
+  width: 36px; height: 36px; border-radius: 50%;
+  background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.15); cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1rem; color: rgba(255,255,255,0.7); transition: all 0.2s;
+}
+.wm-close:hover { background: rgba(255,255,255,0.2); color: white; }
+
+/* ── Tab nav ── */
+.wm-tabs {
+  display: flex; gap: 0; border-bottom: 1px solid rgba(255,255,255,0.08);
+  padding: 0 28px; flex-shrink: 0; overflow-x: auto;
+}
+.wm-tab {
+  font-size: 0.78rem; font-weight: 600; color: rgba(255,255,255,0.4);
+  padding: 10px 16px; border: none; background: none; cursor: pointer;
+  border-bottom: 2px solid transparent; margin-bottom: -1px;
+  transition: color 0.2s, border-color 0.2s; white-space: nowrap;
+  font-family: 'DM Sans', sans-serif;
+}
+.wm-tab:hover { color: rgba(255,255,255,0.7); }
+.wm-tab.active { color: var(--peach); border-bottom-color: var(--peach); }
+
+/* ── Scrollable body ── */
+.wm-body {
+  display: flex;
+  flex: 1 1 0;
+  min-height: 0;
+  overflow: hidden;
+}
+.wm-main {
+  flex: 1 1 0;
+  min-width: 0;
+  min-height: 0;
+  overflow-y: auto;
+  padding: 24px 28px;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255,255,255,0.1) transparent;
+}
+.wm-sidebar {
+  width: 260px;
+  flex-shrink: 0;
+  min-height: 0;
+  border-left: 1px solid rgba(255,255,255,0.07);
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: 16px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255,255,255,0.08) transparent;
+}
+
+/* Tab panels */
+.wm-panel { display: none; }
+.wm-panel.active { display: block; }
+
+/* Section headings inside panels */
+.wm-section-title {
+  font-family: 'Fraunces', serif; font-size: 1.1rem; font-weight: 700;
+  color: white; margin-bottom: 16px; display: flex; align-items: center; gap: 8px;
+}
+.wm-section-title span { color: var(--peach); }
+
+/* Overview description */
+.wm-desc-text {
+  font-size: 0.88rem; color: rgba(255,255,255,0.6); line-height: 1.8; margin-bottom: 28px;
+}
+
+/* Learning outcomes grid */
+.wm-outcomes { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 28px; }
+.wm-outcome {
+  display: flex; align-items: flex-start; gap: 10px;
+  background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.06);
+  border-radius: 12px; padding: 12px;
+}
+.wm-outcome-check {
+  width: 20px; height: 20px; border-radius: 50%; flex-shrink: 0;
+  background: rgba(255,172,112,0.15); color: var(--peach);
+  display: flex; align-items: center; justify-content: center; font-size: 0.65rem; font-weight: 900;
+  margin-top: 1px;
+}
+.wm-outcome-text { font-size: 0.78rem; color: rgba(255,255,255,0.65); line-height: 1.5; }
+
+/* Agenda timeline */
+.wm-agenda { position: relative; padding-left: 24px; margin-bottom: 28px; }
+.wm-agenda::before {
+  content: ''; position: absolute; left: 7px; top: 8px; bottom: 8px;
+  width: 2px; background: rgba(255,255,255,0.08); border-radius: 1px;
+}
+.wm-agenda-item { position: relative; margin-bottom: 20px; }
+.wm-agenda-dot {
+  position: absolute; left: -24px; top: 6px;
+  width: 14px; height: 14px; border-radius: 50%;
+  background: var(--peach); border: 2px solid #0e0e18;
+  box-shadow: 0 0 0 3px rgba(255,172,112,0.2);
+}
+.wm-agenda-dot.done { background: rgba(255,255,255,0.2); }
+.wm-agenda-time { font-size: 0.65rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--peach); margin-bottom: 3px; }
+.wm-agenda-title { font-size: 0.88rem; font-weight: 700; color: white; margin-bottom: 3px; }
+.wm-agenda-desc { font-size: 0.76rem; color: rgba(255,255,255,0.45); line-height: 1.5; }
+
+/* Topics grid */
+.wm-topics { display: flex; flex-direction: column; gap: 8px; margin-bottom: 28px; }
+.wm-topic {
+  display: flex; align-items: center; gap: 12px;
+  background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.06);
+  border-radius: 10px; padding: 12px 14px; transition: background 0.2s;
+}
+.wm-topic:hover { background: rgba(255,172,112,0.07); border-color: rgba(255,172,112,0.2); }
+.wm-topic-num {
+  width: 26px; height: 26px; border-radius: 8px; flex-shrink: 0;
+  background: rgba(255,172,112,0.12); color: var(--peach);
+  font-size: 0.7rem; font-weight: 800; display: flex; align-items: center; justify-content: center;
+}
+.wm-topic-text { font-size: 0.82rem; color: rgba(255,255,255,0.7); flex: 1; }
+.wm-topic-dur { font-size: 0.68rem; color: rgba(255,255,255,0.3); flex-shrink: 0; }
+
+/* Materials */
+.wm-materials { display: flex; flex-direction: column; gap: 10px; margin-bottom: 28px; }
+.wm-material {
+  display: flex; align-items: center; gap: 12px;
+  background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.07);
+  border-radius: 12px; padding: 14px;
+}
+.wm-material-icon {
+  width: 40px; height: 40px; border-radius: 10px; flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center; font-size: 1.1rem;
+}
+.wm-material-icon.docx { background: rgba(37,99,235,0.2); }
+.wm-material-icon.pdf  { background: rgba(220,38,38,0.2); }
+.wm-material-icon.xlsx { background: rgba(22,163,74,0.2); }
+.wm-material-name { font-size: 0.82rem; font-weight: 600; color: rgba(255,255,255,0.8); margin-bottom: 2px; }
+.wm-material-meta { font-size: 0.7rem; color: rgba(255,255,255,0.35); }
+.wm-material-badge {
+  margin-left: auto; font-size: 0.6rem; font-weight: 700; padding: 3px 8px; border-radius: 50px;
+}
+.wm-material-badge.included { background: rgba(22,163,74,0.2); color: #4ade80; }
+.wm-material-badge.bonus    { background: rgba(255,172,112,0.2); color: var(--peach); }
+
+/* Q&A */
+.wm-faqs { display: flex; flex-direction: column; gap: 2px; }
+.wm-faq {
+  border-radius: 10px; overflow: hidden;
+  border: 1px solid rgba(255,255,255,0.07);
+  margin-bottom: 6px;
+}
+.wm-faq-q {
+  width: 100%; text-align: left; background: rgba(255,255,255,0.04);
+  border: none; cursor: pointer; padding: 14px 16px;
+  display: flex; align-items: center; justify-content: space-between; gap: 12px;
+  font-family: 'DM Sans', sans-serif; font-size: 0.84rem; font-weight: 600;
+  color: rgba(255,255,255,0.8); transition: background 0.2s;
+}
+.wm-faq-q:hover { background: rgba(255,255,255,0.07); }
+.wm-faq-q.open { color: var(--peach); background: rgba(255,172,112,0.06); }
+.wm-faq-icon { font-size: 0.75rem; transition: transform 0.25s; flex-shrink: 0; color: rgba(255,255,255,0.35); }
+.wm-faq-q.open .wm-faq-icon { transform: rotate(45deg); color: var(--peach); }
+.wm-faq-a {
+  font-size: 0.8rem; color: rgba(255,255,255,0.5); line-height: 1.7;
+  padding: 0 16px; max-height: 0; overflow: hidden; transition: max-height 0.3s ease, padding 0.3s;
+}
+.wm-faq-a.open { max-height: 300px; padding: 0 16px 14px; }
+
+/* ── Sidebar ── */
+.wm-sb-card {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 12px;
+  padding: 12px 14px;
+  width: 100%;
+  box-sizing: border-box;
+  flex-shrink: 0;
+}
+
+/* Instructor card */
+.wm-sb-instructor { display: flex; align-items: center; gap: 9px; margin-bottom: 8px; }
+.wm-sb-av {
+  width: 38px; height: 38px; border-radius: 50%; flex-shrink: 0;
+  background: linear-gradient(135deg, var(--peach), var(--peach-dk));
+  display: flex; align-items: center; justify-content: center; font-size: 1.1rem;
+  border: 2px solid rgba(255,172,112,0.3);
+}
+.wm-sb-name { font-size: 0.82rem; font-weight: 700; color: white; line-height: 1.2; }
+.wm-sb-role { font-size: 0.64rem; color: rgba(255,255,255,0.38); margin-top: 1px; line-height: 1.3; }
+.wm-sb-bio { font-size: 0.68rem; color: rgba(255,255,255,0.38); line-height: 1.5; margin-bottom: 9px; }
+.wm-sb-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 5px; }
+.wm-sb-stat { background: rgba(255,255,255,0.05); border-radius: 7px; padding: 6px 8px; text-align: center; }
+.wm-sb-stat-val { font-family: 'Fraunces', serif; font-size: 0.95rem; font-weight: 800; color: white; }
+.wm-sb-stat-val span { color: var(--peach); }
+.wm-sb-stat-label { font-size: 0.56rem; color: rgba(255,255,255,0.3); margin-top: 1px; }
+
+/* Quick info */
+.wm-sb-info-row {
+  display: flex; align-items: flex-start; gap: 7px;
+  padding: 5px 0; border-bottom: 1px solid rgba(255,255,255,0.05);
+}
+.wm-sb-info-row:last-child { border-bottom: none; }
+.wm-sb-info-icon { font-size: 0.82rem; width: 16px; text-align: center; flex-shrink: 0; margin-top: 1px; }
+.wm-sb-info-label { color: rgba(255,255,255,0.28); font-size: 0.6rem; line-height: 1; margin-bottom: 1px; }
+.wm-sb-info-val { color: rgba(255,255,255,0.7); font-weight: 600; font-size: 0.72rem; line-height: 1.3; }
+
+/* Rating stars breakdown */
+.wm-rating-big { text-align: center; padding-bottom: 8px; border-bottom: 1px solid rgba(255,255,255,0.07); margin-bottom: 8px; }
+.wm-rating-num { font-family: 'Fraunces', serif; font-size: 2rem; font-weight: 800; color: white; line-height: 1; }
+.wm-rating-stars { color: #fbbf24; font-size: 0.8rem; letter-spacing: 1px; margin: 3px 0 2px; }
+.wm-rating-count { font-size: 0.62rem; color: rgba(255,255,255,0.3); }
+.wm-rating-bar-row { display: flex; align-items: center; gap: 5px; margin-bottom: 3px; }
+.wm-rating-bar-label { font-size: 0.6rem; color: rgba(255,255,255,0.32); width: 24px; flex-shrink: 0; }
+.wm-rating-bar-track { flex: 1; height: 4px; background: rgba(255,255,255,0.1); border-radius: 2px; overflow: hidden; }
+.wm-rating-bar-fill { height: 100%; background: #fbbf24; border-radius: 2px; }
+.wm-rating-pct { font-size: 0.58rem; color: rgba(255,255,255,0.22); width: 24px; text-align: right; flex-shrink: 0; }
+
+/* ── CTA Booking area ── */
+.wm-cta {
+  padding: 12px 28px; border-top: 1px solid rgba(255,255,255,0.07);
+  display: flex; align-items: center; justify-content: space-between; gap: 16px;
+  background: rgba(0,0,0,0.25); flex-shrink: 0;
+}
+.wm-cta-left {}
+.wm-cta-price-row { display: flex; align-items: baseline; gap: 10px; margin-bottom: 4px; }
+.wm-cta-price { font-family: 'Fraunces', serif; font-size: 1.8rem; font-weight: 800; color: white; }
+.wm-cta-old { font-size: 0.85rem; color: rgba(255,255,255,0.3); text-decoration: line-through; }
+.wm-cta-note { font-size: 0.72rem; color: rgba(255,255,255,0.35); }
+.wm-cta-btns { display: flex; gap: 10px; align-items: center; }
+
+.wm-btn-calendly {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: var(--peach); color: var(--ink);
+  padding: 13px 28px; border-radius: 50px; border: none;
+  font-family: 'DM Sans', sans-serif; font-size: 0.9rem; font-weight: 700;
+  cursor: pointer; transition: all 0.25s;
+  box-shadow: 0 6px 22px rgba(255,172,112,0.4);
+  text-decoration: none;
+}
+.wm-btn-calendly:hover { background: var(--peach-dk); transform: translateY(-2px); box-shadow: 0 10px 30px rgba(255,172,112,0.5); }
+
+.wm-btn-pay {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: rgba(255,255,255,0.08); color: rgba(255,255,255,0.8);
+  padding: 13px 24px; border-radius: 50px; border: 1px solid rgba(255,255,255,0.14);
+  font-family: 'DM Sans', sans-serif; font-size: 0.88rem; font-weight: 600;
+  cursor: pointer; transition: all 0.2s;
+}
+.wm-btn-pay:hover { background: rgba(255,255,255,0.14); color: white; }
+
+.wm-seats-pill {
+  display: inline-flex; align-items: center; gap: 6px;
+  background: rgba(232,57,74,0.15); border: 1px solid rgba(232,57,74,0.3);
+  color: #fca5a5; font-size: 0.72rem; font-weight: 700;
+  padding: 5px 12px; border-radius: 50px;
+}
+.wm-seats-dot { width: 6px; height: 6px; border-radius: 50%; background: #ef4444; animation: blink 1.2s infinite; }
+
+/* Booking modal overlay */
+.wm-pay-overlay {
+  position: absolute; inset: 0; z-index: 20;
+  background: rgba(14,14,24,0.95); backdrop-filter: blur(6px);
+  display: none; align-items: center; justify-content: center;
+  border-radius: 24px;
+}
+.wm-pay-overlay.show { display: flex; }
+.wm-pay-inner {
+  background: #16161f; border-radius: 20px; padding: 36px;
+  width: 100%; max-width: 460px; border: 1px solid rgba(255,255,255,0.08);
+  position: relative;
+}
+.wm-pay-title { font-family: 'Fraunces', serif; font-size: 1.3rem; font-weight: 800; color: white; margin-bottom: 4px; }
+.wm-pay-sub { font-size: 0.78rem; color: rgba(255,255,255,0.4); margin-bottom: 20px; }
+.wm-pay-price-row { display:flex;align-items:baseline;gap:10px;background:rgba(255,172,112,0.1);border:1px solid rgba(255,172,112,0.2);border-radius:12px;padding:12px 16px;margin-bottom:18px; }
+.wm-pay-price-main { font-family:'Fraunces',serif;font-size:1.8rem;font-weight:800;color:white; }
+.wm-pay-price-old { font-size:0.82rem;color:rgba(255,255,255,0.3);text-decoration:line-through; }
+.wm-pay-price-save { font-size:0.72rem;color:var(--peach);font-weight:700;margin-left:auto;background:rgba(255,172,112,0.15);padding:3px 10px;border-radius:50px; }
+.wm-pay-summary { background:rgba(255,255,255,0.04);border-radius:10px;padding:12px 14px;margin-bottom:18px; }
+.wm-pay-sum-row { display:flex;justify-content:space-between;font-size:0.76rem;padding:3px 0;color:rgba(255,255,255,0.45); }
+.wm-pay-sum-row.total { font-weight:700;color:white;border-top:1px solid rgba(255,255,255,0.08);padding-top:8px;margin-top:4px;font-size:0.82rem; }
+.wm-input { padding:11px 14px;border:1.5px solid rgba(255,255,255,0.1);border-radius:10px;font-family:'DM Sans',sans-serif;font-size:0.86rem;color:white;background:rgba(255,255,255,0.06);transition:border-color 0.2s,box-shadow 0.2s;outline:none;width:100%; }
+.wm-input:focus { border-color:var(--peach);box-shadow:0 0 0 3px rgba(255,172,112,0.12); }
+.wm-input::placeholder { color:rgba(255,255,255,0.25); }
+.wm-form-grid { display:grid;grid-template-columns:1fr 1fr;gap:12px; }
+.wm-field { display:flex;flex-direction:column;gap:5px;margin-bottom:12px; }
+.wm-field label { font-size:0.7rem;font-weight:700;color:rgba(255,255,255,0.5);letter-spacing:0.04em; }
+.wm-field-error { font-size:0.7rem;color:#ef4444;display:none;margin-top:2px; }
+.wm-field-error.show { display:block; }
+.wm-pay-btn { width:100%;padding:14px;border-radius:50px;border:none;background:var(--peach);color:var(--ink);font-family:'DM Sans',sans-serif;font-size:0.92rem;font-weight:700;cursor:pointer;transition:all 0.25s;display:flex;align-items:center;justify-content:center;gap:8px;box-shadow:0 6px 20px rgba(255,172,112,0.35); }
+.wm-pay-btn:hover { background:var(--peach-dk); }
+.wm-pay-btn:disabled { opacity:0.5;cursor:not-allowed; }
+.wm-pay-secure { display:flex;align-items:center;justify-content:center;gap:6px;margin-top:12px;font-size:0.68rem;color:rgba(255,255,255,0.25); }
+.wm-pay-close { position:absolute;top:14px;right:14px;width:32px;height:32px;border-radius:50%;background:rgba(255,255,255,0.07);border:none;cursor:pointer;color:rgba(255,255,255,0.5);font-size:0.9rem;display:flex;align-items:center;justify-content:center;transition:background 0.2s; }
+.wm-pay-close:hover { background:rgba(255,255,255,0.14);color:white; }
+.wm-pay-spinner { width:16px;height:16px;border:2px solid rgba(255,255,255,0.3);border-top-color:white;border-radius:50%;animation:spin 0.7s linear infinite;display:none; }
+.wm-pay-success { display:none;flex-direction:column;align-items:center;text-align:center;padding:20px 0; }
+.wm-pay-success.show { display:flex; }
+.wm-pay-success-icon { font-size:3rem;margin-bottom:16px;animation:popIn 0.5s cubic-bezier(0.34,1.56,0.64,1) both; }
+.wm-pay-success-title { font-family:'Fraunces',serif;font-size:1.4rem;font-weight:800;color:white;margin-bottom:8px; }
+.wm-pay-success-sub { font-size:0.82rem;color:rgba(255,255,255,0.45);line-height:1.6;margin-bottom:20px; }
+.wm-pay-success-close { background:var(--peach);color:var(--ink);border:none;padding:11px 28px;border-radius:50px;font-family:'DM Sans',sans-serif;font-weight:700;font-size:0.88rem;cursor:pointer; }
+
+@media(max-width:860px){
+  .wm-sidebar { display:none; }
+  .wm-hero-content { flex-direction:column; align-items:flex-start; }
+  .wm-hero-right { text-align:left; }
+  .wm-outcomes { grid-template-columns:1fr; }
+  .wm-cta { flex-direction:column; align-items:flex-start; }
+  .wm-main { padding:24px 20px; }
+  .wm-tabs { padding:0 20px; }
+  .wm-cta { padding:16px 20px; }
+  .wm-hero-content { padding:20px; }
+}
+
 /* ABOUT */
 .about{background:var(--ink);position:relative;overflow:hidden;}
 .about::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 30% 50%,rgba(255,172,112,0.12) 0%,transparent 60%),radial-gradient(ellipse at 80% 20%,rgba(163,216,240,0.1) 0%,transparent 50%);}
@@ -1047,10 +1785,10 @@ footer{background:var(--ink);padding:60px;}
             <div style="margin-top:8px;"><span class="hc-tag">Live</span><span class="hc-tag blue">HR Strategy</span></div>
           </div>
           <div>
-            <div class="hc-date">📅 March 28, 2025 · Online</div>
+              
             <div style="display:flex;align-items:center;justify-content:space-between;margin-top:12px;">
-              <div class="hc-price">$89</div>
-              <button class="btn-reserve" style="width:auto;padding:8px 18px;font-size:0.8rem;">Reserve →</button>
+              <div class="hc-price" style="color:var(--peach-dk);font-size:0.9rem;font-weight:700;">🎓 Free</div>
+              <button class="btn-reserve" style="width:auto;padding:8px 18px;font-size:0.8rem;">Watch →</button>
             </div>
           </div>
         </div>
@@ -1083,9 +1821,9 @@ footer{background:var(--ink);padding:60px;}
   <div class="section-inner">
     <div class="section-header fade-in">
       <div>
-        <div class="section-tag">Live &amp; Online</div>
-        <div class="section-title">Live <em>Workshops</em></div>
-        <div class="section-sub">Interactive sessions designed for real-world HR challenges. Join live and get direct answers.</div>
+        <div class="section-tag">On-Demand · Free</div>
+        <div class="section-title">HR <em>Workshops</em></div>
+        <div class="section-sub">In-depth video workshops on the HR topics that matter most. Watch free, learn at your own pace.</div>
       </div>
       <a href="#" class="btn-text">View All Workshops →</a>
     </div>
@@ -1097,7 +1835,6 @@ footer{background:var(--ink);padding:60px;}
         <div class="wc-thumb">
           <div class="wc-thumb-bg" style="background:linear-gradient(135deg,#1a0a2e 0%,#3d1a5e 40%,#6b2fa0 70%,#ff8c42 100%);"></div>
           <div class="wc-thumb-overlay"></div>
-          <div class="wc-live-badge upcoming"><span class="wc-live-dot"></span>Upcoming</div>
           <div class="wc-duration"><span class="wc-duration-dot"></span>3h 30m</div>
           <div class="wc-play"></div>
           <div class="wc-thumb-bottom">
@@ -1116,18 +1853,14 @@ footer{background:var(--ink);padding:60px;}
           <div class="wc-title">Strategic Talent Acquisition Masterclass</div>
           <div class="wc-desc">Learn modern hiring frameworks that attract top talent and reduce time-to-fill by up to 40%.</div>
           <div class="wc-tags">
-            <span class="wc-tag">Live Session</span>
             <span class="wc-tag">Certificate</span>
-            <span class="wc-tag">Q&amp;A Included</span>
+            <span class="wc-tag">Workbook</span>
+            <span class="wc-tag">Templates</span>
           </div>
           <div class="wc-footer">
-            <div class="wc-meta-row">
-              <div class="wc-date">📅 March 28, 2025</div>
-              <div class="wc-seats">🔥 Only 8 seats left</div>
-            </div>
-            <div style="display:flex;align-items:center;gap:12px;">
-              <div class="wc-price">$89 <small>/ seat</small></div>
-              <button class="btn-reserve">Reserve →</button>
+            <div style="display:flex;align-items:center;justify-content:space-between;width:100%;">
+              <div class="wc-price" style="color:var(--peach);font-size:0.9rem;font-weight:700;">🎓 Free</div>
+              <button class="btn-reserve">View Workshop →</button>
             </div>
           </div>
         </div>
@@ -1138,7 +1871,6 @@ footer{background:var(--ink);padding:60px;}
         <div class="wc-thumb">
           <div class="wc-thumb-bg" style="background:linear-gradient(135deg,#0a1a2e 0%,#1a3d5e 40%,#2f6b9e 70%,#42b8ff 100%);"></div>
           <div class="wc-thumb-overlay"></div>
-          <div class="wc-live-badge upcoming"><span class="wc-live-dot"></span>Upcoming</div>
           <div class="wc-duration"><span class="wc-duration-dot"></span>2h 45m</div>
           <div class="wc-play"></div>
           <div class="wc-thumb-bottom">
@@ -1157,18 +1889,14 @@ footer{background:var(--ink);padding:60px;}
           <div class="wc-title">Performance Management That Actually Works</div>
           <div class="wc-desc">Build review cycles that motivate employees instead of dreading them. Practical tools included.</div>
           <div class="wc-tags">
-            <span class="wc-tag">Live Session</span>
+            <span class="wc-tag">Certificate</span>
             <span class="wc-tag">Templates</span>
             <span class="wc-tag">Recording</span>
           </div>
           <div class="wc-footer">
-            <div class="wc-meta-row">
-              <div class="wc-date">📅 April 10, 2025</div>
-              <div class="wc-seats">✅ 24 seats available</div>
-            </div>
-            <div style="display:flex;align-items:center;gap:12px;">
-              <div class="wc-price">$79 <small>/ seat</small></div>
-              <button class="btn-reserve">Reserve →</button>
+            <div style="display:flex;align-items:center;justify-content:space-between;width:100%;">
+              <div class="wc-price" style="color:var(--peach);font-size:0.9rem;font-weight:700;">🎓 Free</div>
+              <button class="btn-reserve">View Workshop →</button>
             </div>
           </div>
         </div>
@@ -1179,7 +1907,6 @@ footer{background:var(--ink);padding:60px;}
         <div class="wc-thumb">
           <div class="wc-thumb-bg" style="background:linear-gradient(135deg,#0e2a1a 0%,#1a5e3a 40%,#2fa06b 70%,#42ffb4 100%);"></div>
           <div class="wc-thumb-overlay"></div>
-          <div class="wc-live-badge upcoming"><span class="wc-live-dot"></span>Upcoming</div>
           <div class="wc-duration"><span class="wc-duration-dot"></span>4h 00m</div>
           <div class="wc-play"></div>
           <div class="wc-thumb-bottom">
@@ -1189,7 +1916,6 @@ footer{background:var(--ink);padding:60px;}
               <div class="wc-instructor-role">HR Culture Lead</div>
             </div>
           </div>
-          <div class="wc-progress-bar"><div class="wc-progress-fill" style="width:0%"></div></div>
         </div>
         <div class="wc-body">
           <div class="wc-top">
@@ -1199,18 +1925,14 @@ footer{background:var(--ink);padding:60px;}
           <div class="wc-title">Conflict Resolution &amp; Workplace Culture</div>
           <div class="wc-desc">Navigate difficult conversations and build psychologically safe teams with proven techniques.</div>
           <div class="wc-tags">
-            <span class="wc-tag">Live Session</span>
             <span class="wc-tag">Certificate</span>
             <span class="wc-tag">Workbook</span>
+            <span class="wc-tag">Scripts</span>
           </div>
           <div class="wc-footer">
-            <div class="wc-meta-row">
-              <div class="wc-date">📅 April 24, 2025</div>
-              <div class="wc-seats">🔥 12 seats left</div>
-            </div>
-            <div style="display:flex;align-items:center;gap:12px;">
-              <div class="wc-price">$95 <small>/ seat</small></div>
-              <button class="btn-reserve">Reserve →</button>
+            <div style="display:flex;align-items:center;justify-content:space-between;width:100%;">
+              <div class="wc-price" style="color:var(--peach);font-size:0.9rem;font-weight:700;">🎓 Free</div>
+              <button class="btn-reserve">View Workshop →</button>
             </div>
           </div>
         </div>
@@ -1218,7 +1940,152 @@ footer{background:var(--ink);padding:60px;}
 
     </div>
 
-    <div class="section-cta-wrap fade-in"><a href="#" class="btn-center">View All Workshops →</a></div>
+    <div class="ws-booking-cta fade-in">
+      <div class="ws-booking-cta-left">
+        <div class="ws-booking-tag">🎓 Free Access</div>
+        <div class="ws-booking-title">Want a <em>personalised</em> workshop session?</div>
+        <div class="ws-booking-sub">Book a 1-on-1 or small group session with Edyta   — tailored to your team's specific HR challenges.</div>
+        <div class="ws-booking-features">
+          <span class="ws-booking-feat">✓ Choose your topic</span>
+          <span class="ws-booking-feat">✓ Flexible scheduling</span>
+          <span class="ws-booking-feat">✓ Private group option</span>
+        </div>
+      </div>
+      <div class="ws-booking-cta-right">
+        <div class="ws-booking-avatar">👩</div>
+        <div class="ws-booking-name">Edyta   Mitchell</div>
+        <div class="ws-booking-role">Senior HR Strategist</div>
+        <a href="https://calendly.com/hrpro/workshop-booking" target="_blank" rel="noopener" class="ws-booking-btn">
+          📅 Book a Session via Calendly
+        </a>
+        <div class="ws-booking-note">Usually responds within 24 hrs</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── ADVISORY ──────────────────────────── -->
+<section class="advisory" id="advisory">
+  <div class="section-inner">
+
+    <div class="section-header fade-in">
+      <div>
+        <div class="section-tag">1-on-1 Advisory</div>
+        <div class="section-title">Strategic <em>HR Advisory</em></div>
+        <div class="section-sub">Tailored guidance for HR professionals and business leaders — from hiring strategy to team communication and operational efficiency.</div>
+      </div>
+      <a href="https://calendly.com/hrpro/advisory" target="_blank" rel="noopener" class="btn-text">Book Advisory →</a>
+    </div>
+
+    <!-- Bento grid -->
+    <div class="adv-grid fade-in">
+
+      <!-- Hero card — Business Strategy -->
+      <div class="adv-card adv-hero" data-adv="strategy">
+        <div class="adv-card-bg" style="background:linear-gradient(135deg,#1a0a2e 0%,#2d1060 45%,#6b2fa0 80%,#ffac70 100%)"></div>
+        <div class="adv-card-grain"></div>
+        <div class="adv-card-overlay"></div>
+        <div class="adv-card-inner">
+          <div class="adv-icon-wrap">📊</div>
+          <div class="adv-tag">Business Strategy</div>
+          <div class="adv-card-title">HR Business<br><em>Strategy</em></div>
+          <div class="adv-card-desc">Align your people strategy with company goals. Build scalable HR frameworks that support rapid growth without losing culture.</div>
+          <div class="adv-pills">
+            <span class="adv-pill">Org Design</span>
+            <span class="adv-pill">Workforce Planning</span>
+            <span class="adv-pill">Growth Scaling</span>
+          </div>
+          <button class="adv-btn" onclick="openAdvModal('strategy')">Explore →</button>
+        </div>
+      </div>
+
+      <!-- Interview Guides -->
+      <div class="adv-card adv-sm" data-adv="interview" style="--adv-accent:#4fa8d5;--adv-bg:linear-gradient(145deg,#0a1e3a,#1a4070)">
+        <div class="adv-card-bg" style="background:var(--adv-bg)"></div>
+        <div class="adv-card-grain"></div>
+        <div class="adv-card-inner">
+          <div class="adv-icon-wrap" style="background:rgba(79,168,213,0.15);color:#4fa8d5">🎤</div>
+          <div class="adv-tag" style="color:#4fa8d5;border-color:rgba(79,168,213,0.3)">Interview Design</div>
+          <div class="adv-card-title" style="font-size:1.1rem;">Interview<br>Guides</div>
+          <div class="adv-card-desc" style="font-size:0.78rem;">Structured interview frameworks and evaluation rubrics that eliminate bias and consistently identify top performers.</div>
+          <button class="adv-btn" style="background:rgba(79,168,213,0.15);color:#4fa8d5;border:1px solid rgba(79,168,213,0.3);" onclick="openAdvModal('interview')">Explore →</button>
+        </div>
+      </div>
+
+      <!-- Communication -->
+      <div class="adv-card adv-sm" data-adv="communication" style="--adv-accent:#f59e0b;--adv-bg:linear-gradient(145deg,#1a1200,#3a2a00)">
+        <div class="adv-card-bg" style="background:var(--adv-bg)"></div>
+        <div class="adv-card-grain"></div>
+        <div class="adv-card-inner">
+          <div class="adv-icon-wrap" style="background:rgba(245,158,11,0.15);color:#f59e0b">💬</div>
+          <div class="adv-tag" style="color:#f59e0b;border-color:rgba(245,158,11,0.3)">Communication</div>
+          <div class="adv-card-title" style="font-size:1.1rem;">Communication<br>Improvement</div>
+          <div class="adv-card-desc" style="font-size:0.78rem;">Build a culture of clear, confident communication. From difficult conversations to cross-team alignment strategies.</div>
+          <button class="adv-btn" style="background:rgba(245,158,11,0.15);color:#f59e0b;border:1px solid rgba(245,158,11,0.3);" onclick="openAdvModal('communication')">Explore →</button>
+        </div>
+      </div>
+
+      <!-- Time & Cost Management — wide card -->
+      <div class="adv-card adv-wide" data-adv="operations">
+        <div class="adv-card-bg" style="background:linear-gradient(135deg,#0a1e12,#1a4a2a,#2a6a3a)"></div>
+        <div class="adv-card-grain"></div>
+        <div class="adv-card-inner" style="flex-direction:row;align-items:center;gap:32px;">
+          <div style="flex:1;min-width:0;">
+            <div class="adv-icon-wrap" style="background:rgba(52,211,153,0.15);color:#34d399">⚡</div>
+            <div class="adv-tag" style="color:#34d399;border-color:rgba(52,211,153,0.3)">Efficiency</div>
+            <div class="adv-card-title" style="font-size:1.2rem;">Time & Cost<br><em style="color:#34d399">Management</em></div>
+            <div class="adv-card-desc" style="font-size:0.8rem;">Reduce HR overhead, streamline processes and eliminate costly hiring mistakes. Build lean systems that scale.</div>
+          </div>
+          <div style="flex-shrink:0;display:flex;flex-direction:column;gap:8px;min-width:180px;">
+            <div class="adv-stat-row"><span class="adv-stat-num" style="color:#34d399">40%</span><span class="adv-stat-label">avg reduction in time-to-hire</span></div>
+            <div class="adv-stat-row"><span class="adv-stat-num" style="color:#34d399">3×</span><span class="adv-stat-label">faster onboarding process</span></div>
+            <div class="adv-stat-row"><span class="adv-stat-num" style="color:#34d399">60%</span><span class="adv-stat-label">less admin with smart systems</span></div>
+            <button class="adv-btn" style="background:rgba(52,211,153,0.15);color:#34d399;border:1px solid rgba(52,211,153,0.3);margin-top:4px;width:100%;" onclick="openAdvModal('operations')">Explore →</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Retention & Engagement -->
+      <div class="adv-card adv-sm" data-adv="retention" style="--adv-accent:#f472b6">
+        <div class="adv-card-bg" style="background:linear-gradient(145deg,#1a0a1a,#3a1040)"></div>
+        <div class="adv-card-grain"></div>
+        <div class="adv-card-inner">
+          <div class="adv-icon-wrap" style="background:rgba(244,114,182,0.15);color:#f472b6">❤️</div>
+          <div class="adv-tag" style="color:#f472b6;border-color:rgba(244,114,182,0.3)">Retention</div>
+          <div class="adv-card-title" style="font-size:1.1rem;">Retention &<br>Engagement</div>
+          <div class="adv-card-desc" style="font-size:0.78rem;">Diagnose and fix the root causes of employee turnover. Build loyalty strategies that actually stick.</div>
+          <button class="adv-btn" style="background:rgba(244,114,182,0.15);color:#f472b6;border:1px solid rgba(244,114,182,0.3);" onclick="openAdvModal('retention')">Explore →</button>
+        </div>
+      </div>
+
+      <!-- Leadership Development -->
+      <div class="adv-card adv-sm" data-adv="leadership" style="--adv-accent:#fb923c">
+        <div class="adv-card-bg" style="background:linear-gradient(145deg,#1a0e00,#3a2000)"></div>
+        <div class="adv-card-grain"></div>
+        <div class="adv-card-inner">
+          <div class="adv-icon-wrap" style="background:rgba(251,146,60,0.15);color:#fb923c">🚀</div>
+          <div class="adv-tag" style="color:#fb923c;border-color:rgba(251,146,60,0.3)">Leadership</div>
+          <div class="adv-card-title" style="font-size:1.1rem;">Leadership<br>Development</div>
+          <div class="adv-card-desc" style="font-size:0.78rem;">Coach managers to lead with confidence. Build a leadership pipeline that prepares your best people for bigger roles.</div>
+          <button class="adv-btn" style="background:rgba(251,146,60,0.15);color:#fb923c;border:1px solid rgba(251,146,60,0.3);" onclick="openAdvModal('leadership')">Explore →</button>
+        </div>
+      </div>
+
+    </div><!-- /adv-grid -->
+
+    <!-- Advisory CTA banner -->
+    <div class="adv-cta-banner fade-in">
+      <div class="adv-cta-text">
+        <div class="adv-cta-label">🌟 Personalised to your situation</div>
+        <div class="adv-cta-title">Ready to transform your HR approach?</div>
+        <div class="adv-cta-sub">Book a free 30-minute discovery call. No obligation — just a conversation about where you are and where you want to be.</div>
+      </div>
+      <div class="adv-cta-actions">
+        <a href="https://calendly.com/hrpro/advisory-discovery" target="_blank" rel="noopener" class="adv-cta-btn-primary">📅 Book Free Discovery Call</a>
+        <div class="adv-cta-note">✓ Free 30 min &nbsp;·&nbsp; ✓ No commitment &nbsp;·&nbsp; ✓ Tailored advice</div>
+      </div>
+    </div>
+
   </div>
 </section>
 
@@ -1642,8 +2509,7 @@ footer{background:var(--ink);padding:60px;}
 
     <div class="about-photo">
       <div class="about-photo-frame">
-        <img src="https://media.licdn.com/dms/image/v2/D4D03AQGLbIp9m7U_3A/profile-displayphoto-shrink_400_400/B4DZZnzaOoHIAg-/0/1745498252722?e=1774483200&v=beta&t=vmfjCvsYduS8mwGtlhGOimOnGYy1jaB1BvKrUKMI3h4"/>
-
+        <img src="https://media.licdn.com/dms/image/v2/D4D03AQGLbIp9m7U_3A/profile-displayphoto-shrink_400_400/B4DZZnzaOoHIAg-/0/1745498252722?e=1774483200&v=beta&t=vmfjCvsYduS8mwGtlhGOimOnGYy1jaB1BvKrUKMI3h4" alt="Photo of Edyta" class="about-photo-img">
       </div>
       <div class="about-photo-badge"><strong>10+</strong>Years in HR</div>
     </div>
@@ -1682,6 +2548,22 @@ footer{background:var(--ink);padding:60px;}
 
 <!-- ── FOOTER ─────────────────────────── -->
 <!-- ══════════════════════════════════════════════
+     ADVISORY MODAL
+     ══════════════════════════════════════════════ -->
+<div class="adv-modal-backdrop" id="advModalBackdrop">
+  <div class="adv-modal" id="advModalContent"></div>
+</div>
+
+<!-- ══════════════════════════════════════════════
+     WORKSHOP DETAIL MODAL
+     ══════════════════════════════════════════════ -->
+<div class="wmodal-backdrop" id="wmodalBackdrop">
+  <div class="wmodal" id="wmodalContent">
+    <!-- Dynamically built by JS -->
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════
      MODAL BACKDROP
      ══════════════════════════════════════════════ -->
 <div class="modal-backdrop" id="modalBackdrop">
@@ -1700,6 +2582,7 @@ footer{background:var(--ink);padding:60px;}
       <div class="footer-col">
         <div class="footer-col-title">Learn</div>
         <a href="#workshops">Workshops</a>
+        <a href="#advisory">Advisory</a>
         <a href="#books">Books</a>
         <a href="#courses">Courses</a>
         <a href="#materials">Templates</a>
@@ -2043,49 +2926,401 @@ footer{background:var(--ink);padding:60px;}
     }, 2000);
   }
 
+  /* ══════════════════════════════════════════════
+     WORKSHOP DETAIL MODAL SYSTEM
+  ══════════════════════════════════════════════ */
+
+  const wBackdrop = document.getElementById('wmodalBackdrop');
+  const wContent  = document.getElementById('wmodalContent');
+
+  const WORKSHOPS = {
+    w1: {
+      title: 'Strategic Talent Acquisition Masterclass',
+      tags: ['🎯 Recruitment', '3.5 hrs', 'Free'],
+      bannerBg: 'linear-gradient(135deg,#1a0a2e 0%,#3d1a5e 40%,#6b2fa0 70%,#ff8c42 100%)',
+      duration: '3.5 hours', level: 'All Levels',
+      desc: `This intensive masterclass takes you step by step through a modern talent acquisition framework. Whether you're building a team from scratch or improving an existing hiring process, you'll leave with a clear, implementable strategy.<br><br>You'll work through real-world examples, critique live job descriptions and practice structured screening techniques with peer feedback.`,
+      outcomes: [
+        'Write job descriptions that attract qualified candidates',
+        'Build a sourcing strategy across multiple channels',
+        'Conduct structured, bias-free interviews',
+        'Score and rank candidates objectively',
+        'Negotiate and close offers with confidence',
+        'Reduce time-to-fill by up to 40%',
+      ],
+      agenda: [
+        { time:'00:00 – 00:20', title:'Welcome & Context Setting', desc:"Overview of modern talent challenges and what we'll solve today." },
+        { time:'00:20 – 01:00', title:'Crafting Magnetic Job Posts', desc:'The anatomy of a high-converting job description. Live critique exercise.' },
+        { time:'01:00 – 01:40', title:'Sourcing & Attraction Strategy', desc:'LinkedIn, referrals, job boards, passive candidates — a full channel map.' },
+        { time:'01:40 – 00:10', title:'Break', desc:'' },
+        { time:'01:50 – 02:45', title:'Structured Interviewing & Scoring', desc:'Competency frameworks, STAR method, bias-busting techniques.' },
+        { time:'02:45 – 03:20', title:'Offer, Negotiation & Closing', desc:'Scripts for making offers, handling counteroffers and closing quickly.' },
+        { time:'03:20 – 03:30', title:'Discussion & Recap', desc:'Key takeaways, reflection prompts and next steps.' },
+      ],
+      topics: [
+        { n:'01', text:'Modern TA landscape & key metrics', dur:'20 min' },
+        { n:'02', text:'Job description writing workshop', dur:'40 min' },
+        { n:'03', text:'Multi-channel sourcing strategy', dur:'40 min' },
+        { n:'04', text:'Interview design & scoring rubrics', dur:'55 min' },
+        { n:'05', text:'Offer negotiation scripts', dur:'35 min' },
+        { n:'06', text:'Discussion & recap', dur:'10 min' },
+      ],
+      materials: [
+        { icon:'📋', type:'pdf',  name:'Workshop Slide Deck', meta:'85 slides · PDF', badge:'included' },
+        { icon:'📄', type:'docx', name:'Job Description Templates', meta:'8 templates · DOCX', badge:'included' },
+        { icon:'📊', type:'xlsx', name:'Candidate Scoring Sheet', meta:'Excel spreadsheet', badge:'included' },
+        { icon:'📄', type:'docx', name:'Interview Question Bank', meta:'120 questions · DOCX', badge:'bonus' },
+        { icon:'📋', type:'pdf',  name:'30-Day Action Plan', meta:'PDF workbook', badge:'bonus' },
+      ],
+      faqs: [
+        { q:'Will the session be recorded?', a:'Yes — all registered attendees get access to the full recording for 30 days after the live session.' },
+        { q:"What if I can't attend live?", a:'You can still register and receive the recording, all materials and the slide deck. Live attendance is recommended for the Q&A.' },
+        { q:'What level is this workshop for?', a:"Suitable for all HR experience levels. Whether you're new to recruitment or an experienced TA professional, you'll find practical value." },
+        { q:'Is there a certificate?', a:'Yes. A certificate of completion is issued digitally within 48 hours of the session.' },
+        { q:'Can I get a refund?', a:'Full refunds are available up to 7 days before the session. After that, you can transfer your seat to a future cohort.' },
+      ],
+      instructor: { av:'👩', name:'Edyta   Mitchell', role:'Senior HR Strategist · 12 yrs experience', bio:'Edyta   has led talent acquisition for FTSE 250 companies and trained over 800 HR professionals globally. She specialises in scalable hiring systems and competency-based interviewing.' },
+      rating:'4.9', reviews:'312',
+    },
+    w2: {
+      title: 'Performance Management That Actually Works',
+      tags: ['📋 Performance', '2h 45m', 'Free'],
+      bannerBg: 'linear-gradient(135deg,#0a1a2e 0%,#1a3d5e 40%,#2f6b9e 70%,#42b8ff 100%)',
+      duration: '2.75 hours', level: 'Intermediate',
+      desc: `Most performance reviews leave managers and employees both frustrated. This workshop rebuilds the process from scratch — creating review cycles that are honest, motivating and actually improve performance.<br><br>You'll leave with a complete implementation kit and a conversation framework you can use in your next 1:1.`,
+      outcomes: [
+        'Design a performance review cycle that motivates',
+        'Set SMART objectives collaboratively',
+        'Deliver feedback that lands without defensiveness',
+        'Handle underperformance with confidence',
+        'Reduce recency bias in evaluations',
+        'Build a continuous feedback culture',
+      ],
+      agenda: [
+        { time:'00:00 – 00:15', title:'Why Most Reviews Fail', desc:'Common pitfalls and the psychology of performance conversations.' },
+        { time:'00:15 – 00:55', title:'Designing Your Review Cycle', desc:'Frequency, format, rating scales — build a cycle that works for your team.' },
+        { time:'00:55 – 01:30', title:'Objective Setting Workshop', desc:'Writing meaningful SMART goals. Peer critique exercise.' },
+        { time:'01:30 – 00:10', title:'Break', desc:'' },
+        { time:'01:40 – 02:20', title:'Feedback Conversations', desc:'Scripts for positive, developmental and difficult performance discussions.' },
+        { time:'02:20 – 02:45', title:'Managing Underperformance', desc:'PIPs, documentation and how to support struggling employees.' },
+      ],
+      topics: [
+        { n:'01', text:'Why performance reviews fail', dur:'15 min' },
+        { n:'02', text:'Review cycle design', dur:'40 min' },
+        { n:'03', text:'SMART objective-setting workshop', dur:'35 min' },
+        { n:'04', text:'Delivering effective feedback', dur:'40 min' },
+        { n:'05', text:'Managing underperformance', dur:'25 min' },
+        { n:'06', text:'Q&A', dur:'10 min' },
+      ],
+      materials: [
+        { icon:'📋', type:'pdf',  name:'Workshop Slide Deck', meta:'65 slides · PDF', badge:'included' },
+        { icon:'📊', type:'xlsx', name:'Performance Review Template', meta:'Excel workbook', badge:'included' },
+        { icon:'📄', type:'docx', name:'Manager Conversation Scripts', meta:'DOCX', badge:'included' },
+        { icon:'📋', type:'pdf',  name:'PIP Template Pack', meta:'3 templates · PDF', badge:'bonus' },
+      ],
+      faqs: [
+        { q:'Do I need HR experience to attend?', a:'Intermediate level. Best suited for HR professionals or managers who already have some experience with performance processes.' },
+        { q:'Will I get the templates straight away?', a:'Yes — all materials are emailed immediately after registration, so you can start preparing.' },
+        { q:'Is the recording included?', a:'Yes, for 30 days after the live session.' },
+        { q:'Is there a certificate?', a:'Yes — a digital certificate is issued within 48 hours.' },
+      ],
+      instructor: { av:'👨', name:'James Crawford', role:'Performance Coach · 9 yrs experience', bio:'James has designed performance frameworks for 50+ organisations across Europe. He is certified in Positive Psychology and specialises in making feedback conversations less painful and more effective.' },
+      rating:'4.8', reviews:'208',
+    },
+    w3: {
+      title: 'Conflict Resolution & Workplace Culture',
+      tags: ['🤝 Culture', '4 hrs', 'Free'],
+      bannerBg: 'linear-gradient(135deg,#0e2a1a 0%,#1a5e3a 40%,#2fa06b 70%,#42ffb4 100%)',
+      duration: '4 hours', level: 'All Levels',
+      desc: `Conflict is inevitable in any workplace. What matters is how you respond to it. This workshop gives you a practical toolkit for de-escalating tension, navigating difficult conversations and building a psychologically safe culture where people do their best work.<br><br>Case studies, role-play scenarios and group exercises throughout.`,
+      outcomes: [
+        'Identify and address conflict early',
+        'De-escalate tension with proven techniques',
+        'Conduct difficult conversations without defensiveness',
+        'Build psychological safety in your team',
+        'Create a culture action plan',
+        'Understand mediation basics',
+      ],
+      agenda: [
+        { time:'00:00 – 00:25', title:'Understanding Conflict', desc:'Types, triggers and the cost of unresolved conflict to organisations.' },
+        { time:'00:25 – 01:10', title:'De-escalation Techniques', desc:'Practical scripts and frameworks for cooling heated situations.' },
+        { time:'01:10 – 01:50', title:'Difficult Conversation Framework', desc:'The CARE model. Role-play practice with peer feedback.' },
+        { time:'01:50 – 00:15', title:'Break', desc:'' },
+        { time:'02:05 – 02:45', title:'Psychological Safety & Culture', desc:'What it is, how to measure it and how to build it intentionally.' },
+        { time:'02:45 – 03:30', title:'Culture Health Audit Workshop', desc:'Assess your team culture and leave with a 30-day action plan.' },
+        { time:'03:30 – 04:00', title:'Discussion & Recap', desc:"Key takeaways and reflection on what you've learned." },
+      ],
+      topics: [
+        { n:'01', text:'Understanding workplace conflict', dur:'25 min' },
+        { n:'02', text:'De-escalation scripts & techniques', dur:'45 min' },
+        { n:'03', text:'Difficult conversation role-play', dur:'40 min' },
+        { n:'04', text:'Psychological safety framework', dur:'40 min' },
+        { n:'05', text:'Culture health audit workshop', dur:'45 min' },
+        { n:'06', text:'Discussion & recap', dur:'30 min' },
+      ],
+      materials: [
+        { icon:'📋', type:'pdf',  name:'Workshop Slide Deck', meta:'90 slides · PDF', badge:'included' },
+        { icon:'📄', type:'docx', name:'Conflict Resolution Scripts', meta:'DOCX · 12 scripts', badge:'included' },
+        { icon:'📋', type:'pdf',  name:'Culture Health Audit Tool', meta:'PDF workbook', badge:'included' },
+        { icon:'📄', type:'docx', name:'30-Day Culture Action Plan', meta:'DOCX template', badge:'bonus' },
+        { icon:'📊', type:'xlsx', name:'Team Pulse Survey Template', meta:'Excel', badge:'bonus' },
+      ],
+      faqs: [
+        { q:'Is this suitable for managers, not HR?', a:'Absolutely. This workshop is designed for anyone who manages people or works in a people-facing role.' },
+        { q:'Are the role-plays mandatory?', a:'Participation is encouraged but never forced. You can observe and still get full value from the session.' },
+        { q:'How many people will be in the session?', a:'We cap sessions at 30 attendees to ensure quality interaction and meaningful Q&A time.' },
+        { q:'Is there a recording?', a:'Yes — 30-day access to the full recording is included for all registered attendees.' },
+        { q:'Will I receive a certificate?', a:'Yes — a digital certificate of completion is issued within 48 hours.' },
+      ],
+      instructor: { av:'👩', name:'Leila Rashid', role:'HR Culture Lead · 11 yrs experience', bio:'Leila has led culture transformation programmes at global organisations across the tech and financial sectors. She holds a Masters in Organisational Psychology and is a certified mediator.' },
+      rating:'5.0', reviews:'94',
+    },
+  };
+
+  function openWorkshopModal(key) {
+    const d = WORKSHOPS[key];
+    wContent.innerHTML = buildWorkshopModal(d);
+    wBackdrop.classList.add('open');
+    document.body.style.overflow = 'hidden';
+    // Activate first tab
+    activateWTab(wContent.querySelector('.wm-tab'), 'overview');
+  }
+
+  function closeWorkshopModal() {
+    wBackdrop.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  wBackdrop.addEventListener('click', e => { if (e.target === wBackdrop) closeWorkshopModal(); });
+
+  function activateWTab(el, panel) {
+    wContent.querySelectorAll('.wm-tab').forEach(t => t.classList.remove('active'));
+    wContent.querySelectorAll('.wm-panel').forEach(p => p.classList.remove('active'));
+    el.classList.add('active');
+    const p = wContent.querySelector('#wp-' + panel);
+    if (p) p.classList.add('active');
+  }
+
+  function toggleFaq(el) {
+    const a = el.nextElementSibling;
+    const isOpen = el.classList.contains('open');
+    // Close all
+    wContent.querySelectorAll('.wm-faq-q').forEach(q => { q.classList.remove('open'); q.nextElementSibling.classList.remove('open'); });
+    if (!isOpen) { el.classList.add('open'); a.classList.add('open'); }
+  }
+
+  function buildWorkshopModal(d) {
+    const outcomesHTML = d.outcomes.map(o => `
+      <div class="wm-outcome">
+        <div class="wm-outcome-check">✓</div>
+        <div class="wm-outcome-text">${o}</div>
+      </div>`).join('');
+
+    const agendaHTML = d.agenda.map((a, i) => `
+      <div class="wm-agenda-item">
+        <div class="wm-agenda-dot${a.title === 'Break' ? ' done' : ''}"></div>
+        <div class="wm-agenda-time">${a.time}</div>
+        <div class="wm-agenda-title">${a.title}</div>
+        ${a.desc ? `<div class="wm-agenda-desc">${a.desc}</div>` : ''}
+      </div>`).join('');
+
+    const topicsHTML = d.topics.map(t => `
+      <div class="wm-topic">
+        <div class="wm-topic-num">${t.n}</div>
+        <div class="wm-topic-text">${t.text}</div>
+        <div class="wm-topic-dur">${t.dur}</div>
+      </div>`).join('');
+
+    const materialsHTML = d.materials.map(m => `
+      <div class="wm-material">
+        <div class="wm-material-icon ${m.type}">${m.icon}</div>
+        <div>
+          <div class="wm-material-name">${m.name}</div>
+          <div class="wm-material-meta">${m.meta}</div>
+        </div>
+        <div class="wm-material-badge ${m.badge}">${m.badge === 'included' ? '✓ Included' : '🎁 Bonus'}</div>
+      </div>`).join('');
+
+    const faqsHTML = d.faqs.map((f,i) => `
+      <div class="wm-faq">
+        <button class="wm-faq-q" onclick="toggleFaq(this)">${f.q}<span class="wm-faq-icon">+</span></button>
+        <div class="wm-faq-a">${f.a}</div>
+      </div>`).join('');
+
+    const tagsHTML = d.tags.map(t => {
+      const cls = t.toLowerCase().includes('live') ? 'live' : t.toLowerCase().includes('upcoming') ? 'upcoming' : '';
+      return `<span class="wm-hero-tag ${cls}">${t}</span>`;
+    }).join('');
+
+    return `
+      <!-- Close -->
+      <button class="wm-close" onclick="closeWorkshopModal()">✕</button>
+
+      <!-- Hero -->
+      <div class="wm-hero">
+        <div class="wm-hero-bg" style="background:${d.bannerBg}"></div>
+        <div class="wm-hero-grain"></div>
+        <div class="wm-hero-overlay"></div>
+        <div class="wm-hero-content">
+          <div class="wm-hero-left">
+            <div class="wm-hero-tags">${tagsHTML}</div>
+            <div class="wm-hero-title">${d.title}</div>
+            <div class="wm-hero-meta">
+              <div class="wm-hero-meta-item">⏱ <strong>${d.duration}</strong></div>
+              <div class="wm-hero-meta-item">📊 ${d.level}</div>
+              <div class="wm-hero-meta-item">🎓 Free to watch</div>
+            </div>
+          </div>
+          <div class="wm-hero-right">
+            <div style="display:inline-flex;align-items:center;gap:8px;background:rgba(255,172,112,0.2);border:1px solid rgba(255,172,112,0.4);border-radius:50px;padding:7px 18px;">
+              <span style="font-size:1rem;">🎓</span>
+              <span style="font-family:'Fraunces',serif;font-size:1.2rem;font-weight:800;color:var(--peach);">Free</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tab nav -->
+      <div class="wm-tabs">
+        <button class="wm-tab active" onclick="activateWTab(this,'overview')">Overview</button>
+        <button class="wm-tab" onclick="activateWTab(this,'agenda')">Agenda</button>
+        <button class="wm-tab" onclick="activateWTab(this,'topics')">Topics</button>
+        <button class="wm-tab" onclick="activateWTab(this,'materials')">Materials</button>
+        <button class="wm-tab" onclick="activateWTab(this,'qa')">Q&amp;A</button>
+      </div>
+
+      <!-- Body -->
+      <div class="wm-body">
+        <div class="wm-main">
+
+          <!-- Overview -->
+          <div class="wm-panel active" id="wp-overview">
+            <div class="wm-section-title">About <span>this Workshop</span></div>
+            <div class="wm-desc-text">${d.desc}</div>
+            <div class="wm-section-title">What you'll <span>learn</span></div>
+            <div class="wm-outcomes">${outcomesHTML}</div>
+          </div>
+
+          <!-- Agenda -->
+          <div class="wm-panel" id="wp-agenda">
+            <div class="wm-section-title">Workshop <span>Agenda</span></div>
+            <div class="wm-agenda">${agendaHTML}</div>
+          </div>
+
+          <!-- Topics -->
+          <div class="wm-panel" id="wp-topics">
+            <div class="wm-section-title">Topics <span>Covered</span></div>
+            <div class="wm-topics">${topicsHTML}</div>
+          </div>
+
+          <!-- Materials -->
+          <div class="wm-panel" id="wp-materials">
+            <div class="wm-section-title">Workshop <span>Materials</span></div>
+            <div class="wm-materials">${materialsHTML}</div>
+          </div>
+
+          <!-- Q&A -->
+          <div class="wm-panel" id="wp-qa">
+            <div class="wm-section-title">Frequently Asked <span>Questions</span></div>
+            <div class="wm-faqs">${faqsHTML}</div>
+          </div>
+
+        </div>
+
+        <!-- Sidebar -->
+        <div class="wm-sidebar">
+
+          <!-- Instructor -->
+          <div class="wm-sb-card">
+            <div class="wm-sb-instructor">
+              <div class="wm-sb-av">${d.instructor.av}</div>
+              <div>
+                <div class="wm-sb-name">${d.instructor.name}</div>
+                <div class="wm-sb-role">${d.instructor.role}</div>
+              </div>
+            </div>
+            <div class="wm-sb-bio" style="display:none">${d.instructor.bio}</div>
+            <div class="wm-sb-stats">
+              <div class="wm-sb-stat"><div class="wm-sb-stat-val">${d.reviews}<span>+</span></div><div class="wm-sb-stat-label">Students</div></div>
+              <div class="wm-sb-stat"><div class="wm-sb-stat-val">${d.rating}<span>★</span></div><div class="wm-sb-stat-label">Rating</div></div>
+            </div>
+          </div>
+
+          <!-- Quick info -->
+          <div class="wm-sb-card">
+            <div class="wm-sb-info-row">
+              <span class="wm-sb-info-icon">▶️</span>
+              <div><div class="wm-sb-info-label">Format</div><div class="wm-sb-info-val">On-demand video</div></div>
+            </div>
+            <div class="wm-sb-info-row">
+              <span class="wm-sb-info-icon">⏱</span>
+              <div><div class="wm-sb-info-label">Duration</div><div class="wm-sb-info-val">${d.duration}</div></div>
+            </div>
+            <div class="wm-sb-info-row">
+              <span class="wm-sb-info-icon">🔁</span>
+              <div><div class="wm-sb-info-label">Access</div><div class="wm-sb-info-val">Lifetime, self-paced</div></div>
+            </div>
+            <div class="wm-sb-info-row">
+              <span class="wm-sb-info-icon">📊</span>
+              <div><div class="wm-sb-info-label">Level</div><div class="wm-sb-info-val">${d.level}</div></div>
+            </div>
+            <div class="wm-sb-info-row">
+              <span class="wm-sb-info-icon">🎓</span>
+              <div><div class="wm-sb-info-label">Certificate</div><div class="wm-sb-info-val">Yes, digital</div></div>
+            </div>
+          </div>
+
+          <!-- Rating breakdown -->
+          <div class="wm-sb-card">
+            <div class="wm-rating-big">
+              <div class="wm-rating-num">${d.rating}</div>
+              <div class="wm-rating-stars">★★★★★</div>
+              <div class="wm-rating-count">${d.reviews} ratings</div>
+            </div>
+            ${[['5 ★',92],['4 ★',6],['3 ★',2]].map(([l,p]) => `
+              <div class="wm-rating-bar-row">
+                <span class="wm-rating-bar-label">${l}</span>
+                <div class="wm-rating-bar-track"><div class="wm-rating-bar-fill" style="width:${p}%"></div></div>
+                <span class="wm-rating-pct">${p}%</span>
+              </div>`).join('')}
+          </div>
+
+          <!-- Book a session card -->
+          <div class="wm-sb-card" style="background:linear-gradient(135deg,rgba(255,172,112,0.1),rgba(255,172,112,0.05));border-color:rgba(255,172,112,0.2);">
+            <div style="font-size:1.4rem;margin-bottom:8px;">📅</div>
+            <div style="font-family:'Fraunces',serif;font-size:0.95rem;font-weight:700;color:white;margin-bottom:6px;line-height:1.3;">Want a personalised session?</div>
+            <div style="font-size:0.74rem;color:rgba(255,255,255,0.45);line-height:1.6;margin-bottom:14px;">Book a private 1-on-1 or group workshop with Edyta  , tailored to your team's needs.</div>
+            <a href="https://calendly.com/hrpro/workshop-booking" target="_blank" rel="noopener" style="display:flex;align-items:center;justify-content:center;gap:7px;width:100%;padding:11px 16px;background:var(--peach);color:var(--ink);border-radius:50px;font-family:'DM Sans',sans-serif;font-size:0.82rem;font-weight:700;text-decoration:none;transition:all 0.2s;box-shadow:0 4px 14px rgba(255,172,112,0.3);" onmouseover="this.style.background='#e8894a'" onmouseout="this.style.background='var(--peach)'">📅 Book via Calendly</a>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Footer CTA -->
+      <div class="wm-cta">
+        <div class="wm-cta-left">
+          <div style="display:flex;align-items:center;gap:10px;">
+            <span style="font-family:'Fraunces',serif;font-size:1.6rem;font-weight:800;color:white;">Free</span>
+            <span style="font-size:0.78rem;background:rgba(255,172,112,0.15);color:var(--peach);border:1px solid rgba(255,172,112,0.3);padding:4px 12px;border-radius:50px;font-weight:600;">On-demand · Watch anytime</span>
+          </div>
+          <div class="wm-cta-note">Includes all materials &amp; resources · Want it personalised? Book a session below.</div>
+        </div>
+        <div class="wm-cta-btns">
+          <button class="wm-btn-pay" onclick="closeWorkshopModal()">▶ Watch Workshop</button>
+          <a href="https://calendly.com/hrpro/workshop-booking" target="_blank" rel="noopener" class="wm-btn-calendly">📅 Book a Session</a>
+        </div>
+      </div>
+    `;
+  }
+
   /* ══════════════════════════════════════════
      DATA CATALOGUE — each card's modal data
   ══════════════════════════════════════════ */
 
   const MODALS = {
 
-    /* WORKSHOPS */
-    w1: {
-      type:'workshop', typeLabel:'🎯 Live Workshop',
-      title:'Strategic Talent Acquisition Masterclass',
-      category:'Recruitment',
-      desc:'Learn modern hiring frameworks that attract top talent and cut time-to-fill by up to 40%. Includes live Q&A, exercises and real job-description critique.',
-      bannerBg:'linear-gradient(135deg,#1a0a2e 0%,#3d1a5e 40%,#6b2fa0 70%,#ff8c42 100%)',
-      price:89, oldPrice:130,
-      instructor:{ av:'👩', name:'Edyta   Mitchell', role:'Senior HR Strategist' },
-      rating:'4.9', reviews:'312',
-      includes:['3.5 hrs live session','Downloadable slide deck','Job description template kit','Recording access (30 days)','Certificate of completion'],
-      curriculum:null
-    },
-    w2: {
-      type:'workshop', typeLabel:'📋 Live Workshop',
-      title:'Performance Management That Actually Works',
-      category:'Performance',
-      desc:'Build review cycles that motivate employees. Get practical scorecards, conversation frameworks and a step-by-step implementation plan.',
-      bannerBg:'linear-gradient(135deg,#0a1a2e 0%,#1a3d5e 40%,#2f6b9e 70%,#42b8ff 100%)',
-      price:79, oldPrice:120,
-      instructor:{ av:'👨', name:'James Crawford', role:'Performance Coach' },
-      rating:'4.8', reviews:'208',
-      includes:['2.75 hrs live session','Performance review template pack','Manager conversation guide','Recording access (30 days)','Certificate of completion'],
-      curriculum:null
-    },
-    w3: {
-      type:'workshop', typeLabel:'🤝 Live Workshop',
-      title:'Conflict Resolution & Workplace Culture',
-      category:'Employee Relations',
-      desc:'Navigate difficult conversations with confidence. Walk away with proven de-escalation scripts and a culture-building action plan for your team.',
-      bannerBg:'linear-gradient(135deg,#0e2a1a 0%,#1a5e3a 40%,#2fa06b 70%,#42ffb4 100%)',
-      price:95, oldPrice:140,
-      instructor:{ av:'👩', name:'Leila Rashid', role:'HR Culture Lead' },
-      rating:'5.0', reviews:'94',
-      includes:['4 hrs live session','Conflict resolution script booklet','Culture health audit template','Recording access (30 days)','Certificate of completion'],
-      curriculum:null
-    },
+    /* WORKSHOPS — handled by workshop modal, skip */
+    w1: null, w2: null, w3: null,
 
     /* BOOKS */
     b1: {
@@ -2239,7 +3474,7 @@ footer{background:var(--ink);padding:60px;}
   /* ── Wire up all card buttons ── */
   document.querySelectorAll('.btn-reserve').forEach((btn, i) => {
     const keys = ['w1','w2','w3'];
-    if (keys[i]) btn.addEventListener('click', () => openModal(MODALS[keys[i]]));
+    if (keys[i]) btn.addEventListener('click', () => openWorkshopModal(keys[i]));
   });
   document.querySelectorAll('.btn-buy').forEach((btn, i) => {
     const keys = ['b1','b2','b3','b4'];
@@ -2254,8 +3489,227 @@ footer{background:var(--ink);padding:60px;}
     if (keys[i]) btn.addEventListener('click', () => openModal(MODALS[keys[i]]));
   });
 
+  /* ══════════════════════════════════════════════
+     ADVISORY MODAL SYSTEM
+  ══════════════════════════════════════════════ */
+
+  const ADV_BACKDROP = document.getElementById('advModalBackdrop');
+  const ADV_CONTENT  = document.getElementById('advModalContent');
+
+  const ADV_DATA = {
+    strategy: {
+      title: 'HR Business Strategy',
+      tag: 'Business Strategy',
+      icon: '📊',
+      bannerBg: 'linear-gradient(135deg,#1a0a2e 0%,#2d1060 45%,#6b2fa0 80%,#ffac70 100%)',
+      accentColor: 'var(--peach)',
+      desc: 'Most HR teams react to problems instead of preventing them. This advisory service helps you build a proactive HR strategy that aligns with your business goals, scales with your growth and creates measurable impact across the organisation.',
+      outcomes: [
+        'Define a 12-month HR roadmap aligned to business goals',
+        'Design org structures that reduce bottlenecks',
+        'Build scalable hiring and onboarding systems',
+        'Establish people metrics that matter to leadership',
+        'Create a culture strategy with measurable KPIs',
+        'Prioritise HR initiatives for maximum ROI',
+      ],
+      process: [
+        { title: 'Discovery Session', desc: 'Deep dive into your current HR landscape, team structure, challenges and goals.' },
+        { title: 'Strategy Audit', desc: 'Assessment of existing processes, gaps and quick wins across all HR functions.' },
+        { title: 'Roadmap Creation', desc: 'A prioritised, practical 12-month HR strategy with clear milestones.' },
+        { title: 'Implementation Support', desc: 'Ongoing guidance and check-ins as you execute your strategy.' },
+      ],
+    },
+    interview: {
+      title: 'Interview Guides & Design',
+      tag: 'Interview Design',
+      icon: '🎤',
+      bannerBg: 'linear-gradient(135deg,#0a1e3a 0%,#1a4070 50%,#2a60a0 80%,#4fa8d5 100%)',
+      accentColor: '#4fa8d5',
+      desc: 'Unstructured interviews lead to inconsistent hiring decisions, bias and costly mis-hires. This service helps you design structured, competency-based interview processes that consistently identify the right people for every role.',
+      outcomes: [
+        'Build role-specific competency frameworks',
+        'Design structured question banks (100+ questions)',
+        'Create scoring rubrics that remove subjectivity',
+        'Train hiring managers on interviewing best practices',
+        'Reduce unconscious bias in candidate evaluation',
+        'Improve quality-of-hire across all departments',
+      ],
+      process: [
+        { title: 'Role Analysis', desc: 'Define the core competencies and success criteria for each role.' },
+        { title: 'Question Bank Design', desc: 'Build tailored interview questions mapped to each competency.' },
+        { title: 'Scorecard Creation', desc: 'Design evaluation rubrics that make scoring consistent and defensible.' },
+        { title: 'Manager Training', desc: 'Train your hiring panel to use the framework effectively.' },
+      ],
+    },
+    communication: {
+      title: 'Communication Improvement',
+      tag: 'Communication',
+      icon: '💬',
+      bannerBg: 'linear-gradient(135deg,#1a1200 0%,#3a2a00 50%,#6a4a00 80%,#f59e0b 100%)',
+      accentColor: '#f59e0b',
+      desc: 'Poor communication costs organisations thousands in misaligned projects, preventable conflicts and disengaged teams. This advisory helps you build the systems, skills and culture for clear, confident communication at every level.',
+      outcomes: [
+        'Establish clear communication norms and channels',
+        'Build frameworks for difficult conversations',
+        'Improve cross-team and leadership communication',
+        'Reduce misunderstandings that cause project delays',
+        'Create psychological safety for open dialogue',
+        'Implement feedback loops that actually work',
+      ],
+      process: [
+        { title: 'Communication Audit', desc: 'Assess current communication patterns, tools and pain points across your team.' },
+        { title: 'Framework Design', desc: 'Create communication playbooks and conversation frameworks for common scenarios.' },
+        { title: 'Skill Building', desc: 'Workshops and coaching for managers and teams on key communication skills.' },
+        { title: 'Culture Embedding', desc: 'Processes and rituals to make strong communication a lasting habit.' },
+      ],
+    },
+    operations: {
+      title: 'Time & Cost Management',
+      tag: 'Efficiency',
+      icon: '⚡',
+      bannerBg: 'linear-gradient(135deg,#0a1e12 0%,#1a4a2a 50%,#2a6a3a 80%,#34d399 100%)',
+      accentColor: '#34d399',
+      desc: 'HR inefficiency is an invisible drain on your business. Manual processes, slow hiring pipelines and poor onboarding all cost real money. This service helps you identify waste, automate intelligently and build lean HR operations that save time and budget at scale.',
+      outcomes: [
+        'Reduce time-to-hire by up to 40%',
+        'Cut HR admin time with smart process design',
+        'Build a 3× faster onboarding system',
+        'Identify and eliminate costly process bottlenecks',
+        'Create HR tech recommendations for your budget',
+        'Measure and report HR ROI to leadership',
+      ],
+      process: [
+        { title: 'Efficiency Audit', desc: 'Map and time all key HR processes to identify the biggest time and cost drains.' },
+        { title: 'Redesign Workshop', desc: 'Collaborative session to redesign processes from scratch for efficiency.' },
+        { title: 'Tech Stack Review', desc: 'Recommendations on tools and automation that match your size and budget.' },
+        { title: 'Metrics & Reporting', desc: 'Build a simple dashboard to track HR efficiency and report to leadership.' },
+      ],
+    },
+    retention: {
+      title: 'Retention & Engagement',
+      tag: 'Retention',
+      icon: '❤️',
+      bannerBg: 'linear-gradient(135deg,#1a0a1a 0%,#3a1040 50%,#6a2060 80%,#f472b6 100%)',
+      accentColor: '#f472b6',
+      desc: "Replacing an employee costs between 50% and 200% of their annual salary. This service diagnoses why people leave your organisation and builds a retention strategy that addresses root causes — not just symptoms.",
+      outcomes: [
+        'Conduct exit interview analysis to find real reasons for leaving',
+        'Design employee engagement surveys and action plans',
+        'Build career development pathways that retain top talent',
+        'Create manager effectiveness programmes',
+        'Establish stay interview practices',
+        'Build recognition and reward systems that work',
+      ],
+      process: [
+        { title: 'Retention Diagnostic', desc: 'Analyse exit data, engagement scores and team sentiment to identify patterns.' },
+        { title: 'Root Cause Analysis', desc: 'Identify the 2-3 core drivers of turnover specific to your organisation.' },
+        { title: 'Retention Plan', desc: 'Build a targeted retention strategy with quick wins and long-term initiatives.' },
+        { title: 'Manager Coaching', desc: 'Equip line managers with the tools to have better stay conversations.' },
+      ],
+    },
+    leadership: {
+      title: 'Leadership Development',
+      tag: 'Leadership',
+      icon: '🚀',
+      bannerBg: 'linear-gradient(135deg,#1a0e00 0%,#3a2000 50%,#6a4000 80%,#fb923c 100%)',
+      accentColor: '#fb923c',
+      desc: 'Great companies are built on great managers. This advisory service helps you identify high-potential leaders, build structured development programmes and create a leadership pipeline that prepares your best people for bigger responsibilities.',
+      outcomes: [
+        'Identify and assess high-potential employees',
+        'Design a leadership competency framework',
+        'Build individualised development plans',
+        'Create a succession planning process',
+        'Coach new managers through the first 90 days',
+        'Establish peer learning and mentoring structures',
+      ],
+      process: [
+        { title: 'Leadership Assessment', desc: 'Evaluate current leadership capability and identify development gaps.' },
+        { title: 'Programme Design', desc: 'Build a structured leadership development curriculum for your context.' },
+        { title: '1-on-1 Coaching', desc: 'Individual coaching sessions for high-potential leaders and new managers.' },
+        { title: 'Pipeline Planning', desc: 'Create a succession plan that ensures leadership continuity.' },
+      ],
+    },
+  };
+
+  function openAdvModal(key) {
+    const d = ADV_DATA[key];
+    ADV_CONTENT.innerHTML = buildAdvModal(d);
+    ADV_BACKDROP.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeAdvModal() {
+    ADV_BACKDROP.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  ADV_BACKDROP.addEventListener('click', e => { if (e.target === ADV_BACKDROP) closeAdvModal(); });
+
+  function buildAdvModal(d) {
+    const outcomesHTML = d.outcomes.map(o => `
+      <div class="adv-modal-outcome">
+        <div class="adv-modal-check">✓</div>
+        <span>${o}</span>
+      </div>`).join('');
+
+    const processHTML = d.process.map((s, i) => `
+      <div class="adv-modal-step">
+        <div class="adv-modal-step-line"></div>
+        <div class="adv-modal-step-num">${i + 1}</div>
+        <div>
+          <div class="adv-modal-step-title">${s.title}</div>
+          <div class="adv-modal-step-desc">${s.desc}</div>
+        </div>
+      </div>`).join('');
+
+    return `
+      <button class="adv-modal-close" onclick="closeAdvModal()">✕</button>
+
+      <div class="adv-modal-hero">
+        <div class="adv-modal-hero-bg" style="background:${d.bannerBg}"></div>
+        <div class="adv-modal-hero-overlay"></div>
+        <div class="adv-modal-hero-content">
+          <div>
+            <div style="font-size:0.6rem;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:${d.accentColor};margin-bottom:6px;">${d.tag}</div>
+            <div style="font-family:'Fraunces',serif;font-size:1.4rem;font-weight:800;color:white;line-height:1.2;">${d.title}</div>
+          </div>
+          <div style="font-size:2rem;">${d.icon}</div>
+        </div>
+      </div>
+
+      <div class="adv-modal-body">
+
+        <div class="adv-modal-section">
+          <div class="adv-modal-section-title">About this service</div>
+          <div class="adv-modal-desc">${d.desc}</div>
+        </div>
+
+        <div class="adv-modal-section">
+          <div class="adv-modal-section-title">What you'll achieve</div>
+          <div class="adv-modal-outcomes">${outcomesHTML}</div>
+        </div>
+
+        <div class="adv-modal-section">
+          <div class="adv-modal-section-title">How it works</div>
+          <div class="adv-modal-process">${processHTML}</div>
+        </div>
+
+      </div>
+
+      <div class="adv-modal-footer">
+        <div class="adv-modal-footer-note">
+          <strong>Start with a free discovery call</strong>
+          30 minutes · No obligation · Tailored to your situation
+        </div>
+        <a href="https://calendly.com/hrpro/advisory-discovery" target="_blank" rel="noopener" class="adv-modal-cta">
+          📅 Book Free Call
+        </a>
+      </div>
+    `;
+  }
+
   /* Also wire the hero reserve button */
-  document.querySelector('.h-card-main .btn-reserve')?.addEventListener('click', () => openModal(MODALS['w1']));
+  document.querySelector('.h-card-main .btn-reserve')?.addEventListener('click', () => openWorkshopModal('w1'));
 </script>
 </body>
 </html>
