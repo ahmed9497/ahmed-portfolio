@@ -1,0 +1,2261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HR Pro — Practical HR Knowledge for Modern Professionals</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,600;0,9..144,800;1,9..144,300;1,9..144,600&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --peach:#ffac70; --peach-lt:#fff0e6; --peach-dk:#e8894a;
+  --sky:#dff0fb; --sky-md:#a8d8f0; --sky-dk:#4fa8d5;
+  --ink:#1a1a2e; --ink-lt:#4a4a6a;
+  --white:#fff; --cream:#fdfaf7;
+  --border:rgba(255,172,112,0.2);
+  --shadow:0 4px 24px rgba(26,26,46,0.08);
+  --shadow-lg:0 16px 60px rgba(26,26,46,0.12);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--ink);overflow-x:hidden;}
+
+/* CURSOR */
+.cursor{position:fixed;width:8px;height:8px;background:var(--peach);border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:transform 0.1s;}
+.cursor-ring{position:fixed;width:32px;height:32px;border:1.5px solid rgba(255,172,112,0.5);border-radius:50%;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:all 0.15s ease;}
+
+/* NAVBAR */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:0 60px;height:72px;background:rgba(253,250,247,0.93);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);transition:box-shadow 0.3s;}
+nav.scrolled{box-shadow:0 2px 20px rgba(26,26,46,0.08);}
+.nav-logo{font-family:'Fraunces',serif;font-size:1.5rem;font-weight:800;color:var(--ink);text-decoration:none;letter-spacing:-0.03em;display:flex;align-items:center;gap:6px;}
+.nav-logo-dot{width:8px;height:8px;background:var(--peach);border-radius:50%;display:inline-block;}
+.nav-links{display:flex;align-items:center;gap:36px;}
+.nav-links a{font-size:0.88rem;font-weight:500;color:var(--ink-lt);text-decoration:none;transition:color 0.2s;position:relative;}
+.nav-links a::after{content:'';position:absolute;bottom:-3px;left:0;right:0;height:2px;background:var(--peach);transform:scaleX(0);transform-origin:left;transition:transform 0.2s;}
+.nav-links a:hover{color:var(--ink);}
+.nav-links a:hover::after{transform:scaleX(1);}
+.nav-login{background:var(--ink)!important;color:white!important;padding:9px 22px!important;border-radius:50px;font-weight:600!important;transition:background 0.2s,transform 0.2s!important;}
+.nav-login:hover{background:var(--peach)!important;color:var(--ink)!important;transform:translateY(-1px);}
+.nav-login::after{display:none!important;}
+
+/* HERO */
+.hero{min-height:100vh;display:flex;align-items:center;padding:72px 60px 0;position:relative;overflow:hidden;background:linear-gradient(150deg,var(--cream) 55%,var(--sky) 100%);}
+.hero-blob{position:absolute;border-radius:50%;filter:blur(60px);pointer-events:none;}
+.blob-1{width:500px;height:500px;background:rgba(255,172,112,0.15);top:-100px;right:-100px;}
+.blob-2{width:350px;height:350px;background:rgba(163,216,240,0.25);bottom:50px;left:-80px;}
+.blob-3{width:250px;height:250px;background:rgba(255,172,112,0.1);bottom:100px;right:200px;}
+.hero-inner{max-width:1200px;margin:0 auto;width:100%;display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;padding:100px 0 80px;}
+.hero-tag{display:inline-flex;align-items:center;gap:8px;margin-bottom:24px;background:var(--peach-lt);border:1px solid rgba(255,172,112,0.4);padding:6px 14px;border-radius:50px;width:fit-content;font-size:0.75rem;font-weight:600;color:var(--peach-dk);letter-spacing:0.08em;text-transform:uppercase;animation:fadeUp 0.6s ease both;}
+.hero-tag-dot{width:6px;height:6px;background:var(--peach);border-radius:50%;animation:blink 2s ease-in-out infinite;}
+@keyframes blink{0%,100%{opacity:1;}50%{opacity:0.3;}}
+.hero h1{font-family:'Fraunces',serif;font-size:clamp(2.6rem,4.5vw,4rem);font-weight:800;line-height:1.1;letter-spacing:-0.03em;margin-bottom:20px;animation:fadeUp 0.6s 0.1s ease both;}
+.hero h1 em{font-style:italic;color:var(--peach-dk);font-weight:600;}
+.hero-sub{font-size:1.05rem;color:var(--ink-lt);line-height:1.75;max-width:480px;margin-bottom:40px;animation:fadeUp 0.6s 0.2s ease both;}
+.hero-btns{display:flex;gap:14px;flex-wrap:wrap;animation:fadeUp 0.6s 0.3s ease both;}
+.btn-primary{background:var(--peach);color:var(--ink);padding:14px 28px;border-radius:50px;font-weight:700;font-size:0.9rem;text-decoration:none;display:inline-flex;align-items:center;gap:8px;border:none;cursor:pointer;transition:all 0.25s;box-shadow:0 6px 20px rgba(255,172,112,0.4);}
+.btn-primary:hover{background:var(--peach-dk);transform:translateY(-2px);box-shadow:0 10px 28px rgba(255,172,112,0.5);}
+.btn-outline{background:transparent;color:var(--ink);padding:14px 28px;border-radius:50px;font-weight:600;font-size:0.9rem;text-decoration:none;display:inline-flex;align-items:center;gap:8px;border:2px solid var(--sky-md);cursor:pointer;transition:all 0.25s;}
+.btn-outline:hover{background:var(--sky);border-color:var(--sky-dk);transform:translateY(-2px);}
+.hero-stats{display:flex;gap:32px;margin-top:48px;padding-top:36px;border-top:1px solid rgba(26,26,46,0.07);animation:fadeUp 0.6s 0.4s ease both;}
+.hero-stat-num{font-family:'Fraunces',serif;font-size:1.9rem;font-weight:800;color:var(--ink);line-height:1;}
+.hero-stat-num span{color:var(--peach);}
+.hero-stat-label{font-size:0.75rem;color:var(--ink-lt);margin-top:2px;}
+.hero-right{position:relative;display:flex;align-items:center;justify-content:center;height:480px;}
+.hero-card-stack{position:relative;width:100%;height:100%;}
+.h-card{position:absolute;border-radius:20px;padding:24px;box-shadow:var(--shadow-lg);}
+.h-card-main{width:280px;height:360px;right:0;top:50%;transform:translateY(-50%);background:white;display:flex;flex-direction:column;justify-content:space-between;animation:hf1 5s ease-in-out infinite;}
+.h-card-sm1{width:200px;background:var(--peach);left:0;top:60px;animation:hf2 6s ease-in-out infinite;}
+.h-card-sm2{width:220px;background:var(--sky);left:30px;bottom:60px;animation:hf3 7s ease-in-out infinite;}
+@keyframes hf1{0%,100%{transform:translateY(-50%) rotate(2deg);}50%{transform:translateY(calc(-50% - 12px)) rotate(2deg);}}
+@keyframes hf2{0%,100%{transform:rotate(-4deg);}50%{transform:rotate(-4deg) translateY(-10px);}}
+@keyframes hf3{0%,100%{transform:rotate(3deg);}50%{transform:rotate(3deg) translateY(8px);}}
+.hc-label{font-size:0.68rem;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:var(--ink-lt);margin-bottom:8px;}
+.hc-title{font-family:'Fraunces',serif;font-size:1.05rem;font-weight:700;color:var(--ink);line-height:1.3;margin-bottom:8px;}
+.hc-tag{display:inline-block;background:var(--peach-lt);color:var(--peach-dk);font-size:0.68rem;font-weight:600;padding:3px 10px;border-radius:50px;margin-bottom:4px;margin-right:4px;}
+.hc-tag.blue{background:var(--sky);color:var(--sky-dk);}
+.hc-thumb{height:140px;border-radius:12px;margin-bottom:16px;background:linear-gradient(135deg,var(--peach-lt),var(--sky));display:flex;align-items:center;justify-content:center;font-size:3rem;}
+.hc-date{font-size:0.72rem;color:var(--ink-lt);}
+.hc-price{font-family:'Fraunces',serif;font-size:1.4rem;font-weight:800;color:var(--ink);}
+.hc-sm-icon{font-size:1.8rem;margin-bottom:8px;}
+.hc-sm-title{font-family:'Fraunces',serif;font-size:0.9rem;font-weight:700;color:var(--ink);line-height:1.3;}
+.hc-sm-sub{font-size:0.72rem;color:var(--ink-lt);margin-top:5px;}
+.hero-badge{position:absolute;bottom:80px;right:-10px;background:white;border-radius:12px;padding:12px 16px;box-shadow:0 8px 30px rgba(26,26,46,0.12);display:flex;align-items:center;gap:10px;animation:hf3 4s ease-in-out infinite;}
+.badge-avatar{width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,var(--peach),var(--peach-dk));display:flex;align-items:center;justify-content:center;font-size:1rem;}
+.badge-text{font-size:0.75rem;}
+.badge-text strong{display:block;font-weight:700;color:var(--ink);}
+.badge-text span{color:var(--ink-lt);}
+
+/* SECTIONS */
+section{padding:100px 60px;}
+.section-inner{max-width:1200px;margin:0 auto;}
+.section-tag{display:inline-flex;align-items:center;gap:8px;font-size:0.72rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--peach-dk);margin-bottom:12px;}
+.section-tag::before{content:'';display:block;width:24px;height:2px;background:var(--peach);border-radius:2px;}
+.section-title{font-family:'Fraunces',serif;font-size:clamp(1.8rem,3vw,2.6rem);font-weight:800;letter-spacing:-0.03em;line-height:1.15;margin-bottom:12px;}
+.section-title em{font-style:italic;color:var(--peach-dk);}
+.section-sub{font-size:1rem;color:var(--ink-lt);max-width:520px;line-height:1.7;margin-bottom:0;}
+.section-header{display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:48px;gap:24px;}
+.btn-text{font-size:0.88rem;font-weight:600;color:var(--ink-lt);text-decoration:none;display:flex;align-items:center;gap:6px;transition:all 0.2s;white-space:nowrap;flex-shrink:0;}
+.btn-text:hover{color:var(--peach-dk);gap:10px;}
+
+/* FADE IN */
+.fade-in{opacity:0;transform:translateY(28px);transition:opacity 0.7s ease,transform 0.7s ease;}
+.fade-in.visible{opacity:1;transform:none;}
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:none;}}
+
+/* WORKSHOPS — Video card style */
+.workshops { background: #0e0e18; }
+.workshops .section-tag { color: var(--peach); }
+.workshops .section-tag::before { background: var(--peach); }
+.workshops .section-title { color: white; }
+.workshops .section-sub { color: rgba(255,255,255,0.5); }
+.workshops .section-header .btn-text { color: rgba(255,255,255,0.45); }
+.workshops .section-header .btn-text:hover { color: var(--peach); }
+
+.workshop-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 24px; margin-bottom: 48px; }
+
+.workshop-card {
+  border-radius: 16px; overflow: hidden;
+  background: #16161f;
+  border: 1px solid rgba(255,255,255,0.06);
+  transition: transform 0.3s, box-shadow 0.3s;
+  cursor: pointer;
+}
+.workshop-card:hover { transform: translateY(-6px); box-shadow: 0 24px 60px rgba(0,0,0,0.5); }
+
+/* VIDEO THUMBNAIL */
+.wc-thumb {
+  position: relative; overflow: hidden;
+  height: 210px; background: #0a0a12;
+}
+.wc-thumb-bg {
+  position: absolute; inset: 0;
+  background-size: cover; background-position: center;
+  transition: transform 0.5s ease;
+}
+.workshop-card:hover .wc-thumb-bg { transform: scale(1.06); }
+
+/* Cinematic gradient overlay */
+.wc-thumb-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(0,0,0,0.1) 0%,
+    rgba(0,0,0,0.2) 50%,
+    rgba(0,0,0,0.75) 100%
+  );
+}
+
+/* Duration chip top-right */
+.wc-duration {
+  position: absolute; top: 12px; right: 12px;
+  background: rgba(0,0,0,0.7); backdrop-filter: blur(8px);
+  color: white; font-size: 0.68rem; font-weight: 700;
+  padding: 4px 10px; border-radius: 6px;
+  display: flex; align-items: center; gap: 5px; letter-spacing: 0.02em;
+}
+.wc-duration-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--peach); flex-shrink: 0; }
+
+/* LIVE badge top-left */
+.wc-live-badge {
+  position: absolute; top: 12px; left: 12px;
+  font-size: 0.62rem; font-weight: 700; padding: 4px 10px;
+  border-radius: 6px; letter-spacing: 0.06em; text-transform: uppercase;
+  display: flex; align-items: center; gap: 5px;
+}
+.wc-live-badge.live { background: #e8394a; color: white; }
+.wc-live-badge.upcoming { background: var(--peach); color: var(--ink); }
+.wc-live-dot { width: 6px; height: 6px; background: white; border-radius: 50%; animation: blink 1.2s infinite; }
+
+/* Big play button */
+.wc-play {
+  position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%);
+  width: 52px; height: 52px; border-radius: 50%;
+  background: rgba(255,255,255,0.15); backdrop-filter: blur(12px);
+  border: 1.5px solid rgba(255,255,255,0.3);
+  display: flex; align-items: center; justify-content: center;
+  transition: all 0.2s;
+}
+.wc-play::after {
+  content: '';
+  width: 0; height: 0;
+  border-top: 9px solid transparent;
+  border-bottom: 9px solid transparent;
+  border-left: 16px solid white;
+  margin-left: 3px;
+}
+.workshop-card:hover .wc-play {
+  background: var(--peach); border-color: var(--peach);
+  transform: translate(-50%,-50%) scale(1.12);
+}
+.workshop-card:hover .wc-play::after { border-left-color: var(--ink); }
+
+/* Bottom info inside thumbnail */
+.wc-thumb-bottom {
+  position: absolute; bottom: 0; left: 0; right: 0;
+  padding: 12px 16px;
+  display: flex; align-items: center; gap: 8px;
+}
+.wc-instructor-av {
+  width: 28px; height: 28px; border-radius: 50%;
+  background: linear-gradient(135deg, var(--peach), var(--peach-dk));
+  display: flex; align-items: center; justify-content: center;
+  font-size: 0.85rem; flex-shrink: 0;
+  border: 1.5px solid rgba(255,255,255,0.25);
+}
+.wc-instructor-name { font-size: 0.72rem; color: rgba(255,255,255,0.85); font-weight: 600; }
+.wc-instructor-role { font-size: 0.62rem; color: rgba(255,255,255,0.45); }
+
+/* Progress bar for "in progress" state */
+.wc-progress-bar {
+  position: absolute; bottom: 0; left: 0; right: 0; height: 3px;
+  background: rgba(255,255,255,0.12);
+}
+.wc-progress-fill { height: 100%; background: var(--peach); border-radius: 0 2px 2px 0; }
+
+/* CARD BODY */
+.wc-body {
+  padding: 18px 20px 20px;
+}
+.wc-top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px; }
+.wc-category {
+  font-size: 0.65rem; font-weight: 700; text-transform: uppercase;
+  letter-spacing: 0.1em; color: var(--peach); display: flex; align-items: center; gap: 5px;
+}
+.wc-rating { display: flex; align-items: center; gap: 4px; font-size: 0.72rem; color: rgba(255,255,255,0.6); }
+.wc-rating strong { color: white; font-weight: 700; }
+.wc-title { font-family: 'Fraunces', serif; font-size: 1rem; font-weight: 700; line-height: 1.35; color: white; margin-bottom: 8px; }
+.wc-desc { font-size: 0.79rem; color: rgba(255,255,255,0.45); line-height: 1.6; margin-bottom: 16px; }
+
+.wc-tags { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 16px; }
+.wc-tag {
+  font-size: 0.65rem; font-weight: 600; padding: 3px 9px; border-radius: 50px;
+  background: rgba(255,255,255,0.07); color: rgba(255,255,255,0.55);
+  border: 1px solid rgba(255,255,255,0.09);
+}
+
+.wc-footer {
+  display: flex; align-items: center; justify-content: space-between;
+  padding-top: 14px; border-top: 1px solid rgba(255,255,255,0.07);
+}
+.wc-meta-row { display: flex; flex-direction: column; gap: 2px; }
+.wc-date { font-size: 0.75rem; color: rgba(255,255,255,0.5); display: flex; align-items: center; gap: 5px; }
+.wc-seats { font-size: 0.68rem; color: rgba(255,172,112,0.75); font-weight: 600; }
+.wc-price { font-family: 'Fraunces', serif; font-size: 1.3rem; font-weight: 800; color: white; }
+.wc-price small { font-family: 'DM Sans', sans-serif; font-size: 0.7rem; font-weight: 400; color: rgba(255,255,255,0.4); }
+
+.btn-reserve {
+  padding: 10px 22px; border-radius: 50px;
+  background: var(--peach); color: var(--ink); border: none;
+  font-family: 'DM Sans', sans-serif; font-size: 0.82rem; font-weight: 700;
+  cursor: pointer; transition: all 0.2s;
+  box-shadow: 0 4px 14px rgba(255,172,112,0.35);
+  white-space: nowrap;
+}
+.btn-reserve:hover { background: var(--peach-dk); transform: translateY(-1px); box-shadow: 0 6px 20px rgba(255,172,112,0.5); }
+
+.section-cta-wrap { text-align: center; }
+.btn-center { display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,0.07);color:rgba(255,255,255,0.7);border:1px solid rgba(255,255,255,0.12);padding:13px 32px;border-radius:50px;font-weight:700;font-size:0.9rem;text-decoration:none;transition:all 0.25s;cursor:pointer; }
+.btn-center:hover { background:var(--peach);color:var(--ink);border-color:var(--peach); }
+
+/* BOOKS — 3D real book style */
+.books { background: linear-gradient(180deg, #f0f7fc 0%, var(--cream) 100%); }
+.books-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 40px 32px; margin-bottom: 56px; }
+
+/* Each card: book visual on top, info below */
+.book-card { display: flex; flex-direction: column; align-items: center; gap: 22px; }
+
+/* 3D Book scene */
+.book-scene {
+  width: 150px; height: 220px;
+  perspective: 800px;
+  cursor: pointer;
+}
+.book-3d {
+  width: 100%; height: 100%;
+  position: relative;
+  transform-style: preserve-3d;
+  transform: rotateY(-28deg) rotateX(4deg);
+  transition: transform 0.5s ease;
+  filter: drop-shadow(-12px 20px 30px rgba(26,26,46,0.35));
+}
+.book-scene:hover .book-3d {
+  transform: rotateY(-10deg) rotateX(2deg) translateY(-8px);
+  filter: drop-shadow(-20px 28px 40px rgba(26,26,46,0.45));
+}
+
+/* Front cover */
+.book-front {
+  position: absolute; inset: 0;
+  transform: translateZ(14px);
+  border-radius: 2px 6px 6px 2px;
+  display: flex; flex-direction: column;
+  justify-content: space-between;
+  padding: 18px 16px 16px;
+  overflow: hidden;
+}
+/* Sheen overlay on front */
+.book-front::after {
+  content: '';
+  position: absolute; inset: 0;
+  background: linear-gradient(120deg, rgba(255,255,255,0.18) 0%, transparent 50%, rgba(0,0,0,0.08) 100%);
+  pointer-events: none;
+}
+
+/* Spine */
+.book-spine {
+  position: absolute;
+  left: -14px; top: 0; bottom: 0; width: 14px;
+  transform: rotateY(-90deg) translateZ(0);
+  transform-origin: right center;
+  border-radius: 2px 0 0 2px;
+  display: flex; align-items: center; justify-content: center;
+}
+.book-spine-text {
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+  transform: rotate(180deg);
+  font-family: 'Fraunces', serif;
+  font-size: 0.6rem; font-weight: 700;
+  letter-spacing: 0.08em;
+  color: rgba(255,255,255,0.7);
+  text-transform: uppercase;
+  white-space: nowrap;
+  overflow: hidden;
+  max-height: 90%;
+}
+
+/* Back cover */
+.book-back {
+  position: absolute; inset: 0;
+  transform: translateZ(-14px);
+  border-radius: 2px 6px 6px 2px;
+  opacity: 0.6;
+}
+
+/* Pages stack — right edge */
+.book-pages {
+  position: absolute;
+  right: -5px; top: 3px; bottom: 3px; width: 10px;
+  transform: rotateY(90deg) translateZ(0);
+  transform-origin: left center;
+  background: repeating-linear-gradient(
+    to bottom,
+    #f5f0e8 0px, #f5f0e8 1px,
+    #ede8df 2px, #ede8df 3px
+  );
+  border-radius: 0 1px 1px 0;
+}
+
+/* Color themes per book */
+.bk-1 .book-front { background: linear-gradient(145deg, #1a1a2e 0%, #2d2d60 60%, #3d3d7a 100%); }
+.bk-1 .book-spine  { background: linear-gradient(to bottom, #0f0f1e, #1a1a40); }
+.bk-1 .book-back   { background: #12122a; }
+
+.bk-2 .book-front { background: linear-gradient(145deg, #1c4a2e 0%, #2d6e44 60%, #3a8a56 100%); }
+.bk-2 .book-spine  { background: linear-gradient(to bottom, #112d1c, #1c4a2e); }
+.bk-2 .book-back   { background: #0e2418; }
+
+.bk-3 .book-front { background: linear-gradient(145deg, #4a1520 0%, #7a2035 60%, #9a2a45 100%); }
+.bk-3 .book-spine  { background: linear-gradient(to bottom, #2e0d14, #4a1520); }
+.bk-3 .book-back   { background: #250a10; }
+
+.bk-4 .book-front { background: linear-gradient(145deg, #1a2e40 0%, #2a4a65 60%, #355c80 100%); }
+.bk-4 .book-spine  { background: linear-gradient(to bottom, #0f1e2a, #1a2e40); }
+.bk-4 .book-back   { background: #0b1520; }
+
+/* Book cover content */
+.book-icon { font-size: 2rem; display: block; margin-bottom: 6px; opacity: 0.9; }
+.book-cover-cat {
+  font-size: 0.55rem; font-weight: 700; letter-spacing: 0.15em;
+  text-transform: uppercase; color: rgba(255,255,255,0.5); margin-bottom: 6px;
+}
+.book-cover-title {
+  font-family: 'Fraunces', serif; font-size: 0.85rem; font-weight: 800;
+  color: white; line-height: 1.25; letter-spacing: -0.01em;
+}
+.book-cover-divider {
+  width: 28px; height: 1.5px; margin: 8px 0;
+  border-radius: 1px;
+  background: rgba(255,255,255,0.35);
+}
+.book-cover-author { font-size: 0.6rem; color: rgba(255,255,255,0.55); letter-spacing: 0.04em; }
+
+/* Gold band on some covers */
+.book-band {
+  position: absolute; bottom: 36px; left: 0; right: 0; height: 24px;
+  display: flex; align-items: center; padding: 0 16px;
+  font-size: 0.55rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em;
+  color: rgba(26,26,46,0.7);
+  background: linear-gradient(90deg, rgba(255,172,112,0.85), rgba(255,200,140,0.9));
+}
+
+/* Info below the book */
+.book-info { text-align: center; width: 100%; }
+.bc-title { font-family: 'Fraunces', serif; font-size: 1rem; font-weight: 700; line-height: 1.3; margin-bottom: 6px; }
+.bc-desc { font-size: 0.78rem; color: var(--ink-lt); line-height: 1.55; margin-bottom: 14px; }
+.bc-footer { display: flex; align-items: center; justify-content: center; gap: 16px; }
+.bc-price { font-family: 'Fraunces', serif; font-size: 1.2rem; font-weight: 800; color: var(--ink); }
+.btn-buy {
+  background: var(--peach); color: var(--ink); border: none;
+  padding: 8px 20px; border-radius: 50px;
+  font-family: 'DM Sans', sans-serif; font-size: 0.78rem; font-weight: 700;
+  cursor: pointer; transition: all 0.2s;
+  box-shadow: 0 4px 12px rgba(255,172,112,0.35);
+}
+.btn-buy:hover { background: var(--peach-dk); transform: translateY(-2px); box-shadow: 0 6px 18px rgba(255,172,112,0.5); }
+
+/* COURSES — Udemy/platform style */
+.courses { background: var(--cream); }
+.courses-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 28px; }
+
+.course-card {
+  border-radius: 20px; background: white;
+  border: 1px solid rgba(26,26,46,0.07);
+  overflow: hidden; transition: transform 0.3s, box-shadow 0.3s;
+  display: flex; flex-direction: column;
+  cursor: pointer;
+}
+.course-card:hover { transform: translateY(-6px); box-shadow: 0 24px 60px rgba(26,26,46,0.14); }
+
+/* ── Thumbnail ── */
+.cc-thumb {
+  height: 200px; position: relative; overflow: hidden;
+  display: flex; align-items: center; justify-content: center;
+}
+.cc-thumb-bg {
+  position: absolute; inset: 0;
+  background-size: cover; background-position: center;
+  transition: transform 0.5s ease;
+}
+.course-card:hover .cc-thumb-bg { transform: scale(1.05); }
+.cc-thumb-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(180deg, rgba(0,0,0,0.05) 0%, rgba(0,0,0,0.6) 100%);
+}
+
+/* Course "chapter grid" decoration on thumb */
+.cc-thumb-grid {
+  position: absolute; inset: 0; opacity: 0.08;
+  background-image:
+    linear-gradient(rgba(255,255,255,0.6) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.6) 1px, transparent 1px);
+  background-size: 32px 32px;
+}
+
+/* Play button */
+.cc-play {
+  position: absolute; top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  width: 52px; height: 52px; border-radius: 50%;
+  background: rgba(255,255,255,0.18); backdrop-filter: blur(12px);
+  border: 2px solid rgba(255,255,255,0.45);
+  display: flex; align-items: center; justify-content: center;
+  transition: all 0.25s;
+}
+.cc-play::after {
+  content: ''; width: 0; height: 0;
+  border-top: 9px solid transparent;
+  border-bottom: 9px solid transparent;
+  border-left: 16px solid white;
+  margin-left: 3px;
+}
+.course-card:hover .cc-play { background: var(--peach); border-color: var(--peach); transform: translate(-50%,-50%) scale(1.1); }
+.course-card:hover .cc-play::after { border-left-color: var(--ink); }
+
+/* Badge top-right */
+.cc-badge {
+  position: absolute; top: 12px; right: 12px;
+  color: white; font-size: 0.65rem; font-weight: 700;
+  padding: 4px 10px; border-radius: 6px; letter-spacing: 0.04em;
+}
+.cc-badge.hot { background: #e8394a; }
+.cc-badge.new-badge { background: var(--sky-dk); }
+.cc-badge.best { background: linear-gradient(90deg,#f7b733,#fc4a1a); }
+
+/* Duration bottom-left */
+.cc-dur {
+  position: absolute; bottom: 12px; left: 12px;
+  background: rgba(0,0,0,0.65); backdrop-filter: blur(8px);
+  color: white; font-size: 0.68rem; font-weight: 600;
+  padding: 4px 10px; border-radius: 6px;
+  display: flex; align-items: center; gap: 5px;
+}
+
+/* Stars bottom-right */
+.cc-stars-thumb {
+  position: absolute; bottom: 12px; right: 12px;
+  background: rgba(0,0,0,0.55); backdrop-filter: blur(6px);
+  color: #fbbf24; font-size: 0.68rem; font-weight: 700;
+  padding: 4px 10px; border-radius: 6px;
+  display: flex; align-items: center; gap: 4px;
+}
+.cc-stars-thumb span { color: rgba(255,255,255,0.75); font-weight: 400; }
+
+/* ── Body ── */
+.cc-body { padding: 20px 22px 22px; flex: 1; display: flex; flex-direction: column; }
+
+.cc-top-row { display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px; }
+.cc-level { font-size: 0.65rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--peach-dk); display: flex; align-items: center; gap: 5px; }
+.cc-level-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--peach); }
+.cc-instructor { display: flex; align-items: center; gap: 6px; }
+.cc-av { width: 24px; height: 24px; border-radius: 50%; background: linear-gradient(135deg,var(--peach),var(--peach-dk)); display: flex; align-items: center; justify-content: center; font-size: 0.75rem; }
+.cc-av-name { font-size: 0.7rem; color: var(--ink-lt); font-weight: 500; }
+
+.cc-title { font-family: 'Fraunces', serif; font-size: 1.05rem; font-weight: 800; line-height: 1.3; margin-bottom: 10px; color: var(--ink); }
+
+/* Curriculum preview — 3 mini lesson rows */
+.cc-curriculum { border: 1px solid rgba(26,26,46,0.07); border-radius: 10px; overflow: hidden; margin-bottom: 14px; }
+.cc-lesson {
+  display: flex; align-items: center; gap: 10px; padding: 8px 12px;
+  font-size: 0.74rem; color: var(--ink-lt); border-bottom: 1px solid rgba(26,26,46,0.05);
+  transition: background 0.15s;
+}
+.cc-lesson:last-child { border-bottom: none; }
+.cc-lesson:hover { background: var(--peach-lt); color: var(--ink); }
+.cc-lesson-icon { width: 22px; height: 22px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.7rem; flex-shrink: 0; }
+.cc-lesson-icon.play { background: rgba(255,172,112,0.15); color: var(--peach-dk); }
+.cc-lesson-icon.lock { background: rgba(26,26,46,0.06); color: var(--ink-lt); }
+.cc-lesson-text { flex: 1; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.cc-lesson-dur { font-size: 0.68rem; color: var(--ink-lt); flex-shrink: 0; opacity: 0.7; }
+
+/* Stats pills row */
+.cc-pills { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 14px; }
+.cc-pill { display: flex; align-items: center; gap: 4px; font-size: 0.7rem; color: var(--ink-lt); background: rgba(26,26,46,0.05); border-radius: 50px; padding: 4px 10px; font-weight: 500; }
+
+/* Rating bar */
+.cc-rating-row { display: flex; align-items: center; gap: 8px; margin-bottom: 16px; }
+.cc-rating-num { font-size: 0.72rem; font-weight: 700; color: var(--ink); }
+.cc-rating-count { font-size: 0.7rem; color: var(--ink-lt); }
+.cc-rating-bar { flex: 1; height: 4px; background: rgba(26,26,46,0.08); border-radius: 2px; overflow: hidden; }
+.cc-rating-bar-fill { height: 100%; background: linear-gradient(90deg,#fbbf24,#f59e0b); border-radius: 2px; }
+
+/* Footer */
+.cc-footer { display: flex; align-items: center; justify-content: space-between; padding-top: 14px; border-top: 1px solid rgba(26,26,46,0.06); margin-top: auto; }
+.cc-price { font-family: 'Fraunces', serif; font-size: 1.35rem; font-weight: 800; color: var(--ink); line-height: 1; }
+.cc-price-old { font-size: 0.72rem; color: var(--ink-lt); text-decoration: line-through; margin-top: 2px; }
+.btn-learn { background: var(--peach); color: var(--ink); border: none; padding: 10px 22px; border-radius: 50px; font-family: 'DM Sans', sans-serif; font-size: 0.82rem; font-weight: 700; cursor: pointer; transition: all 0.2s; box-shadow: 0 4px 14px rgba(255,172,112,0.3); }
+.btn-learn:hover { background: var(--peach-dk); transform: translateY(-1px); }
+
+/* MATERIALS — file-type-aware cards */
+.materials{background:linear-gradient(135deg,#f7f3ff 0%,var(--sky) 100%);}
+.materials-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;}
+
+.material-card{
+  background:white;border-radius:18px;overflow:hidden;
+  border:1px solid rgba(26,26,46,0.07);
+  transition:transform 0.3s,box-shadow 0.3s;
+  display:flex;flex-direction:column;
+}
+.material-card:hover{transform:translateY(-5px);box-shadow:var(--shadow-lg);}
+
+/* File-type header banner */
+.mc-header{
+  height:100px;position:relative;display:flex;align-items:center;
+  justify-content:center;overflow:hidden;
+}
+/* DOCX = blue-navy */
+.mc-header.docx{background:linear-gradient(135deg,#1a3a6b,#2563eb);}
+/* PDF = deep red */
+.mc-header.pdf{background:linear-gradient(135deg,#7f1d1d,#dc2626);}
+/* XLSX = forest green */
+.mc-header.xlsx{background:linear-gradient(135deg,#14532d,#16a34a);}
+/* MIX = warm multi */
+.mc-header.mix{background:linear-gradient(135deg,#1a1a2e,#4338ca);}
+
+/* Subtle pattern overlay */
+.mc-header::before{
+  content:'';position:absolute;inset:0;
+  background-image:radial-gradient(circle,rgba(255,255,255,0.07) 1px,transparent 1px);
+  background-size:18px 18px;
+}
+
+/* Big file-type label */
+.mc-filetype-badge{
+  display:flex;flex-direction:column;align-items:center;gap:4px;
+  position:relative;z-index:1;
+}
+.mc-filetype-ext{
+  font-family:'DM Sans',sans-serif;font-size:1rem;font-weight:900;
+  letter-spacing:0.08em;color:white;
+  background:rgba(255,255,255,0.18);backdrop-filter:blur(8px);
+  border:1.5px solid rgba(255,255,255,0.25);
+  padding:4px 14px;border-radius:8px;
+  text-transform:uppercase;
+}
+/* Color accent per type */
+.mc-header.docx .mc-filetype-ext{border-color:rgba(147,197,253,0.5);background:rgba(37,99,235,0.5);}
+.mc-header.pdf  .mc-filetype-ext{border-color:rgba(252,165,165,0.5);background:rgba(220,38,38,0.5);}
+.mc-header.xlsx .mc-filetype-ext{border-color:rgba(134,239,172,0.5);background:rgba(22,163,74,0.5);}
+.mc-header.mix  .mc-filetype-ext{border-color:rgba(196,181,253,0.5);background:rgba(67,56,202,0.5);}
+
+.mc-filetype-icon{font-size:2rem;filter:drop-shadow(0 2px 8px rgba(0,0,0,0.3));}
+
+/* File count chip top-right */
+.mc-count{
+  position:absolute;top:10px;right:10px;
+  background:rgba(0,0,0,0.35);backdrop-filter:blur(8px);
+  color:rgba(255,255,255,0.9);font-size:0.62rem;font-weight:700;
+  padding:3px 8px;border-radius:5px;letter-spacing:0.04em;
+}
+
+/* Body */
+.mc-body{padding:18px 18px 16px;flex:1;display:flex;flex-direction:column;}
+.mc-type-label{
+  font-size:0.62rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;
+  margin-bottom:6px;
+}
+.mc-type-label.docx{color:#2563eb;}
+.mc-type-label.pdf{color:#dc2626;}
+.mc-type-label.xlsx{color:#16a34a;}
+.mc-type-label.mix{color:#4338ca;}
+
+.mc-title{font-family:'Fraunces',serif;font-size:0.95rem;font-weight:800;line-height:1.3;margin-bottom:6px;color:var(--ink);}
+.mc-desc{font-size:0.78rem;color:var(--ink-lt);line-height:1.6;margin-bottom:12px;flex:1;}
+
+/* Features list */
+.mc-features{display:flex;flex-direction:column;gap:4px;margin-bottom:14px;}
+.mc-feature{display:flex;align-items:center;gap:6px;font-size:0.72rem;color:var(--ink-lt);}
+.mc-feature::before{content:'✓';font-weight:800;font-size:0.65rem;flex-shrink:0;}
+.mc-feature.docx::before{color:#2563eb;}
+.mc-feature.pdf::before{color:#dc2626;}
+.mc-feature.xlsx::before{color:#16a34a;}
+.mc-feature.mix::before{color:#4338ca;}
+
+/* Footer */
+.mc-footer{display:flex;align-items:center;justify-content:space-between;padding-top:12px;border-top:1px solid rgba(26,26,46,0.06);}
+.mc-price{font-family:'Fraunces',serif;font-size:1.15rem;font-weight:800;color:var(--ink);}
+
+.btn-dl{
+  display:flex;align-items:center;gap:5px;
+  padding:8px 16px;border-radius:50px;border:none;
+  font-family:'DM Sans',sans-serif;font-size:0.76rem;font-weight:700;
+  cursor:pointer;transition:all 0.2s;
+}
+.btn-dl.docx{background:#eff6ff;color:#2563eb;}
+.btn-dl.docx:hover{background:#2563eb;color:white;}
+.btn-dl.pdf{background:#fef2f2;color:#dc2626;}
+.btn-dl.pdf:hover{background:#dc2626;color:white;}
+.btn-dl.xlsx{background:#f0fdf4;color:#16a34a;}
+.btn-dl.xlsx:hover{background:#16a34a;color:white;}
+.btn-dl.mix{background:#f5f3ff;color:#4338ca;}
+.btn-dl.mix:hover{background:#4338ca;color:white;}
+.btn-dl-icon{font-size:0.85rem;}
+
+/* ══════════════════════════════════════════════
+   MODAL SYSTEM
+   ══════════════════════════════════════════════ */
+
+/* Backdrop */
+.modal-backdrop {
+  position: fixed; inset: 0; z-index: 1000;
+  background: rgba(10,10,20,0.75); backdrop-filter: blur(6px);
+  display: flex; align-items: center; justify-content: center;
+  padding: 24px;
+  opacity: 0; pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+.modal-backdrop.open { opacity: 1; pointer-events: all; }
+
+/* Modal shell */
+.modal {
+  background: white; border-radius: 24px;
+  width: 100%; max-width: 900px; max-height: 90vh;
+  overflow: hidden; display: grid; grid-template-columns: 1fr 1fr;
+  transform: translateY(24px) scale(0.97);
+  transition: transform 0.35s cubic-bezier(0.34,1.56,0.64,1), opacity 0.3s;
+  opacity: 0; box-shadow: 0 40px 120px rgba(0,0,0,0.35);
+  position: relative;
+}
+.modal-backdrop.open .modal { transform: none; opacity: 1; }
+
+/* Close button */
+.modal-close {
+  position: absolute; top: 16px; right: 16px; z-index: 10;
+  width: 36px; height: 36px; border-radius: 50%;
+  background: rgba(0,0,0,0.12); border: none; cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1rem; color: white; transition: background 0.2s;
+}
+.modal-close:hover { background: rgba(0,0,0,0.35); }
+.modal-close.dark { color: var(--ink); background: rgba(26,26,46,0.08); }
+.modal-close.dark:hover { background: rgba(26,26,46,0.18); }
+
+/* ── LEFT PANEL: Preview ── */
+.mp-left {
+  overflow-y: auto; max-height: 90vh;
+}
+/* Coloured hero banner */
+.mp-banner {
+  height: 220px; position: relative;
+  display: flex; align-items: flex-end; padding: 20px;
+}
+.mp-banner-bg { position: absolute; inset: 0; background-size: cover; background-position: center; }
+.mp-banner-overlay { position: absolute; inset: 0; background: linear-gradient(0deg, rgba(0,0,0,0.65) 0%, rgba(0,0,0,0.1) 60%); }
+.mp-banner-content { position: relative; z-index: 1; }
+.mp-banner-type {
+  display: inline-flex; align-items: center; gap: 5px;
+  background: rgba(255,255,255,0.15); backdrop-filter: blur(8px);
+  border: 1px solid rgba(255,255,255,0.25);
+  color: white; font-size: 0.65rem; font-weight: 700;
+  padding: 3px 10px; border-radius: 50px; margin-bottom: 8px;
+  text-transform: uppercase; letter-spacing: 0.08em;
+}
+.mp-banner-title {
+  font-family: 'Fraunces', serif; font-size: 1.3rem; font-weight: 800;
+  color: white; line-height: 1.25; letter-spacing: -0.02em;
+}
+
+/* 3D book in modal */
+.mp-book-wrap {
+  height: 220px; background: linear-gradient(135deg,#f0ede8,#e8e4de);
+  display: flex; align-items: center; justify-content: center;
+  position: relative; overflow: hidden;
+}
+.mp-book-wrap::before {
+  content: ''; position: absolute; inset: 0;
+  background: radial-gradient(ellipse at 70% 30%, rgba(255,172,112,0.15) 0%, transparent 60%);
+}
+.mp-book-3d {
+  width: 140px; height: 200px; position: relative;
+  transform-style: preserve-3d;
+  transform: rotateY(-30deg) rotateX(5deg);
+  filter: drop-shadow(-10px 16px 28px rgba(26,26,46,0.3));
+}
+.mp-book-front {
+  position: absolute; inset: 0; transform: translateZ(13px);
+  border-radius: 2px 6px 6px 2px;
+  display: flex; flex-direction: column; justify-content: space-between;
+  padding: 16px 14px; overflow: hidden;
+}
+.mp-book-front::after {
+  content: ''; position: absolute; inset: 0;
+  background: linear-gradient(120deg,rgba(255,255,255,0.16) 0%,transparent 50%,rgba(0,0,0,0.07) 100%);
+}
+.mp-book-spine {
+  position: absolute; left: -13px; top: 0; bottom: 0; width: 13px;
+  transform: rotateY(-90deg) translateZ(0); transform-origin: right center;
+  border-radius: 2px 0 0 2px;
+}
+.mp-book-pages {
+  position: absolute; right: -5px; top: 3px; bottom: 3px; width: 10px;
+  transform: rotateY(90deg) translateZ(0); transform-origin: left center;
+  background: repeating-linear-gradient(to bottom,#f5f0e8 0px,#f5f0e8 1px,#ede8df 2px,#ede8df 3px);
+  border-radius: 0 1px 1px 0;
+}
+.mp-book-icon { font-size: 2rem; display: block; margin-bottom: 8px; }
+.mp-book-cat { font-size: 0.52rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em; color: rgba(255,255,255,0.55); margin-bottom: 5px; }
+.mp-book-title-cover { font-family: 'Fraunces', serif; font-size: 0.82rem; font-weight: 800; color: white; line-height: 1.25; }
+.mp-book-author { font-size: 0.58rem; color: rgba(255,255,255,0.5); }
+.mp-book-div { width: 22px; height: 1.5px; background: rgba(255,255,255,0.3); margin: 6px 0; border-radius: 1px; }
+
+/* Template file preview */
+.mp-file-wrap {
+  height: 220px; display: flex; align-items: center; justify-content: center;
+  position: relative; overflow: hidden;
+}
+.mp-file-card {
+  width: 120px; background: white; border-radius: 12px;
+  box-shadow: 0 8px 32px rgba(26,26,46,0.18), 0 2px 8px rgba(26,26,46,0.1);
+  overflow: hidden; position: relative; z-index: 1;
+}
+.mp-file-header {
+  height: 56px; display: flex; align-items: center; justify-content: center;
+  font-size: 1.6rem;
+}
+.mp-file-lines { padding: 10px; }
+.mp-file-line { height: 5px; border-radius: 3px; margin-bottom: 5px; }
+.mp-file-line.long  { width: 100%; background: rgba(26,26,46,0.1); }
+.mp-file-line.med   { width: 75%;  background: rgba(26,26,46,0.07); }
+.mp-file-line.short { width: 50%;  background: rgba(26,26,46,0.05); }
+.mp-file-ext {
+  position: absolute; bottom: 10px; right: 10px;
+  font-size: 0.6rem; font-weight: 800; letter-spacing: 0.06em;
+  text-transform: uppercase; padding: 2px 7px; border-radius: 4px;
+}
+.mp-file-ext.docx { background: #eff6ff; color: #2563eb; }
+.mp-file-ext.pdf  { background: #fef2f2; color: #dc2626; }
+.mp-file-ext.xlsx { background: #f0fdf4; color: #16a34a; }
+.mp-file-ext.mix  { background: #f5f3ff; color: #4338ca; }
+
+/* Ghost cards behind the file */
+.mp-file-ghost {
+  position: absolute; width: 110px; background: white; border-radius: 10px;
+  box-shadow: 0 4px 16px rgba(26,26,46,0.1);
+  height: 140px; opacity: 0.6;
+}
+.mp-file-ghost-1 { left: 50%; top: 50%; transform: translate(-70%,-50%) rotate(-8deg); }
+.mp-file-ghost-2 { left: 50%; top: 50%; transform: translate(-35%,-50%) rotate(5deg); }
+
+/* Left panel body content */
+.mp-body { padding: 22px 24px; }
+.mp-label { font-size: 0.65rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--peach-dk); margin-bottom: 6px; display: flex; align-items: center; gap: 6px; }
+.mp-title { font-family: 'Fraunces', serif; font-size: 1.2rem; font-weight: 800; line-height: 1.3; margin-bottom: 12px; }
+.mp-desc { font-size: 0.84rem; color: var(--ink-lt); line-height: 1.7; margin-bottom: 18px; }
+
+/* What you get / includes */
+.mp-includes { margin-bottom: 18px; }
+.mp-includes-title { font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--ink); margin-bottom: 10px; }
+.mp-include-row {
+  display: flex; align-items: center; gap: 9px;
+  font-size: 0.8rem; color: var(--ink-lt); padding: 5px 0;
+  border-bottom: 1px solid rgba(26,26,46,0.05);
+}
+.mp-include-row:last-child { border-bottom: none; }
+.mp-check {
+  width: 18px; height: 18px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 0.6rem; font-weight: 900; flex-shrink: 0;
+  background: #dcfce7; color: #16a34a;
+}
+
+/* Instructor row */
+.mp-instructor {
+  display: flex; align-items: center; gap: 10px;
+  padding: 12px; background: var(--cream); border-radius: 12px; margin-bottom: 16px;
+}
+.mp-instructor-av {
+  width: 38px; height: 38px; border-radius: 50%;
+  background: linear-gradient(135deg, var(--peach), var(--peach-dk));
+  display: flex; align-items: center; justify-content: center; font-size: 1.1rem; flex-shrink: 0;
+}
+.mp-instructor-name { font-weight: 700; font-size: 0.85rem; color: var(--ink); }
+.mp-instructor-role { font-size: 0.72rem; color: var(--ink-lt); }
+.mp-rating { display: flex; align-items: center; gap: 6px; font-size: 0.75rem; margin-left: auto; }
+.mp-rating-stars { color: #f59e0b; letter-spacing: -1px; }
+.mp-rating-val { font-weight: 700; color: var(--ink); }
+.mp-rating-count { color: var(--ink-lt); }
+
+/* Curriculum preview in modal */
+.mp-curriculum { margin-bottom: 18px; }
+.mp-lesson {
+  display: flex; align-items: center; gap: 8px; padding: 8px 0;
+  border-bottom: 1px solid rgba(26,26,46,0.05); font-size: 0.78rem; color: var(--ink-lt);
+}
+.mp-lesson:last-child { border-bottom: none; }
+.mp-lesson-icon { width: 20px; height: 20px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.65rem; flex-shrink: 0; }
+.mp-lesson-icon.free { background: rgba(255,172,112,0.15); color: var(--peach-dk); }
+.mp-lesson-icon.locked { background: rgba(26,26,46,0.06); color: var(--ink-lt); }
+.mp-lesson-name { flex: 1; }
+.mp-lesson-dur { font-size: 0.68rem; opacity: 0.6; }
+
+/* ── RIGHT PANEL: Payment ── */
+.mp-right {
+  border-left: 1px solid rgba(26,26,46,0.07);
+  display: flex; flex-direction: column;
+  max-height: 90vh; overflow-y: auto;
+}
+
+/* Success screen */
+.mp-success {
+  display: none; flex-direction: column; align-items: center; justify-content: center;
+  flex: 1; padding: 40px 32px; text-align: center;
+}
+.mp-success.show { display: flex; }
+.mp-success-icon { font-size: 3.5rem; margin-bottom: 20px; animation: popIn 0.5s cubic-bezier(0.34,1.56,0.64,1) both; }
+@keyframes popIn { from{transform:scale(0.5);opacity:0;} to{transform:scale(1);opacity:1;} }
+.mp-success-title { font-family: 'Fraunces', serif; font-size: 1.5rem; font-weight: 800; margin-bottom: 10px; color: var(--ink); }
+.mp-success-sub { font-size: 0.88rem; color: var(--ink-lt); line-height: 1.6; margin-bottom: 28px; }
+.mp-success-close { background: var(--peach); color: var(--ink); border: none; padding: 12px 32px; border-radius: 50px; font-family: 'DM Sans', sans-serif; font-weight: 700; font-size: 0.9rem; cursor: pointer; transition: all 0.2s; }
+.mp-success-close:hover { background: var(--peach-dk); }
+
+/* Payment form panel */
+.mp-payment {
+  padding: 28px 28px 32px; display: flex; flex-direction: column; flex: 1;
+}
+.mp-payment-title { font-family: 'Fraunces', serif; font-size: 1.1rem; font-weight: 800; margin-bottom: 4px; }
+.mp-payment-sub { font-size: 0.8rem; color: var(--ink-lt); margin-bottom: 20px; }
+
+/* Price row */
+.mp-price-row {
+  display: flex; align-items: baseline; gap: 10px;
+  padding: 14px 16px; background: var(--peach-lt);
+  border: 1px solid rgba(255,172,112,0.3); border-radius: 12px; margin-bottom: 22px;
+}
+.mp-price-main { font-family: 'Fraunces', serif; font-size: 2rem; font-weight: 800; color: var(--ink); }
+.mp-price-old { font-size: 0.85rem; color: var(--ink-lt); text-decoration: line-through; }
+.mp-price-tag { font-size: 0.72rem; color: var(--peach-dk); font-weight: 700; margin-left: auto; background: rgba(255,172,112,0.2); padding: 3px 10px; border-radius: 50px; }
+
+/* Order summary */
+.mp-summary {
+  background: var(--cream); border-radius: 12px; padding: 14px 16px; margin-bottom: 20px;
+}
+.mp-summary-row { display: flex; justify-content: space-between; font-size: 0.78rem; padding: 4px 0; color: var(--ink-lt); }
+.mp-summary-row.total { font-weight: 700; color: var(--ink); border-top: 1px solid rgba(26,26,46,0.08); padding-top: 8px; margin-top: 4px; font-size: 0.85rem; }
+
+/* Form */
+.mp-form { display: flex; flex-direction: column; gap: 12px; }
+.mp-form-group { display: flex; flex-direction: column; gap: 5px; }
+.mp-form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.mp-label-field { font-size: 0.72rem; font-weight: 700; color: var(--ink); letter-spacing: 0.02em; }
+.mp-input {
+  padding: 11px 14px; border: 1.5px solid rgba(26,26,46,0.12); border-radius: 10px;
+  font-family: 'DM Sans', sans-serif; font-size: 0.88rem; color: var(--ink);
+  background: white; transition: border-color 0.2s, box-shadow 0.2s; outline: none;
+}
+.mp-input:focus { border-color: var(--peach); box-shadow: 0 0 0 3px rgba(255,172,112,0.15); }
+.mp-input::placeholder { color: rgba(26,26,46,0.3); }
+
+/* Card icon row */
+.mp-card-icons { display: flex; gap: 6px; align-items: center; margin-bottom: 4px; }
+.mp-card-icon {
+  height: 22px; padding: 3px 8px; border-radius: 4px;
+  background: #f0f0f5; font-size: 0.62rem; font-weight: 800; color: var(--ink-lt);
+  display: flex; align-items: center;
+}
+
+/* Pay button */
+.mp-pay-btn {
+  width: 100%; padding: 14px; border-radius: 50px; border: none;
+  background: var(--ink); color: white;
+  font-family: 'DM Sans', sans-serif; font-size: 0.95rem; font-weight: 700;
+  cursor: pointer; transition: all 0.25s; margin-top: 6px;
+  display: flex; align-items: center; justify-content: center; gap: 8px;
+  box-shadow: 0 6px 20px rgba(26,26,46,0.2);
+}
+.mp-pay-btn:hover { background: var(--peach); color: var(--ink); box-shadow: 0 8px 28px rgba(255,172,112,0.4); }
+.mp-pay-btn:disabled { background: rgba(26,26,46,0.2); cursor: not-allowed; box-shadow: none; }
+
+/* Processing spinner */
+@keyframes spin { to { transform: rotate(360deg); } }
+.mp-spinner { width: 18px; height: 18px; border: 2px solid rgba(255,255,255,0.3); border-top-color: white; border-radius: 50%; animation: spin 0.7s linear infinite; display: none; }
+
+/* Security badges */
+.mp-secure {
+  display: flex; align-items: center; justify-content: center; gap: 6px;
+  margin-top: 14px; font-size: 0.7rem; color: rgba(26,26,46,0.4);
+}
+.mp-secure-icon { font-size: 0.85rem; }
+
+/* Guarantee strip */
+.mp-guarantee {
+  display: flex; align-items: center; gap: 10px;
+  background: #f0fdf4; border: 1px solid #bbf7d0;
+  border-radius: 10px; padding: 10px 14px; margin-top: 12px;
+  font-size: 0.75rem; color: #166534;
+}
+
+/* Error message */
+.mp-error { font-size: 0.75rem; color: #dc2626; margin-top: -6px; display: none; }
+.mp-error.show { display: block; }
+
+/* Mobile */
+@media(max-width:720px){
+  .modal { grid-template-columns: 1fr; }
+  .mp-left { display: none; }
+  .mp-right { max-height: 90vh; }
+}
+
+/* ABOUT */
+.about{background:var(--ink);position:relative;overflow:hidden;}
+.about::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 30% 50%,rgba(255,172,112,0.12) 0%,transparent 60%),radial-gradient(ellipse at 80% 20%,rgba(163,216,240,0.1) 0%,transparent 50%);}
+.about-inner{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr 1.4fr;gap:80px;align-items:center;position:relative;z-index:1;}
+.about-photo-frame{width:100%;aspect-ratio:3/4;border-radius:24px;overflow:hidden;background:linear-gradient(145deg,rgba(255,172,112,0.2),rgba(163,216,240,0.15));border:1px solid rgba(255,172,112,0.2);display:flex;align-items:center;justify-content:center;font-size:8rem;opacity:0.7;position:relative;}
+.about-photo{position:relative;}
+.about-photo-badge{position:absolute;top:-16px;right:-16px;background:var(--peach);border-radius:16px;padding:12px 18px;font-size:0.78rem;font-weight:700;color:var(--ink);}
+.about-photo-badge strong{display:block;font-size:1.4rem;font-family:'Fraunces',serif;}
+.about-eyebrow{display:flex;align-items:center;gap:10px;margin-bottom:20px;font-size:0.72rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--peach);}
+.about-eyebrow::before{content:'';display:block;width:24px;height:2px;background:var(--peach);}
+.about-quote{font-family:'Fraunces',serif;font-size:clamp(1.5rem,2.5vw,2rem);font-weight:600;font-style:italic;color:white;line-height:1.4;margin-bottom:28px;}
+.about-quote em{color:var(--peach);font-style:normal;}
+.about-text{font-size:0.95rem;color:rgba(255,255,255,0.55);line-height:1.8;margin-bottom:36px;}
+.about-numbers{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:36px;}
+.about-num{padding:16px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.07);border-radius:12px;}
+.about-num-val{font-family:'Fraunces',serif;font-size:1.8rem;font-weight:800;color:white;}
+.about-num-val span{color:var(--peach);}
+.about-num-label{font-size:0.7rem;color:rgba(255,255,255,0.4);margin-top:2px;}
+.about-socials{display:flex;gap:10px;}
+.social-btn{width:42px;height:42px;border-radius:12px;background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.12);display:flex;align-items:center;justify-content:center;font-size:1.1rem;text-decoration:none;transition:all 0.2s;cursor:pointer;}
+.social-btn:hover{background:var(--peach);border-color:var(--peach);transform:translateY(-3px);}
+
+/* THANK YOU */
+.thankyou{background:var(--cream);text-align:center;padding:120px 60px;}
+.thankyou-inner{max-width:680px;margin:0 auto;}
+.ty-icon{font-size:3rem;margin-bottom:24px;display:block;}
+.ty-title{font-family:'Fraunces',serif;font-size:clamp(2rem,3.5vw,3rem);font-weight:800;letter-spacing:-0.03em;line-height:1.15;margin-bottom:20px;}
+.ty-title em{font-style:italic;color:var(--peach-dk);}
+.ty-divider{width:60px;height:3px;background:linear-gradient(90deg,var(--peach),var(--sky-md));border-radius:2px;margin:28px auto;}
+.ty-text{font-size:1rem;color:var(--ink-lt);line-height:1.8;margin-bottom:40px;}
+.ty-signature{font-family:'Fraunces',serif;font-size:2rem;font-weight:600;font-style:italic;color:var(--peach-dk);margin-bottom:6px;}
+.ty-role{font-size:0.82rem;color:var(--ink-lt);letter-spacing:0.05em;}
+.ty-hearts{display:flex;justify-content:center;gap:8px;margin-top:24px;font-size:1.3rem;}
+
+/* FOOTER */
+footer{background:var(--ink);padding:60px;}
+.footer-top{display:flex;align-items:flex-start;justify-content:space-between;gap:40px;margin-bottom:40px;}
+.footer-logo{font-family:'Fraunces',serif;font-size:1.4rem;font-weight:800;color:white;letter-spacing:-0.03em;margin-bottom:10px;}
+.footer-tagline{font-size:0.83rem;color:rgba(255,255,255,0.4);max-width:220px;line-height:1.5;}
+.footer-nav{display:flex;gap:60px;}
+.footer-col-title{font-size:0.7rem;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:rgba(255,255,255,0.4);margin-bottom:14px;}
+.footer-col a{display:block;font-size:0.85rem;color:rgba(255,255,255,0.6);text-decoration:none;margin-bottom:8px;transition:color 0.2s;}
+.footer-col a:hover{color:var(--peach);}
+.footer-bottom{display:flex;align-items:center;justify-content:space-between;padding-top:24px;border-top:1px solid rgba(255,255,255,0.07);font-size:0.78rem;color:rgba(255,255,255,0.3);}
+.footer-socials{display:flex;gap:10px;}
+.footer-social{width:34px;height:34px;border-radius:8px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.08);display:flex;align-items:center;justify-content:center;font-size:0.9rem;text-decoration:none;transition:all 0.2s;cursor:pointer;}
+.footer-social:hover{background:var(--peach);border-color:var(--peach);}
+
+/* RESPONSIVE */
+@media(max-width:1024px){.books-grid{grid-template-columns:repeat(2,1fr);}.materials-grid{grid-template-columns:repeat(2,1fr);}.about-inner{grid-template-columns:1fr;gap:48px;}.about-photo{max-width:300px;margin:0 auto;}}
+@media(max-width:768px){nav{padding:0 24px;}.nav-links{display:none;}section{padding:72px 24px;}.hero{padding:72px 24px 0;}.hero-inner{grid-template-columns:1fr;padding:60px 0;gap:40px;}.hero-right{height:320px;}.workshop-grid,.courses-grid{grid-template-columns:1fr;}.books-grid{grid-template-columns:repeat(2,1fr);gap:32px 20px;}.book-scene{width:120px;height:176px;}.materials-grid{grid-template-columns:1fr 1fr;}footer{padding:40px 24px;}.footer-top{flex-direction:column;}.footer-nav{flex-direction:column;gap:32px;}.footer-bottom{flex-direction:column;gap:16px;text-align:center;}.thankyou{padding:80px 24px;}.section-header{flex-direction:column;align-items:flex-start;}}
+</style>
+</head>
+<body>
+
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="ring"></div>
+
+<!-- ── NAVBAR ─────────────────────────── -->
+<nav id="navbar">
+  <a href="#" class="nav-logo">HR<span class="nav-logo-dot"></span>Pro</a>
+  <div class="nav-links">
+    <a href="#workshops">Workshops</a>
+    <a href="#books">Books</a>
+    <a href="#courses">Courses</a>
+    <a href="#materials">Materials</a>
+    <a href="#" class="nav-login">Login</a>
+  </div>
+</nav>
+
+<!-- ── HERO ───────────────────────────── -->
+<section class="hero" id="home">
+  <div class="hero-blob blob-1"></div>
+  <div class="hero-blob blob-2"></div>
+  <div class="hero-blob blob-3"></div>
+  <div class="hero-inner">
+
+    <div>
+      <div class="hero-tag"><span class="hero-tag-dot"></span>For HR Professionals</div>
+      <h1>Practical <em>HR Knowledge</em><br>for Modern Professionals</h1>
+      <p class="hero-sub">Workshops, courses, books and ready-to-use HR templates designed to help professionals grow faster and lead with confidence.</p>
+      <div class="hero-btns">
+        <a href="#workshops" class="btn-primary">🎓 Explore Workshops</a>
+        <a href="#books" class="btn-outline">📚 Browse Books</a>
+      </div>
+      <div class="hero-stats">
+        <div><div class="hero-stat-num">2,400<span>+</span></div><div class="hero-stat-label">Professionals trained</div></div>
+        <div><div class="hero-stat-num">80<span>+</span></div><div class="hero-stat-label">Resources available</div></div>
+        <div><div class="hero-stat-num">4.9<span>★</span></div><div class="hero-stat-label">Average rating</div></div>
+      </div>
+    </div>
+
+    <div class="hero-right">
+      <div class="hero-card-stack">
+        <div class="h-card h-card-main">
+          <div>
+            <div class="hc-thumb">🎓</div>
+            <div class="hc-label">Featured Workshop</div>
+            <div class="hc-title">Strategic Talent Acquisition Masterclass</div>
+            <div style="margin-top:8px;"><span class="hc-tag">Live</span><span class="hc-tag blue">HR Strategy</span></div>
+          </div>
+          <div>
+            <div class="hc-date">📅 March 28, 2025 · Online</div>
+            <div style="display:flex;align-items:center;justify-content:space-between;margin-top:12px;">
+              <div class="hc-price">$89</div>
+              <button class="btn-reserve" style="width:auto;padding:8px 18px;font-size:0.8rem;">Reserve →</button>
+            </div>
+          </div>
+        </div>
+        <div class="h-card h-card-sm1">
+          <div class="hc-sm-icon">📖</div>
+          <div class="hc-sm-title">HR Policy Templates Bundle</div>
+          <div class="hc-sm-sub">14 ready-to-use templates</div>
+        </div>
+        <div class="h-card h-card-sm2">
+          <div style="display:flex;align-items:center;gap:10px;">
+            <div style="font-size:1.8rem;">📊</div>
+            <div>
+              <div class="hc-sm-title">Performance Review Kit</div>
+              <div class="hc-sm-sub">Instant download</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="hero-badge">
+        <div class="badge-avatar">👩</div>
+        <div class="badge-text"><strong>Edyta   just enrolled</strong><span>2 minutes ago</span></div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ── WORKSHOPS ──────────────────────── -->
+<section class="workshops" id="workshops">
+  <div class="section-inner">
+    <div class="section-header fade-in">
+      <div>
+        <div class="section-tag">Live &amp; Online</div>
+        <div class="section-title">Live <em>Workshops</em></div>
+        <div class="section-sub">Interactive sessions designed for real-world HR challenges. Join live and get direct answers.</div>
+      </div>
+      <a href="#" class="btn-text">View All Workshops →</a>
+    </div>
+
+    <div class="workshop-grid">
+
+      <!-- Card 1 -->
+      <div class="workshop-card fade-in">
+        <div class="wc-thumb">
+          <div class="wc-thumb-bg" style="background:linear-gradient(135deg,#1a0a2e 0%,#3d1a5e 40%,#6b2fa0 70%,#ff8c42 100%);"></div>
+          <div class="wc-thumb-overlay"></div>
+          <div class="wc-live-badge upcoming"><span class="wc-live-dot"></span>Upcoming</div>
+          <div class="wc-duration"><span class="wc-duration-dot"></span>3h 30m</div>
+          <div class="wc-play"></div>
+          <div class="wc-thumb-bottom">
+            <div class="wc-instructor-av">👩</div>
+            <div>
+              <div class="wc-instructor-name">Edyta   Mitchell</div>
+              <div class="wc-instructor-role">Senior HR Strategist</div>
+            </div>
+          </div>
+        </div>
+        <div class="wc-body">
+          <div class="wc-top">
+            <div class="wc-category">🎯 Recruitment</div>
+            <div class="wc-rating"><strong>4.9</strong> ⭐ (312)</div>
+          </div>
+          <div class="wc-title">Strategic Talent Acquisition Masterclass</div>
+          <div class="wc-desc">Learn modern hiring frameworks that attract top talent and reduce time-to-fill by up to 40%.</div>
+          <div class="wc-tags">
+            <span class="wc-tag">Live Session</span>
+            <span class="wc-tag">Certificate</span>
+            <span class="wc-tag">Q&amp;A Included</span>
+          </div>
+          <div class="wc-footer">
+            <div class="wc-meta-row">
+              <div class="wc-date">📅 March 28, 2025</div>
+              <div class="wc-seats">🔥 Only 8 seats left</div>
+            </div>
+            <div style="display:flex;align-items:center;gap:12px;">
+              <div class="wc-price">$89 <small>/ seat</small></div>
+              <button class="btn-reserve">Reserve →</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 2 -->
+      <div class="workshop-card fade-in">
+        <div class="wc-thumb">
+          <div class="wc-thumb-bg" style="background:linear-gradient(135deg,#0a1a2e 0%,#1a3d5e 40%,#2f6b9e 70%,#42b8ff 100%);"></div>
+          <div class="wc-thumb-overlay"></div>
+          <div class="wc-live-badge upcoming"><span class="wc-live-dot"></span>Upcoming</div>
+          <div class="wc-duration"><span class="wc-duration-dot"></span>2h 45m</div>
+          <div class="wc-play"></div>
+          <div class="wc-thumb-bottom">
+            <div class="wc-instructor-av">👨</div>
+            <div>
+              <div class="wc-instructor-name">James Crawford</div>
+              <div class="wc-instructor-role">Performance Coach</div>
+            </div>
+          </div>
+        </div>
+        <div class="wc-body">
+          <div class="wc-top">
+            <div class="wc-category">📋 Performance</div>
+            <div class="wc-rating"><strong>4.8</strong> ⭐ (208)</div>
+          </div>
+          <div class="wc-title">Performance Management That Actually Works</div>
+          <div class="wc-desc">Build review cycles that motivate employees instead of dreading them. Practical tools included.</div>
+          <div class="wc-tags">
+            <span class="wc-tag">Live Session</span>
+            <span class="wc-tag">Templates</span>
+            <span class="wc-tag">Recording</span>
+          </div>
+          <div class="wc-footer">
+            <div class="wc-meta-row">
+              <div class="wc-date">📅 April 10, 2025</div>
+              <div class="wc-seats">✅ 24 seats available</div>
+            </div>
+            <div style="display:flex;align-items:center;gap:12px;">
+              <div class="wc-price">$79 <small>/ seat</small></div>
+              <button class="btn-reserve">Reserve →</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 3 -->
+      <div class="workshop-card fade-in">
+        <div class="wc-thumb">
+          <div class="wc-thumb-bg" style="background:linear-gradient(135deg,#0e2a1a 0%,#1a5e3a 40%,#2fa06b 70%,#42ffb4 100%);"></div>
+          <div class="wc-thumb-overlay"></div>
+          <div class="wc-live-badge upcoming"><span class="wc-live-dot"></span>Upcoming</div>
+          <div class="wc-duration"><span class="wc-duration-dot"></span>4h 00m</div>
+          <div class="wc-play"></div>
+          <div class="wc-thumb-bottom">
+            <div class="wc-instructor-av">👩</div>
+            <div>
+              <div class="wc-instructor-name">Leila Rashid</div>
+              <div class="wc-instructor-role">HR Culture Lead</div>
+            </div>
+          </div>
+          <div class="wc-progress-bar"><div class="wc-progress-fill" style="width:0%"></div></div>
+        </div>
+        <div class="wc-body">
+          <div class="wc-top">
+            <div class="wc-category">🤝 Culture</div>
+            <div class="wc-rating"><strong>5.0</strong> ⭐ (94)</div>
+          </div>
+          <div class="wc-title">Conflict Resolution &amp; Workplace Culture</div>
+          <div class="wc-desc">Navigate difficult conversations and build psychologically safe teams with proven techniques.</div>
+          <div class="wc-tags">
+            <span class="wc-tag">Live Session</span>
+            <span class="wc-tag">Certificate</span>
+            <span class="wc-tag">Workbook</span>
+          </div>
+          <div class="wc-footer">
+            <div class="wc-meta-row">
+              <div class="wc-date">📅 April 24, 2025</div>
+              <div class="wc-seats">🔥 12 seats left</div>
+            </div>
+            <div style="display:flex;align-items:center;gap:12px;">
+              <div class="wc-price">$95 <small>/ seat</small></div>
+              <button class="btn-reserve">Reserve →</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="section-cta-wrap fade-in"><a href="#" class="btn-center">View All Workshops →</a></div>
+  </div>
+</section>
+
+<!-- ── BOOKS ──────────────────────────── -->
+<section class="books" id="books">
+  <div class="section-inner">
+    <div class="section-header fade-in">
+      <div>
+        <div class="section-tag">Reading List</div>
+        <div class="section-title">Professional <em>Books</em></div>
+        <div class="section-sub">Carefully written guides you can apply immediately — no fluff, all practical.</div>
+      </div>
+      <a href="#" class="btn-text">View All Books →</a>
+    </div>
+    <div class="books-grid fade-in">
+
+      <!-- Book 1 -->
+      <div class="book-card">
+        <div class="book-scene">
+          <div class="book-3d bk-1">
+            <div class="book-back"></div>
+            <div class="book-pages"></div>
+            <div class="book-spine">
+              <span class="book-spine-text">The Modern HR Playbook</span>
+            </div>
+            <div class="book-front">
+              <div>
+                <span class="book-icon">🎯</span>
+                <div class="book-cover-cat">HR Management</div>
+                <div class="book-cover-title">The Modern HR Playbook</div>
+                <div class="book-cover-divider"></div>
+                <div class="book-cover-author">HR Pro Essentials</div>
+              </div>
+            </div>
+            <div class="book-band">Bestseller</div>
+          </div>
+        </div>
+        <div class="book-info">
+          <div class="bc-title">The Modern HR Playbook</div>
+          <div class="bc-desc">A comprehensive guide to building HR systems that scale with your organisation.</div>
+          <div class="bc-footer"><div class="bc-price">$34</div><button class="btn-buy">Buy &amp; Read →</button></div>
+        </div>
+      </div>
+
+      <!-- Book 2 -->
+      <div class="book-card">
+        <div class="book-scene">
+          <div class="book-3d bk-2">
+            <div class="book-back"></div>
+            <div class="book-pages"></div>
+            <div class="book-spine">
+              <span class="book-spine-text">People-First Leadership</span>
+            </div>
+            <div class="book-front">
+              <div>
+                <span class="book-icon">🌱</span>
+                <div class="book-cover-cat">Leadership</div>
+                <div class="book-cover-title">People-First Leadership</div>
+                <div class="book-cover-divider"></div>
+                <div class="book-cover-author">HR Pro Essentials</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="book-info">
+          <div class="bc-title">People-First Leadership</div>
+          <div class="bc-desc">How empathetic leaders build higher-performing, more engaged teams.</div>
+          <div class="bc-footer"><div class="bc-price">$28</div><button class="btn-buy">Buy &amp; Read →</button></div>
+        </div>
+      </div>
+
+      <!-- Book 3 -->
+      <div class="book-card">
+        <div class="book-scene">
+          <div class="book-3d bk-3">
+            <div class="book-back"></div>
+            <div class="book-pages"></div>
+            <div class="book-spine">
+              <span class="book-spine-text">HR Analytics Decoded</span>
+            </div>
+            <div class="book-front">
+              <div>
+                <span class="book-icon">📊</span>
+                <div class="book-cover-cat">Data &amp; Analytics</div>
+                <div class="book-cover-title">HR Analytics Decoded</div>
+                <div class="book-cover-divider"></div>
+                <div class="book-cover-author">HR Pro Essentials</div>
+              </div>
+            </div>
+            <div class="book-band">New Edition</div>
+          </div>
+        </div>
+        <div class="book-info">
+          <div class="bc-title">HR Analytics Decoded</div>
+          <div class="bc-desc">Turn people data into strategic decisions without needing a data science background.</div>
+          <div class="bc-footer"><div class="bc-price">$32</div><button class="btn-buy">Buy &amp; Read →</button></div>
+        </div>
+      </div>
+
+      <!-- Book 4 -->
+      <div class="book-card">
+        <div class="book-scene">
+          <div class="book-3d bk-4">
+            <div class="book-back"></div>
+            <div class="book-pages"></div>
+            <div class="book-spine">
+              <span class="book-spine-text">Employment Law Essentials</span>
+            </div>
+            <div class="book-front">
+              <div>
+                <span class="book-icon">⚖️</span>
+                <div class="book-cover-cat">Compliance &amp; Law</div>
+                <div class="book-cover-title">Employment Law Essentials</div>
+                <div class="book-cover-divider"></div>
+                <div class="book-cover-author">HR Pro Essentials</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="book-info">
+          <div class="bc-title">Employment Law Essentials</div>
+          <div class="bc-desc">Navigate compliance, contracts and workplace law with clarity and confidence.</div>
+          <div class="bc-footer"><div class="bc-price">$30</div><button class="btn-buy">Buy &amp; Read →</button></div>
+        </div>
+      </div>
+
+    </div>
+    <div class="section-cta-wrap fade-in"><a href="#" class="btn-center">View All Books →</a></div>
+  </div>
+</section>
+
+<!-- ── COURSES ────────────────────────── -->
+<section class="courses" id="courses">
+  <div class="section-inner">
+    <div class="section-header fade-in">
+      <div>
+        <div class="section-tag">Self-Paced</div>
+        <div class="section-title">Online <em>Courses</em></div>
+        <div class="section-sub">Learn at your own pace. Structured, practical and designed for busy professionals.</div>
+      </div>
+      <a href="#" class="btn-text">View All Courses →</a>
+    </div>
+    <div class="courses-grid">
+
+      <!-- Course 1 -->
+      <div class="course-card fade-in">
+        <div class="cc-thumb">
+          <div class="cc-thumb-bg" style="background:linear-gradient(145deg,#1a0f2e 0%,#3d1f6e 45%,#7c3abf 75%,#ffac70 100%);"></div>
+          <div class="cc-thumb-grid"></div>
+          <div class="cc-thumb-overlay"></div>
+          <div class="cc-play"></div>
+          <span class="cc-badge best">⭐ Bestseller</span>
+          <div class="cc-dur">⏱ 8.5 hrs · 42 lessons</div>
+          <div class="cc-stars-thumb">4.9 ★ <span>(312)</span></div>
+        </div>
+        <div class="cc-body">
+          <div class="cc-top-row">
+            <div class="cc-level"><span class="cc-level-dot"></span>Beginner → Advanced</div>
+            <div class="cc-instructor"><div class="cc-av">👩</div><span class="cc-av-name">S. Mitchell</span></div>
+          </div>
+          <div class="cc-title">Complete HR Management Foundations</div>
+          <div class="cc-curriculum">
+            <div class="cc-lesson">
+              <div class="cc-lesson-icon play">▶</div>
+              <span class="cc-lesson-text">Introduction to Modern HR</span>
+              <span class="cc-lesson-dur">12:30</span>
+            </div>
+            <div class="cc-lesson">
+              <div class="cc-lesson-icon play">▶</div>
+              <span class="cc-lesson-text">Building Your HR Strategy</span>
+              <span class="cc-lesson-dur">18:45</span>
+            </div>
+            <div class="cc-lesson">
+              <div class="cc-lesson-icon lock">🔒</div>
+              <span class="cc-lesson-text">Compliance & Policy Design</span>
+              <span class="cc-lesson-dur">22:10</span>
+            </div>
+          </div>
+          <div class="cc-pills">
+            <span class="cc-pill">🎓 Certificate</span>
+            <span class="cc-pill">♾ Lifetime access</span>
+            <span class="cc-pill">📥 Resources</span>
+          </div>
+          <div class="cc-rating-row">
+            <span class="cc-rating-num">4.9</span>
+            <div class="cc-rating-bar"><div class="cc-rating-bar-fill" style="width:98%;"></div></div>
+            <span class="cc-rating-count">(312 reviews)</span>
+          </div>
+          <div class="cc-footer">
+            <div><div class="cc-price">$129</div><div class="cc-price-old">was $199</div></div>
+            <button class="btn-learn">Start Learning →</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Course 2 -->
+      <div class="course-card fade-in">
+        <div class="cc-thumb">
+          <div class="cc-thumb-bg" style="background:linear-gradient(145deg,#0a1e3d 0%,#1a4080 45%,#2e74cc 75%,#a8d8f0 100%);"></div>
+          <div class="cc-thumb-grid"></div>
+          <div class="cc-thumb-overlay"></div>
+          <div class="cc-play"></div>
+          <span class="cc-badge new-badge">🆕 New</span>
+          <div class="cc-dur">⏱ 5.5 hrs · 28 lessons</div>
+          <div class="cc-stars-thumb">4.8 ★ <span>(208)</span></div>
+        </div>
+        <div class="cc-body">
+          <div class="cc-top-row">
+            <div class="cc-level"><span class="cc-level-dot"></span>Intermediate</div>
+            <div class="cc-instructor"><div class="cc-av">👨</div><span class="cc-av-name">J. Crawford</span></div>
+          </div>
+          <div class="cc-title">Recruitment Mastery: From Job Post to Offer</div>
+          <div class="cc-curriculum">
+            <div class="cc-lesson">
+              <div class="cc-lesson-icon play">▶</div>
+              <span class="cc-lesson-text">Writing Job Descriptions That Convert</span>
+              <span class="cc-lesson-dur">09:20</span>
+            </div>
+            <div class="cc-lesson">
+              <div class="cc-lesson-icon play">▶</div>
+              <span class="cc-lesson-text">Sourcing Candidates Effectively</span>
+              <span class="cc-lesson-dur">14:55</span>
+            </div>
+            <div class="cc-lesson">
+              <div class="cc-lesson-icon lock">🔒</div>
+              <span class="cc-lesson-text">Structuring the Interview Process</span>
+              <span class="cc-lesson-dur">20:30</span>
+            </div>
+          </div>
+          <div class="cc-pills">
+            <span class="cc-pill">🎓 Certificate</span>
+            <span class="cc-pill">📄 Templates</span>
+            <span class="cc-pill">💬 Community</span>
+          </div>
+          <div class="cc-rating-row">
+            <span class="cc-rating-num">4.8</span>
+            <div class="cc-rating-bar"><div class="cc-rating-bar-fill" style="width:96%;"></div></div>
+            <span class="cc-rating-count">(208 reviews)</span>
+          </div>
+          <div class="cc-footer">
+            <div><div class="cc-price">$89</div><div class="cc-price-old">was $149</div></div>
+            <button class="btn-learn">Start Learning →</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Course 3 -->
+      <div class="course-card fade-in">
+        <div class="cc-thumb">
+          <div class="cc-thumb-bg" style="background:linear-gradient(145deg,#0e2a1a 0%,#1f5c38 45%,#38a169 75%,#dff0fb 100%);"></div>
+          <div class="cc-thumb-grid"></div>
+          <div class="cc-thumb-overlay"></div>
+          <div class="cc-play"></div>
+          <span class="cc-badge hot">🔥 Popular</span>
+          <div class="cc-dur">⏱ 7 hrs · 36 lessons</div>
+          <div class="cc-stars-thumb">5.0 ★ <span>(94)</span></div>
+        </div>
+        <div class="cc-body">
+          <div class="cc-top-row">
+            <div class="cc-level"><span class="cc-level-dot"></span>All Levels</div>
+            <div class="cc-instructor"><div class="cc-av">👩</div><span class="cc-av-name">L. Rashid</span></div>
+          </div>
+          <div class="cc-title">HR Business Partner: Strategic Role Mastery</div>
+          <div class="cc-curriculum">
+            <div class="cc-lesson">
+              <div class="cc-lesson-icon play">▶</div>
+              <span class="cc-lesson-text">The HRBP Role Defined</span>
+              <span class="cc-lesson-dur">11:00</span>
+            </div>
+            <div class="cc-lesson">
+              <div class="cc-lesson-icon play">▶</div>
+              <span class="cc-lesson-text">Partnering with Business Leaders</span>
+              <span class="cc-lesson-dur">16:40</span>
+            </div>
+            <div class="cc-lesson">
+              <div class="cc-lesson-icon lock">🔒</div>
+              <span class="cc-lesson-text">Driving Culture Change</span>
+              <span class="cc-lesson-dur">24:15</span>
+            </div>
+          </div>
+          <div class="cc-pills">
+            <span class="cc-pill">🎓 Certificate</span>
+            <span class="cc-pill">♾ Lifetime access</span>
+            <span class="cc-pill">💬 Community</span>
+          </div>
+          <div class="cc-rating-row">
+            <span class="cc-rating-num">5.0</span>
+            <div class="cc-rating-bar"><div class="cc-rating-bar-fill" style="width:100%;"></div></div>
+            <span class="cc-rating-count">(94 reviews)</span>
+          </div>
+          <div class="cc-footer">
+            <div><div class="cc-price">$109</div><div class="cc-price-old">was $169</div></div>
+            <button class="btn-learn">Start Learning →</button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ── MATERIALS ──────────────────────── -->
+<section class="materials" id="materials">
+  <div class="section-inner">
+    <div class="section-header fade-in">
+      <div>
+        <div class="section-tag">Ready to Use</div>
+        <div class="section-title">HR Materials <em>&amp;</em> Templates</div>
+        <div class="section-sub">Download and use immediately. Professional-grade templates built for real HR teams.</div>
+      </div>
+    </div>
+    <div class="materials-grid">
+
+      <!-- DOCX card -->
+      <div class="material-card fade-in">
+        <div class="mc-header docx">
+          <div class="mc-filetype-badge">
+            <div class="mc-filetype-icon">📄</div>
+            <div class="mc-filetype-ext">DOCX</div>
+          </div>
+          <div class="mc-count">8 files</div>
+        </div>
+        <div class="mc-body">
+          <div class="mc-type-label docx">Word Document</div>
+          <div class="mc-title">CV &amp; Resume Templates</div>
+          <div class="mc-desc">10 professionally designed CV templates for HR roles at all career levels. Editable in Word &amp; Google Docs.</div>
+          <div class="mc-features">
+            <div class="mc-feature docx">Fully editable in Microsoft Word</div>
+            <div class="mc-feature docx">Google Docs compatible</div>
+            <div class="mc-feature docx">ATS-friendly layout</div>
+          </div>
+          <div class="mc-footer">
+            <div class="mc-price">$19</div>
+            <button class="btn-dl docx"><span class="btn-dl-icon">⬇</span> Download</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- PDF card -->
+      <div class="material-card fade-in">
+        <div class="mc-header pdf">
+          <div class="mc-filetype-badge">
+            <div class="mc-filetype-icon">📋</div>
+            <div class="mc-filetype-ext">PDF</div>
+          </div>
+          <div class="mc-count">14 files</div>
+        </div>
+        <div class="mc-body">
+          <div class="mc-type-label pdf">PDF Document</div>
+          <div class="mc-title">HR Policy Templates</div>
+          <div class="mc-desc">Complete HR policy library — from leave policies to code of conduct and remote work guidelines.</div>
+          <div class="mc-features">
+            <div class="mc-feature pdf">Print-ready format</div>
+            <div class="mc-feature pdf">Legally reviewed language</div>
+            <div class="mc-feature pdf">Covers 14 HR policy types</div>
+          </div>
+          <div class="mc-footer">
+            <div class="mc-price">$29</div>
+            <button class="btn-dl pdf"><span class="btn-dl-icon">⬇</span> Download</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- XLSX card -->
+      <div class="material-card fade-in">
+        <div class="mc-header xlsx">
+          <div class="mc-filetype-badge">
+            <div class="mc-filetype-icon">📊</div>
+            <div class="mc-filetype-ext">XLSX</div>
+          </div>
+          <div class="mc-count">6 files</div>
+        </div>
+        <div class="mc-body">
+          <div class="mc-type-label xlsx">Excel Spreadsheet</div>
+          <div class="mc-title">Interview Evaluation Sheets</div>
+          <div class="mc-desc">Structured scorecards for competency-based interviews. Reduce bias and make better hiring decisions.</div>
+          <div class="mc-features">
+            <div class="mc-feature xlsx">Auto-scoring formulas built in</div>
+            <div class="mc-feature xlsx">Works in Excel &amp; Google Sheets</div>
+            <div class="mc-feature xlsx">6 role-specific score cards</div>
+          </div>
+          <div class="mc-footer">
+            <div class="mc-price">$15</div>
+            <button class="btn-dl xlsx"><span class="btn-dl-icon">⬇</span> Download</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- MIX card -->
+      <div class="material-card fade-in">
+        <div class="mc-header mix">
+          <div class="mc-filetype-badge">
+            <div class="mc-filetype-icon">🗂️</div>
+            <div class="mc-filetype-ext">Bundle</div>
+          </div>
+          <div class="mc-count">12 files</div>
+        </div>
+        <div class="mc-body">
+          <div class="mc-type-label mix">DOCX + PDF + XLSX</div>
+          <div class="mc-title">Hiring Workflow Templates</div>
+          <div class="mc-desc">End-to-end recruitment process maps, checklists and email templates for a seamless candidate experience.</div>
+          <div class="mc-features">
+            <div class="mc-feature mix">Process maps (PDF)</div>
+            <div class="mc-feature mix">Email templates (DOCX)</div>
+            <div class="mc-feature mix">Candidate tracker (XLSX)</div>
+          </div>
+          <div class="mc-footer">
+            <div class="mc-price">$24</div>
+            <button class="btn-dl mix"><span class="btn-dl-icon">⬇</span> Download</button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ── ABOUT ──────────────────────────── -->
+<section class="about" id="about">
+  <div class="section-inner about-inner fade-in">
+
+    <div class="about-photo">
+      <div class="about-photo-frame">
+        <img src="https://media.licdn.com/dms/image/v2/D4D03AQGLbIp9m7U_3A/profile-displayphoto-shrink_400_400/B4DZZnzaOoHIAg-/0/1745498252722?e=1774483200&v=beta&t=vmfjCvsYduS8mwGtlhGOimOnGYy1jaB1BvKrUKMI3h4"/>
+
+      </div>
+      <div class="about-photo-badge"><strong>10+</strong>Years in HR</div>
+    </div>
+
+    <div>
+      <div class="about-eyebrow">About the Author</div>
+      <div class="about-quote">"Helping HR professionals build stronger careers with <em>practical tools</em> and knowledge."</div>
+      <p class="about-text">With over a decade working across recruitment, employee relations and HR strategy, I've seen what actually works — and what doesn't. I created this platform to share the tools, frameworks and knowledge that helped me grow, so you don't have to figure it all out alone.</p>
+      <div class="about-numbers">
+        <div class="about-num"><div class="about-num-val">2.4<span>k</span></div><div class="about-num-label">Professionals helped</div></div>
+        <div class="about-num"><div class="about-num-val">80<span>+</span></div><div class="about-num-label">Resources created</div></div>
+        <div class="about-num"><div class="about-num-val">10<span>+</span></div><div class="about-num-label">Years experience</div></div>
+      </div>
+      <div class="about-socials">
+        <a class="social-btn" title="LinkedIn">💼</a>
+        <a class="social-btn" title="Instagram">📸</a>
+        <a class="social-btn" title="Email">✉️</a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ── THANK YOU ──────────────────────── -->
+<section class="thankyou" id="thankyou">
+  <div class="thankyou-inner fade-in">
+    <span class="ty-icon">🌷</span>
+    <div class="ty-title">Thank you for being part<br>of this <em>journey</em></div>
+    <div class="ty-divider"></div>
+    <p class="ty-text">I appreciate your trust and hope these resources support your professional growth. Every workshop, book and template was made with care — for professionals like you who want to do great work in HR.</p>
+    <div class="ty-signature">Edyta  </div>
+    <div class="ty-role">HR Educator &amp; Author · HR Pro</div>
+    <div class="ty-hearts"><span>🧡</span><span>💛</span><span>🩵</span></div>
+  </div>
+</section>
+
+<!-- ── FOOTER ─────────────────────────── -->
+<!-- ══════════════════════════════════════════════
+     MODAL BACKDROP
+     ══════════════════════════════════════════════ -->
+<div class="modal-backdrop" id="modalBackdrop">
+  <div class="modal" id="modalContent">
+    <!-- Dynamically built by JS -->
+  </div>
+</div>
+
+<footer>
+  <div class="footer-top">
+    <div>
+      <div class="footer-logo">HR<span style="color:var(--peach);">●</span>Pro</div>
+      <div class="footer-tagline">Practical HR knowledge for modern professionals who want to grow.</div>
+    </div>
+    <div class="footer-nav">
+      <div class="footer-col">
+        <div class="footer-col-title">Learn</div>
+        <a href="#workshops">Workshops</a>
+        <a href="#books">Books</a>
+        <a href="#courses">Courses</a>
+        <a href="#materials">Templates</a>
+      </div>
+      <div class="footer-col">
+        <div class="footer-col-title">Company</div>
+        <a href="#about">About</a>
+        <a href="#">Contact</a>
+        <a href="#">Blog</a>
+        <a href="#">Affiliate</a>
+      </div>
+      <div class="footer-col">
+        <div class="footer-col-title">Legal</div>
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms of Use</a>
+        <a href="#">Refund Policy</a>
+        <a href="#">Cookie Policy</a>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div>© 2025 HR Pro. All rights reserved.</div>
+    <div class="footer-socials">
+      <a class="footer-social" title="LinkedIn">💼</a>
+      <a class="footer-social" title="Instagram">📸</a>
+      <a class="footer-social" title="Email">✉️</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  /* ── Cursor ── */
+  const cursor = document.getElementById('cursor');
+  const ring   = document.getElementById('ring');
+  document.addEventListener('mousemove', e => {
+    cursor.style.left = e.clientX + 'px'; cursor.style.top = e.clientY + 'px';
+    ring.style.left   = e.clientX + 'px'; ring.style.top   = e.clientY + 'px';
+  });
+
+  /* ── Navbar ── */
+  window.addEventListener('scroll', () => {
+    document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 20);
+  });
+
+  /* ── Fade-in observer ── */
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+  /* ══════════════════════════════════════════
+     MODAL SYSTEM
+  ══════════════════════════════════════════ */
+
+  const backdrop = document.getElementById('modalBackdrop');
+  let currentData = {};
+
+  function openModal(data) {
+    currentData = data;
+    buildModal(data);
+    backdrop.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeModal() {
+    backdrop.classList.remove('open');
+    document.body.style.overflow = '';
+    // Reset payment form after animation
+    setTimeout(resetPaymentForm, 350);
+  }
+
+  backdrop.addEventListener('click', e => { if (e.target === backdrop) closeModal(); });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+
+  function buildModal(d) {
+    /* ── LEFT: banner / visual ── */
+    let visualHTML = '';
+
+    if (d.type === 'book') {
+      visualHTML = `
+        <div class="mp-book-wrap">
+          <div class="mp-book-3d">
+            <div class="mp-book-spine" style="background:${d.spineColor}"></div>
+            <div class="mp-book-pages"></div>
+            <div class="mp-book-front" style="background:${d.coverBg}">
+              <div>
+                <span class="mp-book-icon">${d.icon}</span>
+                <div class="mp-book-cat">${d.category}</div>
+                <div class="mp-book-title-cover">${d.title}</div>
+                <div class="mp-book-div"></div>
+                <div class="mp-book-author">${d.author}</div>
+              </div>
+            </div>
+          </div>
+        </div>`;
+    } else if (d.type === 'template') {
+      visualHTML = `
+        <div class="mp-file-wrap" style="background:${d.wrapBg}">
+          <div class="mp-file-ghost mp-file-ghost-1"></div>
+          <div class="mp-file-ghost mp-file-ghost-2"></div>
+          <div class="mp-file-card">
+            <div class="mp-file-header" style="background:${d.fileHeaderBg}">${d.icon}</div>
+            <div class="mp-file-lines">
+              <div class="mp-file-line long"></div>
+              <div class="mp-file-line med"></div>
+              <div class="mp-file-line short"></div>
+              <div class="mp-file-line long"></div>
+              <div class="mp-file-line med"></div>
+            </div>
+            <div class="mp-file-ext ${d.extClass}">${d.ext}</div>
+          </div>
+        </div>`;
+    } else {
+      // workshop / course — coloured banner
+      visualHTML = `
+        <div class="mp-banner">
+          <div class="mp-banner-bg" style="background:${d.bannerBg}"></div>
+          <div class="mp-banner-overlay"></div>
+          <div class="mp-banner-content">
+            <div class="mp-banner-type">${d.typeLabel}</div>
+            <div class="mp-banner-title">${d.title}</div>
+          </div>
+        </div>`;
+    }
+
+    /* ── LEFT: body ── */
+    let includesHTML = d.includes.map(i => `
+      <div class="mp-include-row">
+        <div class="mp-check">✓</div>
+        <span>${i}</span>
+      </div>`).join('');
+
+    let instructorHTML = d.instructor ? `
+      <div class="mp-instructor">
+        <div class="mp-instructor-av">${d.instructor.av}</div>
+        <div>
+          <div class="mp-instructor-name">${d.instructor.name}</div>
+          <div class="mp-instructor-role">${d.instructor.role}</div>
+        </div>
+        <div class="mp-rating">
+          <span class="mp-rating-stars">★★★★★</span>
+          <span class="mp-rating-val">${d.rating}</span>
+          <span class="mp-rating-count">(${d.reviews})</span>
+        </div>
+      </div>` : '';
+
+    let curriculumHTML = '';
+    if (d.curriculum) {
+      curriculumHTML = `
+        <div class="mp-curriculum">
+          <div class="mp-includes-title">📚 Preview Lessons</div>
+          ${d.curriculum.map(l => `
+            <div class="mp-lesson">
+              <div class="mp-lesson-icon ${l.free ? 'free' : 'locked'}">${l.free ? '▶' : '🔒'}</div>
+              <span class="mp-lesson-name">${l.name}</span>
+              <span class="mp-lesson-dur">${l.dur}</span>
+            </div>`).join('')}
+        </div>`;
+    }
+
+    /* ── RIGHT: payment ── */
+    const tax = Math.round(d.price * 0.08);
+    const total = d.price + tax;
+    const oldPrice = d.oldPrice || null;
+    const savings = oldPrice ? oldPrice - d.price : null;
+
+    const payLabel = d.type === 'template' ? `⬇ Download — $${total}` :
+                     d.type === 'book'     ? `📖 Buy & Read — $${total}` :
+                     d.type === 'workshop' ? `🎓 Reserve My Spot — $${total}` :
+                                             `▶ Start Learning — $${total}`;
+
+    document.getElementById('modalContent').innerHTML = `
+      <!-- Close btn -->
+      <button class="modal-close dark" onclick="closeModal()">✕</button>
+
+      <!-- LEFT PANEL -->
+      <div class="mp-left">
+        ${visualHTML}
+        <div class="mp-body">
+          <div class="mp-label">${d.category}</div>
+          <div class="mp-title">${d.title}</div>
+          <div class="mp-desc">${d.desc}</div>
+          ${instructorHTML}
+          ${curriculumHTML}
+          <div class="mp-includes">
+            <div class="mp-includes-title">✅ What's included</div>
+            ${includesHTML}
+          </div>
+        </div>
+      </div>
+
+      <!-- RIGHT PANEL -->
+      <div class="mp-right">
+
+        <!-- Success screen (hidden until payment) -->
+        <div class="mp-success" id="mpSuccess">
+          <div class="mp-success-icon">🎉</div>
+          <div class="mp-success-title">You're all set!</div>
+          <div class="mp-success-sub">Your purchase was successful. Check your email for access details and receipt.</div>
+          <button class="mp-success-close" onclick="closeModal()">Continue Browsing</button>
+        </div>
+
+        <!-- Payment form -->
+        <div class="mp-payment" id="mpPayment">
+          <div class="mp-payment-title">Complete your purchase</div>
+          <div class="mp-payment-sub">Secure checkout · Instant access after payment</div>
+
+          <div class="mp-price-row">
+            <div class="mp-price-main">$${d.price}</div>
+            ${oldPrice ? `<div class="mp-price-old">$${oldPrice}</div>` : ''}
+            ${savings ? `<div class="mp-price-tag">Save $${savings}</div>` : ''}
+          </div>
+
+          <div class="mp-summary">
+            <div class="mp-summary-row"><span>${d.title.length > 30 ? d.title.substring(0,30)+'…' : d.title}</span><span>$${d.price}</span></div>
+            <div class="mp-summary-row"><span>Tax (8%)</span><span>$${tax}</span></div>
+            <div class="mp-summary-row total"><span>Total</span><span>$${total}</span></div>
+          </div>
+
+          <div class="mp-form" id="mpForm">
+            <div class="mp-form-group">
+              <label class="mp-label-field">Full Name</label>
+              <input class="mp-input" id="mpName" type="text" placeholder="Jane Smith" autocomplete="name">
+              <div class="mp-error" id="mpNameErr">Please enter your name</div>
+            </div>
+            <div class="mp-form-group">
+              <label class="mp-label-field">Email Address</label>
+              <input class="mp-input" id="mpEmail" type="email" placeholder="jane@example.com" autocomplete="email">
+              <div class="mp-error" id="mpEmailErr">Please enter a valid email</div>
+            </div>
+            <div class="mp-form-group">
+              <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:5px;">
+                <label class="mp-label-field">Card Number</label>
+                <div class="mp-card-icons">
+                  <div class="mp-card-icon">VISA</div>
+                  <div class="mp-card-icon">MC</div>
+                  <div class="mp-card-icon">AMEX</div>
+                </div>
+              </div>
+              <input class="mp-input" id="mpCard" type="text" placeholder="1234 5678 9012 3456" maxlength="19" oninput="fmtCard(this)">
+              <div class="mp-error" id="mpCardErr">Please enter a valid card number</div>
+            </div>
+            <div class="mp-form-row">
+              <div class="mp-form-group">
+                <label class="mp-label-field">Expiry</label>
+                <input class="mp-input" id="mpExpiry" type="text" placeholder="MM / YY" maxlength="7" oninput="fmtExpiry(this)">
+                <div class="mp-error" id="mpExpiryErr">Invalid expiry</div>
+              </div>
+              <div class="mp-form-group">
+                <label class="mp-label-field">CVV</label>
+                <input class="mp-input" id="mpCvv" type="text" placeholder="123" maxlength="4" oninput="this.value=this.value.replace(/\D/g,'')">
+                <div class="mp-error" id="mpCvvErr">Invalid CVV</div>
+              </div>
+            </div>
+
+            <button class="mp-pay-btn" id="mpPayBtn" onclick="submitPayment()">
+              <span id="mpPayLabel">🔒 ${payLabel}</span>
+              <div class="mp-spinner" id="mpSpinner"></div>
+            </button>
+
+            <div class="mp-secure">
+              <span class="mp-secure-icon">🔒</span>
+              Secured by 256-bit SSL encryption
+              <span class="mp-secure-icon">·</span>
+              <span class="mp-secure-icon">💳</span>
+              Stripe Payments
+            </div>
+
+            <div class="mp-guarantee">
+              <span style="font-size:1.3rem;">🛡️</span>
+              <div><strong>30-day money-back guarantee.</strong> Not satisfied? Full refund, no questions asked.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    `;
+  }
+
+  function resetPaymentForm() {
+    const s = document.getElementById('mpSuccess');
+    const p = document.getElementById('mpPayment');
+    const btn = document.getElementById('mpPayBtn');
+    const sp = document.getElementById('mpSpinner');
+    const lbl = document.getElementById('mpPayLabel');
+    if (s) { s.classList.remove('show'); }
+    if (p) { p.style.display = ''; }
+    if (btn) { btn.disabled = false; }
+    if (sp) { sp.style.display = 'none'; }
+  }
+
+  /* ── Card formatters ── */
+  function fmtCard(el) {
+    let v = el.value.replace(/\D/g,'').substring(0,16);
+    el.value = v.replace(/(.{4})/g,'$1 ').trim();
+  }
+  function fmtExpiry(el) {
+    let v = el.value.replace(/\D/g,'').substring(0,4);
+    if (v.length >= 3) v = v.substring(0,2)+' / '+v.substring(2);
+    el.value = v;
+  }
+
+  /* ── Validate & pay ── */
+  function submitPayment() {
+    let valid = true;
+
+    const name   = document.getElementById('mpName');
+    const email  = document.getElementById('mpEmail');
+    const card   = document.getElementById('mpCard');
+    const expiry = document.getElementById('mpExpiry');
+    const cvv    = document.getElementById('mpCvv');
+
+    const showErr = (id, show) => {
+      document.getElementById(id).classList.toggle('show', show);
+    };
+
+    if (!name.value.trim()) { showErr('mpNameErr', true); valid = false; } else showErr('mpNameErr', false);
+
+    const emailRe = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRe.test(email.value)) { showErr('mpEmailErr', true); valid = false; } else showErr('mpEmailErr', false);
+
+    const cardClean = card.value.replace(/\s/g,'');
+    if (cardClean.length < 16) { showErr('mpCardErr', true); valid = false; } else showErr('mpCardErr', false);
+
+    if (expiry.value.length < 7) { showErr('mpExpiryErr', true); valid = false; } else showErr('mpExpiryErr', false);
+
+    if (cvv.value.length < 3) { showErr('mpCvvErr', true); valid = false; } else showErr('mpCvvErr', false);
+
+    if (!valid) return;
+
+    /* Simulate processing */
+    const btn = document.getElementById('mpPayBtn');
+    const sp  = document.getElementById('mpSpinner');
+    const lbl = document.getElementById('mpPayLabel');
+    btn.disabled = true;
+    lbl.textContent = 'Processing…';
+    sp.style.display = 'block';
+
+    setTimeout(() => {
+      document.getElementById('mpPayment').style.display = 'none';
+      document.getElementById('mpSuccess').classList.add('show');
+    }, 2000);
+  }
+
+  /* ══════════════════════════════════════════
+     DATA CATALOGUE — each card's modal data
+  ══════════════════════════════════════════ */
+
+  const MODALS = {
+
+    /* WORKSHOPS */
+    w1: {
+      type:'workshop', typeLabel:'🎯 Live Workshop',
+      title:'Strategic Talent Acquisition Masterclass',
+      category:'Recruitment',
+      desc:'Learn modern hiring frameworks that attract top talent and cut time-to-fill by up to 40%. Includes live Q&A, exercises and real job-description critique.',
+      bannerBg:'linear-gradient(135deg,#1a0a2e 0%,#3d1a5e 40%,#6b2fa0 70%,#ff8c42 100%)',
+      price:89, oldPrice:130,
+      instructor:{ av:'👩', name:'Edyta   Mitchell', role:'Senior HR Strategist' },
+      rating:'4.9', reviews:'312',
+      includes:['3.5 hrs live session','Downloadable slide deck','Job description template kit','Recording access (30 days)','Certificate of completion'],
+      curriculum:null
+    },
+    w2: {
+      type:'workshop', typeLabel:'📋 Live Workshop',
+      title:'Performance Management That Actually Works',
+      category:'Performance',
+      desc:'Build review cycles that motivate employees. Get practical scorecards, conversation frameworks and a step-by-step implementation plan.',
+      bannerBg:'linear-gradient(135deg,#0a1a2e 0%,#1a3d5e 40%,#2f6b9e 70%,#42b8ff 100%)',
+      price:79, oldPrice:120,
+      instructor:{ av:'👨', name:'James Crawford', role:'Performance Coach' },
+      rating:'4.8', reviews:'208',
+      includes:['2.75 hrs live session','Performance review template pack','Manager conversation guide','Recording access (30 days)','Certificate of completion'],
+      curriculum:null
+    },
+    w3: {
+      type:'workshop', typeLabel:'🤝 Live Workshop',
+      title:'Conflict Resolution & Workplace Culture',
+      category:'Employee Relations',
+      desc:'Navigate difficult conversations with confidence. Walk away with proven de-escalation scripts and a culture-building action plan for your team.',
+      bannerBg:'linear-gradient(135deg,#0e2a1a 0%,#1a5e3a 40%,#2fa06b 70%,#42ffb4 100%)',
+      price:95, oldPrice:140,
+      instructor:{ av:'👩', name:'Leila Rashid', role:'HR Culture Lead' },
+      rating:'5.0', reviews:'94',
+      includes:['4 hrs live session','Conflict resolution script booklet','Culture health audit template','Recording access (30 days)','Certificate of completion'],
+      curriculum:null
+    },
+
+    /* BOOKS */
+    b1: {
+      type:'book', title:'The Modern HR Playbook', category:'HR Management',
+      desc:'A comprehensive, no-fluff guide to building HR systems that genuinely scale. Covers recruitment, onboarding, retention and everything in between.',
+      icon:'🎯', author:'HR Pro Essentials',
+      coverBg:'linear-gradient(145deg,#1a1a2e 0%,#2d2d60 60%,#3d3d7a 100%)',
+      spineColor:'linear-gradient(to bottom,#0f0f1e,#1a1a40)',
+      price:34, oldPrice:50,
+      instructor:null, rating:'4.8', reviews:'540',
+      includes:['220-page digital PDF','Lifetime access','10 ready-to-use HR templates','Free future updates','Printable workbook'],
+      curriculum:null
+    },
+    b2: {
+      type:'book', title:'People-First Leadership', category:'Leadership',
+      desc:'How empathetic leaders build higher-performing, more engaged teams. Packed with real case studies and practical frameworks you can use from day one.',
+      icon:'🌱', author:'HR Pro Essentials',
+      coverBg:'linear-gradient(145deg,#1c4a2e 0%,#2d6e44 60%,#3a8a56 100%)',
+      spineColor:'linear-gradient(to bottom,#112d1c,#1c4a2e)',
+      price:28, oldPrice:42,
+      instructor:null, rating:'4.9', reviews:'380',
+      includes:['185-page digital PDF','Lifetime access','Leader self-assessment tool','Free future updates','Discussion guide for teams'],
+      curriculum:null
+    },
+    b3: {
+      type:'book', title:'HR Analytics Decoded', category:'Data & Analytics',
+      desc:'Turn people data into strategic decisions without needing a data science background. Learn to build dashboards, spot trends and present findings to leadership.',
+      icon:'📊', author:'HR Pro Essentials',
+      coverBg:'linear-gradient(145deg,#4a1520 0%,#7a2035 60%,#9a2a45 100%)',
+      spineColor:'linear-gradient(to bottom,#2e0d14,#4a1520)',
+      price:32, oldPrice:48,
+      instructor:null, rating:'4.7', reviews:'210',
+      includes:['200-page digital PDF','Lifetime access','Excel dashboard templates','Sample datasets to practise with','Free future updates'],
+      curriculum:null
+    },
+    b4: {
+      type:'book', title:'Employment Law Essentials', category:'Compliance & Law',
+      desc:'Navigate compliance, contracts and workplace law with clarity and confidence — written for HR professionals, not lawyers.',
+      icon:'⚖️', author:'HR Pro Essentials',
+      coverBg:'linear-gradient(145deg,#1a2e40 0%,#2a4a65 60%,#355c80 100%)',
+      spineColor:'linear-gradient(to bottom,#0f1e2a,#1a2e40)',
+      price:30, oldPrice:45,
+      instructor:null, rating:'4.8', reviews:'295',
+      includes:['175-page digital PDF','Lifetime access','Contract template library','Compliance checklist pack','Free future updates'],
+      curriculum:null
+    },
+
+    /* COURSES */
+    c1: {
+      type:'course', typeLabel:'🎓 Online Course',
+      title:'Complete HR Management Foundations',
+      category:'Beginner → Advanced',
+      desc:'The definitive HR foundations course. Master every pillar of modern people management — from hiring to culture — in one structured programme.',
+      bannerBg:'linear-gradient(145deg,#1a0f2e 0%,#3d1f6e 45%,#7c3abf 75%,#ffac70 100%)',
+      price:129, oldPrice:199,
+      instructor:{ av:'👩', name:'Edyta   Mitchell', role:'Senior HR Strategist' },
+      rating:'4.9', reviews:'312',
+      includes:['42 on-demand video lessons','8.5 hrs total content','Downloadable resources & templates','Certificate of completion','Lifetime access'],
+      curriculum:[
+        {name:'Introduction to Modern HR', dur:'12:30', free:true},
+        {name:'Building Your HR Strategy', dur:'18:45', free:true},
+        {name:'Compliance & Policy Design', dur:'22:10', free:false},
+        {name:'Recruitment Fundamentals', dur:'19:55', free:false},
+        {name:'Onboarding That Retains', dur:'14:30', free:false},
+      ]
+    },
+    c2: {
+      type:'course', typeLabel:'📋 Online Course',
+      title:'Recruitment Mastery: From Job Post to Offer',
+      category:'Intermediate',
+      desc:'Master every stage of the recruitment funnel. Write better job posts, source smarter, interview with structure and close top candidates.',
+      bannerBg:'linear-gradient(145deg,#0a1e3d 0%,#1a4080 45%,#2e74cc 75%,#a8d8f0 100%)',
+      price:89, oldPrice:149,
+      instructor:{ av:'👨', name:'James Crawford', role:'Performance Coach' },
+      rating:'4.8', reviews:'208',
+      includes:['28 on-demand video lessons','5.5 hrs total content','Job description & scorecard templates','Certificate of completion','Lifetime access'],
+      curriculum:[
+        {name:'Writing Job Descriptions That Convert', dur:'09:20', free:true},
+        {name:'Sourcing Candidates Effectively', dur:'14:55', free:true},
+        {name:'Structuring the Interview Process', dur:'20:30', free:false},
+        {name:'Bias-Free Evaluation', dur:'16:00', free:false},
+        {name:'Making & Negotiating the Offer', dur:'11:45', free:false},
+      ]
+    },
+    c3: {
+      type:'course', typeLabel:'💼 Online Course',
+      title:'HR Business Partner: Strategic Role Mastery',
+      category:'All Levels',
+      desc:'Step into a true HRBP role. Learn to influence senior leaders, drive cultural change and align people strategy with business goals.',
+      bannerBg:'linear-gradient(145deg,#0e2a1a 0%,#1f5c38 45%,#38a169 75%,#dff0fb 100%)',
+      price:109, oldPrice:169,
+      instructor:{ av:'👩', name:'Leila Rashid', role:'HR Culture Lead' },
+      rating:'5.0', reviews:'94',
+      includes:['36 on-demand video lessons','7 hrs total content','HRBP framework toolkit','Certificate of completion','Lifetime access'],
+      curriculum:[
+        {name:'The HRBP Role Defined', dur:'11:00', free:true},
+        {name:'Partnering with Business Leaders', dur:'16:40', free:true},
+        {name:'Driving Culture Change', dur:'24:15', free:false},
+        {name:'HR Metrics That Matter', dur:'18:30', free:false},
+        {name:'Building Your Personal Brand in HR', dur:'13:20', free:false},
+      ]
+    },
+
+    /* TEMPLATES */
+    t1: {
+      type:'template', title:'CV & Resume Templates', category:'Word Document · DOCX',
+      desc:'10 professionally designed CV templates for HR roles at all career levels. Instantly editable in Microsoft Word and Google Docs.',
+      icon:'📄', ext:'DOCX', extClass:'docx',
+      fileHeaderBg:'linear-gradient(135deg,#1a3a6b,#2563eb)',
+      wrapBg:'linear-gradient(135deg,#e8f0fe,#dbeafe)',
+      price:19, oldPrice:null,
+      instructor:null, rating:'4.9', reviews:'820',
+      includes:['8 fully editable DOCX files','ATS-friendly layouts','Google Docs compatible','Instant download','Free future updates'],
+      curriculum:null
+    },
+    t2: {
+      type:'template', title:'HR Policy Templates', category:'PDF Document',
+      desc:'Complete HR policy library covering 14 essential topics — from annual leave to remote work, grievance procedures and code of conduct.',
+      icon:'📋', ext:'PDF', extClass:'pdf',
+      fileHeaderBg:'linear-gradient(135deg,#7f1d1d,#dc2626)',
+      wrapBg:'linear-gradient(135deg,#fef2f2,#fee2e2)',
+      price:29, oldPrice:null,
+      instructor:null, rating:'4.8', reviews:'610',
+      includes:['14 print-ready PDF files','Legally reviewed language','Instant download','Editable Word source files included','Free future updates'],
+      curriculum:null
+    },
+    t3: {
+      type:'template', title:'Interview Evaluation Sheets', category:'Excel Spreadsheet · XLSX',
+      desc:'6 structured scoring sheets for competency-based interviews. Built-in formulas auto-calculate scores and rank candidates objectively.',
+      icon:'📊', ext:'XLSX', extClass:'xlsx',
+      fileHeaderBg:'linear-gradient(135deg,#14532d,#16a34a)',
+      wrapBg:'linear-gradient(135deg,#f0fdf4,#dcfce7)',
+      price:15, oldPrice:null,
+      instructor:null, rating:'4.9', reviews:'440',
+      includes:['6 role-specific XLSX scorecards','Auto-scoring formulas','Google Sheets compatible','Instant download','Free future updates'],
+      curriculum:null
+    },
+    t4: {
+      type:'template', title:'Hiring Workflow Templates', category:'Bundle · DOCX + PDF + XLSX',
+      desc:'Complete end-to-end recruitment process kit: process maps, checklist templates, email sequences and a candidate tracking spreadsheet.',
+      icon:'🗂️', ext:'Bundle', extClass:'mix',
+      fileHeaderBg:'linear-gradient(135deg,#1a1a2e,#4338ca)',
+      wrapBg:'linear-gradient(135deg,#f5f3ff,#ede9fe)',
+      price:24, oldPrice:null,
+      instructor:null, rating:'4.8', reviews:'350',
+      includes:['Process maps (PDF)','Email templates (DOCX)','Candidate tracker (XLSX)','Onboarding checklist (PDF)','Instant download'],
+      curriculum:null
+    },
+  };
+
+  /* ── Wire up all card buttons ── */
+  document.querySelectorAll('.btn-reserve').forEach((btn, i) => {
+    const keys = ['w1','w2','w3'];
+    if (keys[i]) btn.addEventListener('click', () => openModal(MODALS[keys[i]]));
+  });
+  document.querySelectorAll('.btn-buy').forEach((btn, i) => {
+    const keys = ['b1','b2','b3','b4'];
+    if (keys[i]) btn.addEventListener('click', () => openModal(MODALS[keys[i]]));
+  });
+  document.querySelectorAll('.btn-learn').forEach((btn, i) => {
+    const keys = ['c1','c2','c3'];
+    if (keys[i]) btn.addEventListener('click', () => openModal(MODALS[keys[i]]));
+  });
+  document.querySelectorAll('.btn-dl').forEach((btn, i) => {
+    const keys = ['t1','t2','t3','t4'];
+    if (keys[i]) btn.addEventListener('click', () => openModal(MODALS[keys[i]]));
+  });
+
+  /* Also wire the hero reserve button */
+  document.querySelector('.h-card-main .btn-reserve')?.addEventListener('click', () => openModal(MODALS['w1']));
+</script>
+</body>
+</html>

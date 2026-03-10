@@ -813,7 +813,9 @@
         <div class="table-wrap">
           <table>
             <thead>
-              <tr><th>Content</th><th>Type</th><th>Category</th><th>Price</th><th>Sales</th><th>Access</th><th>Protected</th><th>Published</th><th>Actions</th></tr>
+              <tr><th>Content</th><th>Type</th><th>Category</th><th>Price</th><th>Sales</th><th>Access</th>
+                <!-- <th>Protected</th> -->
+                <th>Published</th><th>Actions</th></tr>
             </thead>
             <tbody>
               <tr>
@@ -826,7 +828,7 @@
                 <td style="color:var(--gold);font-weight:700">$24</td>
                 <td>98</td>
                 <td><span class="badge b-readonly">🔒 Read-Only</span></td>
-                <td><span style="color:var(--red);font-size:0.8rem;font-weight:600;">📸 Blocked</span></td>
+                <!-- <td><span style="color:var(--red);font-size:0.8rem;font-weight:600;">📸 Blocked</span></td> -->
                 <td><button class="toggle on" onclick="this.classList.toggle('on');this.classList.toggle('off');"></button></td>
                 <td>
                   <button style="background:none;border:1px solid var(--border);color:var(--text);padding:4px 10px;border-radius:4px;font-size:0.72rem;cursor:pointer;margin-right:4px;">Edit</button>
@@ -843,7 +845,7 @@
                 <td style="color:var(--gold);font-weight:700">$49</td>
                 <td>124</td>
                 <td><span class="badge b-download">⬇ Downloadable</span></td>
-                <td><span style="color:var(--muted);font-size:0.8rem;">—</span></td>
+                <!-- <td><span style="color:var(--muted);font-size:0.8rem;">—</span></td> -->
                 <td><button class="toggle on" onclick="this.classList.toggle('on');this.classList.toggle('off');"></button></td>
                 <td>
                   <button style="background:none;border:1px solid var(--border);color:var(--text);padding:4px 10px;border-radius:4px;font-size:0.72rem;cursor:pointer;margin-right:4px;">Edit</button>
@@ -860,7 +862,7 @@
                 <td style="color:var(--gold);font-weight:700">$18</td>
                 <td>64</td>
                 <td><span class="badge b-readonly">🔒 Read-Only</span></td>
-                <td><span style="color:var(--red);font-size:0.8rem;font-weight:600;">📸 Blocked</span></td>
+                <!-- <td><span style="color:var(--red);font-size:0.8rem;font-weight:600;">📸 Blocked</span></td> -->
                 <td><button class="toggle on" onclick="this.classList.toggle('on');this.classList.toggle('off');"></button></td>
                 <td>
                   <button style="background:none;border:1px solid var(--border);color:var(--text);padding:4px 10px;border-radius:4px;font-size:0.72rem;cursor:pointer;margin-right:4px;">Edit</button>
@@ -877,7 +879,7 @@
                 <td style="color:var(--gold);font-weight:700">$59</td>
                 <td>76</td>
                 <td><span class="badge b-download">⬇ Downloadable</span></td>
-                <td><span style="color:var(--muted);font-size:0.8rem;">—</span></td>
+                <!-- <td><span style="color:var(--muted);font-size:0.8rem;">—</span></td> -->
                 <td><button class="toggle off" onclick="this.classList.toggle('on');this.classList.toggle('off');"></button></td>
                 <td>
                   <button style="background:none;border:1px solid var(--border);color:var(--text);padding:4px 10px;border-radius:4px;font-size:0.72rem;cursor:pointer;margin-right:4px;">Edit</button>
@@ -931,7 +933,7 @@
             <button class="add-btn" style="width:fit-content;">Save Changes</button>
           </div>
         </div>
-        <div class="panel">
+        <!-- <div class="panel">
           <div class="panel-header"><div class="panel-title">Content Protection</div></div>
           <div style="padding:20px;display:flex;flex-direction:column;gap:16px;">
             <div class="protect-row">
@@ -963,7 +965,7 @@
               <button class="toggle on" onclick="this.classList.toggle('on');this.classList.toggle('off');"></button>
             </div>
           </div>
-        </div>
+        </div> -->
       </div>
     </div>
 
@@ -993,13 +995,13 @@
         <select><option>Read-Only (Protected)</option><option>Downloadable</option></select>
       </div>
     </div>
-    <div class="protect-row" style="margin-bottom:16px;padding:12px;background:rgba(255,69,58,0.06);border:1px solid rgba(255,69,58,0.15);border-radius:6px;">
+    <!-- <div class="protect-row" style="margin-bottom:16px;padding:12px;background:rgba(255,69,58,0.06);border:1px solid rgba(255,69,58,0.15);border-radius:6px;">
       <div>
         <div style="font-size:0.85rem;font-weight:500;">Enable Screenshot Protection</div>
         <span style="font-size:0.72rem;color:var(--muted)">Blocks screenshots & screen recording</span>
       </div>
       <button class="toggle on" onclick="this.classList.toggle('on');this.classList.toggle('off');"></button>
-    </div>
+    </div> -->
     <div class="form-group"><label>Upload File</label>
       <input type="file" style="padding:6px;cursor:pointer;">
     </div>
